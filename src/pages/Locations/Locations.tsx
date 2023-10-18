@@ -51,13 +51,13 @@ const Locations = () => {
         <CsvDownloadButton data={companyList} />
         <Slider
           aria-label="Temperature"
-          defaultValue={50}
+          defaultValue={0}
           getAriaValueText={valuetext}
-          onChange={e => setRadius(e?.target?.value ? e.target.value : 50)}
+          onChange={e => setRadius(e?.target?.value ? e.target.value : 0)}
           valueLabelDisplay="auto"
           step={50}
           marks
-          min={50}
+          min={0}
           max={250}
         />
         <ul className='flex flex-col gap-2 text-black'>

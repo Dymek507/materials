@@ -47,20 +47,6 @@ const Product = () => {
         </div>
       </Grid>
     </Grid>
-
-    // <div className='flex flex-col items-center text-2xl'>
-    //   <div>
-    //     <button className='px-4 py-2 my-4 text-white bg-blue-500 rounded hover:bg-blue-600' onClick={() => window.open(`https://www.google.com/maps/dir/?api=1&origin=${siteCords.lat},${siteCords.lng}&destination=${cords.lat},${cords.lng}&travelmode=driving`, '_blank')}>Get directions</button>
-    //   </div>
-    //   {//list of materials and prices based on distance
-    //   }
-    //   <ul>
-    //     <li>
-    //       <h1>{keyToName('cement')} {distance} zł</h1>
-    //     </li>
-    //   </ul>
-    //
-    // </div >
   )
 }
 

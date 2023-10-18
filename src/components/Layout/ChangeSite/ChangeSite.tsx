@@ -1,9 +1,17 @@
-import * as React from 'react';
+import React, { useEffect, useState } from 'react';
 import { styled, alpha } from '@mui/material/styles';
 import Menu, { MenuProps } from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
+import { Divider } from '@mui/material';
+import { collection, getDoc, getDocs, query } from 'firebase/firestore';
+import { db } from '../../../../firebase';
+import { ICompany, IConstructionSite } from '../../../types/model';
+import InfoModal from '../../InfoModal/InfoModal';
+import AddSite from './AddSite';
+import { useAppDispatch } from '../../../store/app/hooks';
+import { setConstructionSite } from '../../../store/constructionSlice';
 
 const StyledMenu = styled((props: MenuProps) => (
   <Menu
@@ -47,8 +55,17 @@ const StyledMenu = styled((props: MenuProps) => (
 }));
 
 export default function ChangeSite({ site }: { site: string }) {
+
+  const [siteList, setSiteList] = useState<IConstructionSite[]>([])
+
+  const [showModal, setShowModal] = useState<boolean>(false)
+
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
+
+  const dispatch = useAppDispatch()
+
   const open = Boolean(anchorEl);
+
   const handleClick = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
   };
@@ -56,8 +73,39 @@ export default function ChangeSite({ site }: { site: string }) {
     setAnchorEl(null);
   };
 
+  const closeModal = () => {
+    setShowModal(false)
+  }
+
+  const addButtonHandler = () => {
+    setShowModal(true)
+    handleClose()
+  }
+
+  const setSite = async (site: IConstructionSite) => {
+    dispatch(setConstructionSite(site))
+    handleClose()
+  }
+
+  //Download data from firebase
+  useEffect(() => {
+    const getCompanies = async () => {
+      const q = query(collection(db, "sites"));
+      const querySnapshot = await getDocs(q);
+      const newList: IConstructionSite[] = []
+      querySnapshot.forEach((doc) => {
+        newList.push(doc.data() as IConstructionSite)
+      });
+      setSiteList(newList)
+    }
+    getCompanies()
+  }, [])
+
   return (
     <div>
+      <InfoModal open={showModal} onClose={closeModal} >
+        <AddSite onClose={closeModal} />
+      </InfoModal>
       <a>
         <button
           className='px-1 menu menu-horizontal'
@@ -80,8 +128,14 @@ export default function ChangeSite({ site }: { site: string }) {
         open={open}
         onClose={handleClose}
       >
-        <MenuItem onClick={handleClose} disableRipple>
-          Budowa
+        {siteList && siteList.map((site, index) => (
+          <MenuItem key={index} onClick={() => setSite(site)} disableRipple>
+            {site.name}
+          </MenuItem>
+        ))}
+        <Divider sx={{ borderColor: "black" }} />
+        <MenuItem onClick={addButtonHandler} disableRipple>
+          Dodaj...
         </MenuItem>
       </StyledMenu>
     </div>

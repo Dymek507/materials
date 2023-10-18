@@ -39,10 +39,5 @@ const getDistanceList = async (constructionSite: IConstructionSite) => {
       sendDistanceList(constructionSite, acc_dist, product.id);
     }, 300 * index);
   });
-
-  const distArray = productsList.map((product) => {
-    product.id, product.acc_dist;
-  });
-  console.log(distArray);
 };
 export default getDistanceList;

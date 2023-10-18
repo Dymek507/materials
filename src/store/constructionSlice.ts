@@ -9,7 +9,7 @@ const initialState: IInitialState = {
   constructionSite: {
     id: "1",
     name: "Budowa",
-    adress: "Sędziszów Małopolski 39-120",
+    adress: "Wybierz",
     cords: { lat: 50.06768134642127, lng: 21.69435960991312 },
     dist_arr: [],
   },
@@ -20,14 +20,15 @@ export const constructionSlice = createSlice({
   initialState,
   reducers: {
     addConstructionSite: (state, action: PayloadAction<IConstructionSite>) => {
-      // state.constructionSite.push(action.payload);
+      state.constructionSite = action.payload;
     },
-    addAccurateDistance: (state, action: PayloadAction<number>) => {
-      // state.constructionSite.push(action.payload);
+    setConstructionSite: (state, action: PayloadAction<IConstructionSite>) => {
+      state.constructionSite = action.payload;
     },
   },
 });
 
-export const { addConstructionSite } = constructionSlice.actions;
+export const { addConstructionSite, setConstructionSite } =
+  constructionSlice.actions;
 
 export default constructionSlice.reducer;

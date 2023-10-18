@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom"
 import { useAppSelector } from "../../store/app/hooks"
 import AccountMenu from "./AccountMenu"
-import ChangeSite from "./ChangeSite"
+import ChangeSite from "./ChangeSite/ChangeSite"
 import sendDistancesMap from "../../utils/sendDistancesMap"
 import getDistanceList from "../../utils/accuratePrice/getDistanceList"
 import { Cords } from "../../types/model"
@@ -14,6 +14,8 @@ const Navbar = () => {
     // sendDistancesMap(constructionSite.id, constructionSite.cords)
     getDistanceList(constructionSite);
   }
+
+
   return (
     <div className="z-50 h-8 navbar bg-base-100">
       <div className="navbar-start">
@@ -40,9 +42,10 @@ const Navbar = () => {
           <li>
             <ChangeSite site={constructionSite.adress} />
           </li>
+
           <li>
             <button onClick={clickHandler}>
-              Aktualizuj Ceny
+              Aktualizuj odległości
             </button>
           </li>
         </ul>

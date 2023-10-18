@@ -12,9 +12,9 @@ import {
   useReactTable,
   getFilteredRowModel,
 } from '@tanstack/react-table'
-import { collection, onSnapshot } from 'firebase/firestore'
+import { collection, doc, getDoc, onSnapshot } from 'firebase/firestore'
 import { db } from '../../../../firebase'
-import { IProduct } from '../../../types/model'
+import { Cords, IDistanceList, IProduct } from '../../../types/model'
 import { lineDistance } from '../../../utils/lineDistance'
 import { useAppSelector } from '../../../store/app/hooks'
 import CsvDownloadButton from 'react-json-to-csv'
@@ -26,6 +26,11 @@ function Table() {
   const [sorting, setSorting] = React.useState<SortingState>([])
 
   const [data, setData] = React.useState<IProduct[]>([{ category: "beton", company: "wibro", cords_storage: { lat: 51.4735902, lng: 22.61918503 }, date: "7/11/23", id: "1", material: "ccc", price: 174, unit: "m2" }])
+  console.log(data)
+
+  const [rawData, setRawData] = React.useState<IProduct[]>([{ category: "beton", company: "wibro", cords_storage: { lat: 51.4735902, lng: 22.61918503 }, date: "7/11/23", id: "1", material: "ccc", price: 174, unit: "m2" }])
+
+  const [accDistArray, setAccDistArray] = React.useState<IDistanceList[]>([{ id: "1", acc_dist: 0 }])
 
   const [rowSelection, setRowSelection] = React.useState({})
 
@@ -37,7 +42,17 @@ function Table() {
 
   const constructionSite = useAppSelector(state => state.construction.constructionSite)
 
+  console.log(constructionSite)
+
   const productsRef = collection(db, "products");
+
+  const getAccDistance = (id: string | undefined) => {
+    if (!id || accDistArray?.length === 0) return 0
+
+    const accDist = accDistArray?.find((accDist) => accDist.id === id)
+
+    return accDist?.acc_dist
+  }
 
   useEffect(() => {
     const unsub = onSnapshot(productsRef, (products) => {
@@ -45,12 +60,33 @@ function Table() {
       products.forEach((product) => {
         firebaseProductsList.push(product.data() as IProduct)
       });
-      setData(firebaseProductsList)
+      setRawData(firebaseProductsList)
     });
     return () => {
       unsub()
     }
   }, [])
+
+
+  useEffect(() => {
+    const getDistanceArray = async () => {
+      const accDistRef = doc(db, "sites", constructionSite.id);
+      const distanceArray = await getDoc(accDistRef)
+      setAccDistArray(distanceArray.data()?.dist_arr)
+    }
+    getDistanceArray()
+  }, [constructionSite])
+
+  useEffect(() => {
+    const data = rawData.map((product) => {
+      return {
+        ...product,
+        distance: getAccDistance(product.id)
+      }
+    })
+    setData(data)
+  }
+    , [rawData, constructionSite])
 
   const columns = React.useMemo<ColumnDef<IProduct>[]>(
     () => [
@@ -107,8 +143,16 @@ function Table() {
         footer: props => props.column.id,
       },
       {
-        accessorFn: row => (lineDistance(row.cords_storage, constructionSite.cords) * 0.7).toFixed(2),
+        accessorFn: row => (lineDistance(row.cords_storage, constructionSite.cords) * 1).toFixed(2),
         id: 'transport',
+        cell: info => info.getValue(),
+        header: () => <span>Transport</span>,
+        footer: props => props.column.id,
+        size: 300
+      },
+      {
+        accessorFn: row => ((row.distance ?? 0) * 1).toFixed(2),
+        id: 'transport_acc',
         cell: info => info.getValue(),
         header: () => <span>Transport</span>,
         footer: props => props.column.id,
@@ -277,6 +321,8 @@ function Table() {
           ))}
         </select>
         <CsvDownloadButton data={data} />
+
+        <button onClick={deleteHandler}>Pobierz odległości</button>
         <button onClick={deleteHandler}>Usuń</button>
       </div>
 

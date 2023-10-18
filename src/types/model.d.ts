@@ -27,9 +27,10 @@ export interface IProduct {
   unit: string;
   price: number;
   company: string;
-  cords_storage?: Cords;
+  cords_storage: Cords;
   date?: string;
   adress?: string;
+  distance?: number;
 }
 
 export type Cords = {
@@ -54,7 +55,8 @@ export interface IConstructionSite {
   name: string;
   adress: string;
   cords: Cords;
-  dist_arr: number[];
+  dist_arr: IDistanceList[];
+  date?: string;
 }
 
 export interface IDistanceList {
