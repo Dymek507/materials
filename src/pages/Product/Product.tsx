@@ -37,8 +37,9 @@ const Product = () => {
         <div className='flex flex-col items-center text-3xl'>
           {category !== "" ? <h1 className='mb-2 text-3xl'>{category}</h1> : null}
           {company !== "" ? <h1 className='pb-2 mb-4 border-b-2'>{company}</h1> : null}
-          <h1>{price} zł</h1>
-          <h1>{distance.toFixed(2)} km</h1>
+          <h2>{price} zł</h2>
+          <h2>{distance.toFixed(2)} km</h2>
+          <h1>{(price + distance * 0.5).toFixed(2)} zł</h1>
         </div>
       </Grid>
       <Grid item xs={6} className='h-screen flex-center'>

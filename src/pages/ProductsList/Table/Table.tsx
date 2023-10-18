@@ -26,7 +26,6 @@ function Table() {
   const [sorting, setSorting] = React.useState<SortingState>([])
 
   const [data, setData] = React.useState<IProduct[]>([{ category: "beton", company: "wibro", cords_storage: { lat: 51.4735902, lng: 22.61918503 }, date: "7/11/23", id: "1", material: "ccc", price: 174, unit: "m2" }])
-  console.log(data)
 
   const [rawData, setRawData] = React.useState<IProduct[]>([{ category: "beton", company: "wibro", cords_storage: { lat: 51.4735902, lng: 22.61918503 }, date: "7/11/23", id: "1", material: "ccc", price: 174, unit: "m2" }])
 
@@ -36,13 +35,7 @@ function Table() {
 
   const navigate = useNavigate()
 
-  const handleRowClick = (id: string) => {
-    navigate(`/productst/${id}`);
-  }
-
   const constructionSite = useAppSelector(state => state.construction.constructionSite)
-
-  console.log(constructionSite)
 
   const productsRef = collection(db, "products");
 
@@ -65,8 +58,7 @@ function Table() {
     return () => {
       unsub()
     }
-  }, [])
-
+  }, [constructionSite, constructionSite.cords])
 
   useEffect(() => {
     const getDistanceArray = async () => {
@@ -75,9 +67,20 @@ function Table() {
       setAccDistArray(distanceArray.data()?.dist_arr)
     }
     getDistanceArray()
-  }, [constructionSite])
+  }, [constructionSite, constructionSite.cords])
 
-  useEffect(() => {
+  // useEffect(() => {
+  //   const data = rawData.map((product) => {
+  //     return {
+  //       ...product,
+  //       distance: getAccDistance(product.id)
+  //     }
+  //   })
+  //   setData(data)
+  // }
+  //   , [rawData, constructionSite])
+
+  const distanceButtonHandler = () => {
     const data = rawData.map((product) => {
       return {
         ...product,
@@ -86,7 +89,12 @@ function Table() {
     })
     setData(data)
   }
-    , [rawData, constructionSite])
+
+
+  const handleRowClick = (id: string | undefined) => {
+    if (!id) return
+    navigate(`/productst/${id}`);
+  }
 
   const columns = React.useMemo<ColumnDef<IProduct>[]>(
     () => [
@@ -143,27 +151,38 @@ function Table() {
         footer: props => props.column.id,
       },
       {
-        accessorFn: row => (lineDistance(row.cords_storage, constructionSite.cords) * 1).toFixed(2),
-        id: 'transport',
-        cell: info => info.getValue(),
-        header: () => <span>Transport</span>,
-        footer: props => props.column.id,
-        size: 300
-      },
-      {
         accessorFn: row => ((row.distance ?? 0) * 1).toFixed(2),
         id: 'transport_acc',
         cell: info => info.getValue(),
-        header: () => <span>Transport</span>,
+        header: () => <span>Odległość dok.</span>,
         footer: props => props.column.id,
         size: 300
       },
       {
-        accessorFn: row => (row.price + lineDistance(row.cords_storage, constructionSite.cords) * 0.7).toFixed(2),
+        accessorFn: row => (row.price + (row.distance ?? 0 * 0.5)).toFixed(2),
         id: 'franco',
         cell: info => info.getValue(),
         header: () => <span>Cena franco</span>,
         footer: props => props.column.id,
+      },
+      // {
+      //   accessorFn: row => "Więcej",
+      //   id: 'more',
+      //   cell: info => info.getValue(),
+      //   onClick: () => console.log("działa"),
+      //   header: () => <span>Więcej</span>,
+      //   footer: props => props.column.id,
+      // },
+      {
+        id: 'more',
+        header: ({ table }) => (
+          "Więcej"
+        ),
+        cell: ({ row }) => (
+          <div className="px-1">
+            <button onClick={() => handleRowClick(row.original.id)}>Więcej</button>
+          </div>
+        ),
       },
     ],
     []
@@ -190,13 +209,13 @@ function Table() {
     onRowSelectionChange: setRowSelection,
     // enableColumnResizing: true,
   })
-
   //Delete rows 
 
   const deleteHandler = () => {
     table.getSelectedRowModel().flatRows.map(row => deleteProduct(row.original.id))
     table.setRowSelection({})
   }
+
 
   return (
     <div className="flex-col w-full p-2 flex-center">
@@ -322,7 +341,7 @@ function Table() {
         </select>
         <CsvDownloadButton data={data} />
 
-        <button onClick={deleteHandler}>Pobierz odległości</button>
+        <button onClick={distanceButtonHandler}>Pobierz odległości</button>
         <button onClick={deleteHandler}>Usuń</button>
       </div>
 

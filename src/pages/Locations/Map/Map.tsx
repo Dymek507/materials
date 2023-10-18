@@ -59,9 +59,8 @@ const Map = ({ list, circleRadius }: MapProps) => {
         })}>
         </Marker>
         {list.length !== 0 && list.map((company) => (
-
           <Marker key={company.id} position={[company.cords.lat, company.cords.lng]} icon={L.icon({
-            iconUrl: company.type === "kruszywo" ? placeholder : cemIcon,
+            iconUrl: cemIcon,
             iconSize: [38, 38],
           })}>
             <Popup>

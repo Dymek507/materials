@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import Map from './Map/Map'
 import { Box, Button, Checkbox, Divider, Drawer, List, ListItem, ListItemButton, ListItemIcon, ListItemText, Slider } from '@mui/material'
-import { ICompany } from '../../types/model'
+import { ICategory, ICompany } from '../../types/model'
 import { collection, getDocs, onSnapshot, query, where } from 'firebase/firestore'
 import { db } from '../../../firebase'
 import { PRODUCT_TYPES } from './productTypes'
@@ -13,33 +13,51 @@ export type Type = {
 }
 
 const Locations = () => {
-  const [type, setType] = React.useState<string>("")
+  const [category, setCategory] = React.useState<string>("kruszywo")
 
   const [companyList, setCompanyList] = useState<ICompany[]>([])
 
-  const [types, setTypes] = useState<string[]>(PRODUCT_TYPES)
+  const [categories, setCategories] = useState<ICategory[]>()
+  console.log(categories)
 
   const [radius, setRadius] = useState<number>(50)
+
+
+  //Get categories from server 
+
+  useEffect(() => {
+    const getCategories = async () => {
+      const q = query(collection(db, "categories"))
+      const querySnapshot = await getDocs(q);
+      const newList: ICategory[] = []
+      querySnapshot.forEach((doc) => {
+        newList.push(doc.data() as ICategory)
+      });
+      setCategories(newList)
+    }
+    getCategories()
+  }, [])
 
   //Get data once
 
   useEffect(() => {
     const getCompanies = async () => {
       setCompanyList([])
-      const q = query(collection(db, "companies"), where("type", "==", type));
+      const q = query(collection(db, "companies"), where("category", "array-contains", category))
+      // const q = query(collection(db, "companies"), whereField("type", arrayContains: type))
       const querySnapshot = await getDocs(q);
+      const newList: ICompany[] = []
       querySnapshot.forEach((doc) => {
-        setCompanyList(prev => [...prev, doc.data() as ICompany])
+        newList.push(doc.data() as ICompany)
       });
+      setCompanyList(newList)
     }
     getCompanies()
-  }, [type])
+  }, [category])
 
-  const checkboxHandler = (type: string) => {
-    setType(type)
+  const checkboxHandler = (category: string) => {
+    setCategory(category)
   }
-
-
 
   const valuetext = (value: number) => {
     return `${value}°C`;
@@ -61,8 +79,8 @@ const Locations = () => {
           max={250}
         />
         <ul className='flex flex-col gap-2 text-black'>
-          {types.map((item) => (
-            <li key={item} ><Checkbox onChange={e => checkboxHandler(item)} checked={item == type} />{item}</li>
+          {categories && categories.map((item) => (
+            <li key={item.key} ><Checkbox onChange={e => checkboxHandler(item.key)} checked={item.key == category} />{item.name}</li>
           ))
           }
         </ul>

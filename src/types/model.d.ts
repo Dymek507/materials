@@ -5,18 +5,34 @@ export interface ILocation {
   voivodeship?: string;
 }
 
+// export interface ICompany {
+//   id: string;
+//   key: string;
+//   type: string;
+//   group: string;
+//   name: string;
+//   adress: string;
+//   mail: string;
+//   person: string;
+//   phone: string;
+//   siding: string;
+//   location: string;
+//   cords: Cords;
+// }
+
 export interface ICompany {
+  group: string;
+  company: string;
+  nip: string;
   id: string;
   key: string;
-  type: string;
-  group: string;
-  name: string;
+  category: string[];
   adress: string;
-  mail: string;
-  person: string;
-  phone: string;
+  comment: string;
+  mail: string | string[];
+  person: string | string[];
+  phone: string[];
   siding: string;
-  location: string;
   cords: Cords;
 }
 
@@ -62,4 +78,9 @@ export interface IConstructionSite {
 export interface IDistanceList {
   id: string;
   acc_dist: number;
+}
+
+export interface ICategory {
+  name: string;
+  key: string;
 }
