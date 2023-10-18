@@ -1,0 +1,807 @@
+{
+  "Sheet1": [
+    {
+      "material": "beton",
+      "material_cd": "C3/4",
+      "jednostka": "m3",
+      "cena loco": " 175.00    ",
+      "firma": "wibro",
+      "cords_magazyn": "51.4735902,22.61918503",
+      "data": "7/11/23"
+    },
+    {
+      "material": "beton",
+      "material_cd": "C3/4",
+      "jednostka": "m3",
+      "cena loco": " 235.00    ",
+      "firma": "wibro",
+      "cords_magazyn": "51.4735902,22.61918503",
+      "data": "7/11/23"
+    },
+    {
+      "material": "beton",
+      "material_cd": "C5/6",
+      "jednostka": "m3",
+      "cena loco": " 250.00    ",
+      "firma": "wibro",
+      "cords_magazyn": "51.4735902,22.61918503",
+      "data": "7/11/23"
+    },
+    {
+      "material": "beton",
+      "material_cd": "C8/10",
+      "jednostka": "m3",
+      "cena loco": " 200.00    ",
+      "firma": "wibro",
+      "cords_magazyn": "51.4735902,22.61918503",
+      "data": "7/11/23"
+    },
+    {
+      "material": "beton",
+      "material_cd": "C12/15",
+      "jednostka": "m3",
+      "cena loco": " 215.00    ",
+      "firma": "wibro",
+      "cords_magazyn": "51.4735902,22.61918503",
+      "data": "7/11/23"
+    },
+    {
+      "material": "beton",
+      "material_cd": "C30/37",
+      "jednostka": "m3",
+      "cena loco": " 390.00    ",
+      "firma": "wibro",
+      "cords_magazyn": "51.4735902,22.61918503",
+      "data": "7/11/23"
+    },
+    {
+      "material": "beton",
+      "material_cd": "C35/45",
+      "jednostka": "m3",
+      "cena loco": " 430.00    ",
+      "firma": "wibro",
+      "cords_magazyn": "51.4735902,22.61918503",
+      "data": "7/11/23"
+    },
+    {
+      "material": "beton",
+      "material_cd": "C12/15",
+      "jednostka": "m3",
+      "cena loco": " 240.00    ",
+      "firma": "Miruna",
+      "cords_magazyn": "50.3024826,20.82367325",
+      "data": "8/11/23"
+    },
+    {
+      "material": "beton",
+      "material_cd": "CP1/4",
+      "jednostka": "m3",
+      "cena loco": " 180.00    ",
+      "firma": "Miruna",
+      "cords_magazyn": "50.3024826,20.82367325",
+      "data": "8/11/23"
+    },
+    {
+      "material": "beton",
+      "material_cd": "C1,5/2",
+      "jednostka": "m3",
+      "cena loco": " 180.00    ",
+      "firma": "Miruna",
+      "cords_magazyn": "50.3024826,20.82367325",
+      "data": "8/11/23"
+    },
+    {
+      "material": "beton",
+      "material_cd": "C3/4",
+      "jednostka": "m3",
+      "cena loco": " 210.00    ",
+      "firma": "Miruna",
+      "cords_magazyn": "50.3024826,20.82367325",
+      "data": "8/11/23"
+    },
+    {
+      "material": "beton",
+      "material_cd": "C5/6",
+      "jednostka": "m3",
+      "cena loco": " 200.00    ",
+      "firma": "Miruna",
+      "cords_magazyn": "50.3024826,20.82367325",
+      "data": "8/11/23"
+    },
+    {
+      "material": "plyta_brukowa_ostrzegawcza",
+      "material_cd": "40x40x8",
+      "jednostka": "szt.",
+      "cena loco": " 32.45    ",
+      "firma": "BrukBet",
+      "cords_magazyn": "50.01572418,20.98659706",
+      "data": "8/16/23"
+    },
+    {
+      "material": "Krawężnik drogowy prosty",
+      "material_cd": "20/17x30x100cm",
+      "jednostka": "mb",
+      "cena loco": " 22.00    ",
+      "firma": "BrukBet",
+      "cords_magazyn": "50.86993408,20.64095497",
+      "data": "8/14/23"
+    },
+    {
+      "material": "kostka_behaton_10",
+      "jednostka": "m2",
+      "cena loco": " 34.00    ",
+      "firma": "BrukBet",
+      "cords_magazyn": "50.86993408,20.64095497",
+      "data": "8/14/23"
+    },
+    {
+      "material": "kostka_behaton_8",
+      "jednostka": "m2",
+      "cena loco": " 27.50    ",
+      "firma": "BrukBet",
+      "cords_magazyn": "50.86993408,20.64095497",
+      "data": "8/14/23"
+    },
+    {
+      "material": "korytko_skarpowe_trojkatne",
+      "material_cd": "18/20x50x50",
+      "jednostka": "szt.",
+      "cena loco": " 23.00    ",
+      "firma": "BrukBet",
+      "cords_magazyn": "50.86993408,20.64095497",
+      "data": "8/14/23"
+    },
+    {
+      "material": "azur",
+      "material_cd": "60x40x10",
+      "jednostka": "szt.",
+      "cena loco": " 6.80    ",
+      "firma": "BrukBet",
+      "cords_magazyn": "50.86993408,20.64095497",
+      "data": "8/14/23"
+    },
+    {
+      "material": "kraweznik",
+      "material_cd": "20x30x100",
+      "jednostka": "mb ",
+      "cena loco": " 25.00    ",
+      "firma": "Inblock",
+      "cords_magazyn": "50.179363,21.328953",
+      "data": "8/16/23"
+    },
+    {
+      "material": "kostka_holland_8",
+      "jednostka": "m2 ",
+      "cena loco": " 29.50    ",
+      "firma": "Inblock",
+      "cords_magazyn": "50.179363,21.328953",
+      "data": "8/16/23"
+    },
+    {
+      "material": "korytko_skarpowe",
+      "material_cd": "50x50/38x20/15",
+      "jednostka": "szt. ",
+      "cena loco": " 23.00    ",
+      "firma": "Inblock",
+      "cords_magazyn": "50.179363,21.328953",
+      "data": "8/16/23"
+    },
+    {
+      "material": "korytko_skarpowe",
+      "material_cd": "trójkątne 50X50X18/20",
+      "jednostka": "szt. ",
+      "cena loco": " 17.00    ",
+      "firma": "Inblock",
+      "cords_magazyn": "50.179363,21.328953",
+      "data": "8/16/23"
+    },
+    {
+      "material": "azur",
+      "material_cd": "60x40x10",
+      "jednostka": "szt. ",
+      "cena loco": " 7.00    ",
+      "firma": "Inblock",
+      "cords_magazyn": "50.179363,21.328953",
+      "data": "8/16/23"
+    },
+    {
+      "material": "obrzeze",
+      "material_cd": "8x30x100",
+      "jednostka": "szt. ",
+      "cena loco": " 9.97    ",
+      "firma": "Gladio",
+      "cords_magazyn": "51.59799957,19.92214966",
+      "data": "7/11/23"
+    },
+    {
+      "material": "azur",
+      "material_cd": "60x40x10",
+      "jednostka": "szt. ",
+      "cena loco": " 7.68    ",
+      "firma": "Gladio",
+      "cords_magazyn": "51.59799957,19.92214966",
+      "data": "7/11/23"
+    },
+    {
+      "material": "kraweznik",
+      "material_cd": "20x30x100",
+      "jednostka": "mb",
+      "cena loco": " 26.43    ",
+      "firma": "Gladio",
+      "cords_magazyn": "51.59799957,19.92214966",
+      "data": "7/11/23"
+    },
+    {
+      "material": "ciek_duży",
+      "material_cd": "60x50x15",
+      "jednostka": "mb ",
+      "cena loco": " 50.34    ",
+      "firma": "Gladio",
+      "cords_magazyn": "51.59799957,19.92214966",
+      "data": "7/11/23"
+    },
+    {
+      "material": "korytko_skarpowe_trojkatne",
+      "jednostka": "mb ",
+      "cena loco": " 52.86    ",
+      "firma": "Gladio",
+      "cords_magazyn": "51.59799957,19.92214966",
+      "data": "7/11/23"
+    },
+    {
+      "material": "kostka_holland_6",
+      "jednostka": "m2 ",
+      "cena loco": " 25.79    ",
+      "firma": "Gladio",
+      "cords_magazyn": "51.59799957,19.92214966",
+      "data": "7/11/23"
+    },
+    {
+      "material": "kostka_holland_8",
+      "jednostka": "m2",
+      "cena loco": " 28.50    ",
+      "firma": "Gladio",
+      "cords_magazyn": "51.59799957,19.92214966",
+      "data": "7/11/23"
+    },
+    {
+      "material": "kostka_behaton_6",
+      "jednostka": "m2",
+      "cena loco": " 29.15    ",
+      "firma": "SuperBet",
+      "cords_magazyn": "52.239904,22.7031282",
+      "data": "7/11/23"
+    },
+    {
+      "material": "kostka_behaton_8",
+      "jednostka": "m2",
+      "cena loco": " 34.10    ",
+      "firma": "SuperBet",
+      "cords_magazyn": "52.239904,22.7031282",
+      "data": "7/11/23"
+    },
+    {
+      "material": "kraweznik",
+      "material_cd": "20x30x100",
+      "jednostka": "mb",
+      "cena loco": " 29.70    ",
+      "firma": "SuperBet",
+      "cords_magazyn": "52.239904,22.7031282",
+      "data": "7/11/23"
+    },
+    {
+      "material": "obrzeze",
+      "material_cd": "8x30x100",
+      "jednostka": "mb",
+      "cena loco": " 14.00    ",
+      "firma": "SuperBet",
+      "cords_magazyn": "52.239904,22.7031282",
+      "data": "7/11/23"
+    },
+    {
+      "material": "korytko_skarpowe",
+      "material_cd": "trojkatne",
+      "jednostka": "szt.",
+      "cena loco": " 15.00    ",
+      "firma": "SuperBet",
+      "cords_magazyn": "52.239904,22.7031282",
+      "data": "7/11/23"
+    },
+    {
+      "material": "korytko",
+      "jednostka": "szt.",
+      "cena loco": " 14.00    ",
+      "firma": "SuperBet",
+      "cords_magazyn": "52.239904,22.7031282",
+      "data": "7/11/23"
+    },
+    {
+      "material": "azur",
+      "material_cd": "60x40x10",
+      "jednostka": "szt.",
+      "cena loco": " 8.50    ",
+      "firma": "SuperBet",
+      "cords_magazyn": "52.239904,22.7031282",
+      "data": "7/11/23"
+    },
+    {
+      "material": "cement_32,5",
+      "material_cd": "DROGOWY CEM II/B-V 32,5 R LUZ",
+      "środek transportu": "beczka",
+      "jednostka": "t",
+      "cena loco": " 410.00    ",
+      "firma": "ozarow_karsy",
+      "cords_magazyn": "50.929133,21.679609",
+      "data": "9/30/23"
+    },
+    {
+      "material": "cement_42,5",
+      "material_cd": "CEM III/A 42,5 N-LH/HSR/NA",
+      "środek transportu": "beczka",
+      "jednostka": "t",
+      "cena loco": " 467.37    ",
+      "firma": "dyckerhoff_nowiny",
+      "cords_magazyn": "50.8143899,20.5358718",
+      "data": "8/16/23"
+    },
+    {
+      "material": "cement_32,5",
+      "material_cd": "CEM Il/B-v 32,5 R-HSR",
+      "środek transportu": "beczka",
+      "jednostka": "t",
+      "cena loco": " 447.37    ",
+      "firma": "dyckerhoff_nowiny",
+      "cords_magazyn": "50.8143899,20.5358718",
+      "data": "8/16/23"
+    },
+    {
+      "material": "cement_42,5",
+      "material_cd": "CEM II/A-LL 42,5 R",
+      "środek transportu": "beczka",
+      "jednostka": "t",
+      "cena loco": " 477.37    ",
+      "firma": "dyckerhoff_nowiny",
+      "cords_magazyn": "50.8143899,20.5358718",
+      "data": "8/16/23"
+    },
+    {
+      "material": "spoiwo_12,5",
+      "material_cd": "Strada 12,5",
+      "środek transportu": "beczka",
+      "jednostka": "t",
+      "cena loco": " 215.00    ",
+      "firma": "thomas_warszawa",
+      "cords_magazyn": "52.1839056,21.0839996",
+      "data": "9/1/23"
+    },
+    {
+      "material": "spoiwo_22,5",
+      "material_cd": "Strada 22,5",
+      "środek transportu": "beczka",
+      "jednostka": "t",
+      "cena loco": " 275.00    ",
+      "firma": "thomas_warszawa",
+      "cords_magazyn": "52.1839056,21.0839996",
+      "data": "9/1/23"
+    },
+    {
+      "material": "spoiwo_32,5",
+      "material_cd": "Strada 32,5",
+      "środek transportu": "beczka",
+      "jednostka": "t",
+      "cena loco": " 370.00    ",
+      "firma": "thomas_warszawa",
+      "cords_magazyn": "52.1839056,21.0839996",
+      "data": "9/1/23"
+    },
+    {
+      "material": "cement_42,5",
+      "material_cd": "Cem 42,5N blue",
+      "środek transportu": "beczka",
+      "jednostka": "t",
+      "cena loco": " 485.00    ",
+      "firma": "thomas_warszawa",
+      "cords_magazyn": "52.1839056,21.0839996",
+      "data": "9/1/23"
+    },
+    {
+      "material": "spoiwo_12,5",
+      "material_cd": "Strada 12,5",
+      "środek transportu": "beczka",
+      "jednostka": "t",
+      "cena loco": " 190.00    ",
+      "firma": "thomas_jaworzno",
+      "cords_magazyn": "50.2056842,19.20093",
+      "data": "9/1/23"
+    },
+    {
+      "material": "spoiwo_22,5",
+      "material_cd": "Strada 22,5",
+      "środek transportu": "beczka",
+      "jednostka": "t",
+      "cena loco": " 245.00    ",
+      "firma": "thomas_jaworzno",
+      "cords_magazyn": "50.2056842,19.20093",
+      "data": "9/1/23"
+    },
+    {
+      "material": "spoiwo_32,5",
+      "material_cd": "Strada 32,5",
+      "środek transportu": "beczka",
+      "jednostka": "t",
+      "cena loco": " 340.00    ",
+      "firma": "thomas_jaworzno",
+      "cords_magazyn": "50.2056842,19.20093",
+      "data": "9/1/23"
+    },
+    {
+      "material": "cement_32,5",
+      "material_cd": "CEM II/A 32,5",
+      "środek transportu": "beczka",
+      "jednostka": "t",
+      "cena loco": " 460.00    ",
+      "firma": "odra_opole",
+      "cords_magazyn": "50.6789773,17.9134891",
+      "data": "9/1/23"
+    },
+    {
+      "material": "cement_32,5",
+      "material_cd": "CEM II/A 32,5",
+      "środek transportu": "beczka",
+      "jednostka": "t",
+      "cena loco": " 430.00    ",
+      "firma": "lafarge_malogoszcz",
+      "cords_magazyn": "50.8251914,20.2785495",
+      "data": "9/1/23"
+    },
+    {
+      "material": "cement_32,5",
+      "material_cd": "CEM II/A 32,5",
+      "środek transportu": "beczka",
+      "jednostka": "t",
+      "cena loco": " 474.00    ",
+      "firma": "cemex_chelm",
+      "cords_magazyn": "51.136538,23.539741",
+      "data": "9/1/23"
+    },
+    {
+      "material": "spoiwo_5",
+      "material_cd": "Stabifen 5",
+      "środek transportu": "beczka",
+      "jednostka": "t",
+      "cena loco": " 135.00    ",
+      "firma": "spoiwex_rogowiec",
+      "cords_magazyn": "51.27188646,19.30486192",
+      "data": "9/1/23"
+    },
+    {
+      "material": "spoiwo_12,5",
+      "material_cd": "Stabifen 12,5",
+      "środek transportu": "beczka",
+      "jednostka": "t",
+      "cena loco": " 180.00    ",
+      "firma": "spoiwex_rogowiec",
+      "cords_magazyn": "51.27188646,19.30486192",
+      "data": "9/1/23"
+    },
+    {
+      "material": "spoiwo_22,5",
+      "material_cd": "Drohard 22,5",
+      "środek transportu": "beczka",
+      "jednostka": "t",
+      "cena loco": " 228.00    ",
+      "firma": "spoiwex_rogowiec",
+      "cords_magazyn": "51.27188646,19.30486192",
+      "data": "9/1/23"
+    },
+    {
+      "material": "spoiwo_32,5",
+      "material_cd": "Drohard 32,5",
+      "środek transportu": "beczka",
+      "jednostka": "t",
+      "cena loco": " 375.00    ",
+      "firma": "spoiwex_rogowiec",
+      "cords_magazyn": "51.27188646,19.30486192",
+      "data": "9/1/23"
+    },
+    {
+      "material": "spoiwo_32,5",
+      "material_cd": "Drohard 32,5E",
+      "środek transportu": "beczka",
+      "jednostka": "t",
+      "cena loco": " 410.00    ",
+      "firma": "spoiwex_rogowiec",
+      "cords_magazyn": "51.27188646,19.30486192",
+      "data": "9/1/23"
+    },
+    {
+      "material": "spoiwo_22,5",
+      "material_cd": "Drohard 22,5",
+      "środek transportu": "beczka",
+      "jednostka": "t",
+      "cena loco": " 249.00    ",
+      "firma": "spoiwex_zory",
+      "cords_magazyn": "50.0574702,18.7099991",
+      "data": "9/1/23"
+    },
+    {
+      "material": "spoiwo_32,5",
+      "material_cd": "Drohard 32,5",
+      "środek transportu": "beczka",
+      "jednostka": "t",
+      "cena loco": " 352.00    ",
+      "firma": "spoiwex_zory",
+      "cords_magazyn": "50.0574702,18.7099991",
+      "data": "9/1/23"
+    },
+    {
+      "material": "spoiwo_32,5",
+      "material_cd": "Drohard 32,5E",
+      "środek transportu": "beczka",
+      "jednostka": "t",
+      "cena loco": " 410.00    ",
+      "firma": "spoiwex_zory",
+      "cords_magazyn": "50.0574702,18.7099991",
+      "data": "9/1/23"
+    },
+    {
+      "material": "spoiwo_22,5",
+      "material_cd": "Solitex C 22,5",
+      "środek transportu": "beczka",
+      "jednostka": "t",
+      "cena loco": " 280.00    ",
+      "firma": "pge_rybnik",
+      "cords_magazyn": "50.13458336,18.52609356",
+      "data": "9/1/23"
+    },
+    {
+      "material": "spoiwo_12,5",
+      "material_cd": "Solitex B 12,5",
+      "środek transportu": "beczka",
+      "jednostka": "t",
+      "cena loco": " 160.00    ",
+      "firma": "pge_rybnik",
+      "cords_magazyn": "50.13458336,18.52609356",
+      "data": "9/1/23"
+    },
+    {
+      "material": "spoiwo_5",
+      "material_cd": "Solitex A 5,5",
+      "środek transportu": "beczka",
+      "jednostka": "t",
+      "cena loco": " 95.00    ",
+      "firma": "pge_rybnik",
+      "cords_magazyn": "50.13458336,18.52609356",
+      "data": "9/1/23"
+    },
+    {
+      "material": "cement_32,5",
+      "material_cd": "CEM II/A 32,5",
+      "środek transportu": "beczka",
+      "jednostka": "t",
+      "cena loco": " 415.00    ",
+      "firma": "pge_rybnik",
+      "cords_magazyn": "50.13458336,18.52609356",
+      "data": "9/1/23"
+    },
+    {
+      "material": "spoiwo_22,5",
+      "material_cd": "Solitex C 22,5",
+      "środek transportu": "beczka",
+      "jednostka": "t",
+      "cena loco": " 280.00    ",
+      "firma": "pge_rybnik",
+      "cords_magazyn": "50.13458336,18.52609356",
+      "data": "9/1/23"
+    },
+    {
+      "material": "spoiwo_12,5",
+      "material_cd": "Solitex B 12,5",
+      "środek transportu": "beczka",
+      "jednostka": "t",
+      "cena loco": " 160.00    ",
+      "firma": "pge_rybnik",
+      "cords_magazyn": "50.13458336,18.52609356",
+      "data": "9/1/23"
+    },
+    {
+      "material": "spoiwo_5",
+      "material_cd": "Solitex A 5,5",
+      "środek transportu": "beczka",
+      "jednostka": "t",
+      "cena loco": " 95.00    ",
+      "firma": "pge_rybnik",
+      "cords_magazyn": "50.13458336,18.52609356",
+      "data": "9/1/23"
+    },
+    {
+      "material": "spoiwo_32,5",
+      "material_cd": "MULTICRETE  32,5 HRB E4",
+      "środek transportu": "beczka",
+      "jednostka": "t",
+      "cena loco": " 346.00    ",
+      "firma": "gorazdze_dabrowa",
+      "cords_magazyn": "50.35678535,19.26990895",
+      "data": "9/5/23"
+    },
+    {
+      "material": "spoiwo_22,5",
+      "material_cd": "MULTICRETE  22,5 HRB E3",
+      "środek transportu": "beczka",
+      "jednostka": "t",
+      "cena loco": " 298.00    ",
+      "firma": "gorazdze_dabrowa",
+      "cords_magazyn": "50.35678535,19.26990895",
+      "data": "9/5/23"
+    },
+    {
+      "material": "spoiwo_5",
+      "material_cd": "MULTICRETE  5",
+      "środek transportu": "beczka",
+      "jednostka": "t",
+      "cena loco": " 211.00    ",
+      "firma": "gorazdze_dabrowa",
+      "cords_magazyn": "50.35678535,19.26990895",
+      "data": "9/5/23"
+    },
+    {
+      "material": "spoiwo",
+      "material_cd": "Lipidur DF  - 32,5",
+      "środek transportu": "beczka",
+      "jednostka": "t",
+      "cena loco": " 440.00    ",
+      "firma": "dyckerhoff_nowiny",
+      "cords_magazyn": "50.8143899,20.5358718",
+      "data": "9/1/23"
+    },
+    {
+      "material": "spoiwo",
+      "material_cd": "CEM/IIBV32,5R ",
+      "środek transportu": "beczka",
+      "jednostka": "t",
+      "cena loco": " 365.00    ",
+      "firma": "energobet_zabki",
+      "cords_magazyn": "52.28005186073, 21.11145922883",
+      "data": "9/1/23"
+    },
+    {
+      "material": "spoiwo",
+      "material_cd": "CEMII/BV42,5N ",
+      "środek transportu": "beczka",
+      "jednostka": "t",
+      "cena loco": " 405.00    ",
+      "firma": "energobet_zabki",
+      "cords_magazyn": "52.28005186073, 21.11145922883",
+      "data": "9/1/23"
+    },
+    {
+      "material": "spoiwo",
+      "material_cd": "CEMII/AV42,5R ",
+      "środek transportu": "beczka",
+      "jednostka": "t",
+      "cena loco": " 440.00    ",
+      "firma": "energobet_zabki",
+      "cords_magazyn": "52.28005186073, 21.11145922883",
+      "data": "9/1/23"
+    },
+    {
+      "material": "spoiwo",
+      "material_cd": "SPOIGRUNT 2 – 12,5 MPa\r\nOSUSZAJĄCY ",
+      "środek transportu": "beczka",
+      "jednostka": "t",
+      "cena loco": " 220.00    ",
+      "firma": "energobet_zabki",
+      "cords_magazyn": "52.28005186073, 21.11145922883",
+      "data": "9/1/23"
+    },
+    {
+      "material": "spoiwo",
+      "material_cd": "SPOIGRUNT 3 – 22,5 MPa\r\nOSUSZAJĄCY ",
+      "środek transportu": "beczka",
+      "jednostka": "t",
+      "cena loco": " 275.00    ",
+      "firma": "energobet_zabki",
+      "cords_magazyn": "52.28005186073, 21.11145922883",
+      "data": "9/1/23"
+    },
+    {
+      "material": "spoiwo",
+      "material_cd": "SPOIGRUNT 4 – 32,5MPa\r\nOSUSZAJĄCY ",
+      "środek transportu": "beczka",
+      "jednostka": "t",
+      "cena loco": " 340.00    ",
+      "firma": "energobet_zabki",
+      "cords_magazyn": "52.28005186073, 21.11145922883",
+      "data": "9/1/23"
+    },
+    {
+      "material": "spoiwo",
+      "material_cd": "SUSZYGRUNT - W ",
+      "środek transportu": "beczka",
+      "jednostka": "t",
+      "cena loco": " 100.00    ",
+      "firma": "energobet_zabki",
+      "cords_magazyn": "52.28005186073, 21.11145922883",
+      "data": "9/1/23"
+    },
+    {
+      "material": "spoiwo",
+      "material_cd": "SUSZYGRUNT – 3 W ",
+      "środek transportu": "beczka",
+      "jednostka": "t",
+      "cena loco": " 140.00    ",
+      "firma": "energobet_zabki",
+      "cords_magazyn": "52.28005186073, 21.11145922883",
+      "data": "9/1/23"
+    },
+    {
+      "material": "spoiwo",
+      "material_cd": "SUSZYGRUNT – 6 W ",
+      "środek transportu": "beczka",
+      "jednostka": "t",
+      "cena loco": " 160.00    ",
+      "firma": "energobet_zabki",
+      "cords_magazyn": "52.28005186073, 21.11145922883",
+      "data": "9/1/23"
+    },
+    {
+      "material": "spoiwo",
+      "material_cd": "SUSZYGRUNT – 10 W ",
+      "środek transportu": "beczka",
+      "jednostka": "t",
+      "cena loco": " 175.00    ",
+      "firma": "energobet_zabki",
+      "cords_magazyn": "52.28005186073, 21.11145922883",
+      "data": "9/1/23"
+    },
+    {
+      "material": "spoiwo",
+      "material_cd": "HSD STABIFEN 5",
+      "środek transportu": "beczka",
+      "jednostka": "t",
+      "cena loco": " 160.14    ",
+      "firma": "spoiwex_zory",
+      "cords_magazyn": "50.0574702,18.7099991",
+      "data": "9/7/23"
+    },
+    {
+      "material": "spoiwo",
+      "material_cd": "HSD STABIFEN 12.5",
+      "środek transportu": "beczka",
+      "jednostka": "t",
+      "cena loco": " 200.14    ",
+      "firma": "spoiwex_zory",
+      "cords_magazyn": "50.0574702,18.7099991",
+      "data": "9/7/23"
+    },
+    {
+      "material": "spoiwo",
+      "material_cd": "HSD DROHART 22.5",
+      "środek transportu": "beczka",
+      "jednostka": "t",
+      "cena loco": " 253.14    ",
+      "firma": "spoiwex_zory",
+      "cords_magazyn": "50.0574702,18.7099991",
+      "data": "9/7/23"
+    },
+    {
+      "material": "spoiwo",
+      "material_cd": "N4 DROHART 32.5",
+      "środek transportu": "beczka",
+      "jednostka": "t",
+      "cena loco": " 400.14    ",
+      "firma": "spoiwex_zory",
+      "cords_magazyn": "50.0574702,18.7099991",
+      "data": "9/7/23"
+    },
+    {
+      "material": "kruszywo_0-31,5"
+    },
+    {
+      "material": "kruszywo_0-31,5"
+    },
+    {
+      "material": "kruszywo_0-31,5"
+    }
+  ]
+}
