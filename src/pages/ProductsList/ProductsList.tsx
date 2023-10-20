@@ -1,8 +1,8 @@
 import React from 'react'
-import List from '../../components/List/List'
 import Table from './Table/Table'
 import { Button, Modal } from '@mui/material'
 import AddProduct from './AddProduct'
+import InfoModal from '../../components/InfoModal/InfoModal'
 
 const Products = () => {
   const [openAddProduct, setOpenAddProduct] = React.useState(false)
@@ -14,7 +14,9 @@ const Products = () => {
 
   return (
     <div className='flex-col flex-center'>
-      <AddProduct open={openAddProduct} handleClose={handleClose} />
+      <InfoModal open={openAddProduct} onClose={() => setOpenAddProduct(false)}>
+        <AddProduct open={openAddProduct} handleClose={handleClose} />
+      </InfoModal >
       <Button onClick={() => setOpenAddProduct(true)} variant='contained' color='primary' sx={{ mb: 2 }}>Dodaj produkt</Button>
       <Table />
     </div>

@@ -1,7 +1,6 @@
-import React, { HTMLProps, useEffect } from 'react'
-import { useNavigate } from 'react-router-dom'
+import React from 'react'
+import { useLocation, useNavigate } from 'react-router-dom'
 import '../../../index.css'
-
 import {
   ColumnDef,
   flexRender,
@@ -10,92 +9,28 @@ import {
   getSortedRowModel,
   SortingState,
   useReactTable,
-  getFilteredRowModel,
 } from '@tanstack/react-table'
-import { collection, doc, getDoc, onSnapshot } from 'firebase/firestore'
-import { db } from '../../../../firebase'
-import { Cords, IDistanceList, IProduct } from '../../../types/model'
-import { useAppSelector } from '../../../store/app/hooks'
 import CsvDownloadButton from 'react-json-to-csv'
-import deleteProduct from '../utils/deleteProduct'
 import IndeterminateCheckbox from './IndeterminateCheckbox'
+import { ICompanyDistance } from '../Locations'
+import { dataToExport } from '../../../utils/dataToExport'
+
+
 
 function Table() {
 
   const [sorting, setSorting] = React.useState<SortingState>([])
+  const location = useLocation()
 
-  const [data, setData] = React.useState<IProduct[]>([{ category: "beton", key: "wibro", type: "kruszywo", transport: "", cords: { lat: 51.4735902, lng: 22.61918503 }, date: "7/11/23", id: "1", material: "ccc", price: 174, unit: "m2" }])
-
-  const [rawData, setRawData] = React.useState<IProduct[]>([{ category: "beton", key: "wibro", type: "kruszywo", transport: "", cords: { lat: 51.4735902, lng: 22.61918503 }, date: "7/11/23", id: "1", material: "ccc", price: 174, unit: "m2" }])
-
-  const [accDistArray, setAccDistArray] = React.useState<IDistanceList[]>([{ id: "1", acc_dist: 0 }])
-
-  const [rowSelection, setRowSelection] = React.useState({})
-
+  const { data } = location.state as { data: ICompanyDistance[] }
   const navigate = useNavigate()
-
-  const constructionSite = useAppSelector(state => state.construction.constructionSite)
-
-  const productsRef = collection(db, "products");
-
-  const getAccDistance = (id: string | undefined) => {
-    if (!id || accDistArray?.length === 0) return 0
-
-    const accDist = accDistArray?.find((accDist) => accDist.id === id)
-
-    return accDist?.acc_dist
-  }
-
-  useEffect(() => {
-    const unsub = onSnapshot(productsRef, (products) => {
-      const firebaseProductsList = [] as IProduct[]
-      products.forEach((product) => {
-        firebaseProductsList.push(product.data() as IProduct)
-      });
-      setRawData(firebaseProductsList)
-    });
-    return () => {
-      unsub()
-    }
-  }, [constructionSite, constructionSite.cords])
-
-  useEffect(() => {
-    const getDistanceArray = async () => {
-      const accDistRef = doc(db, "sites", constructionSite.id);
-      const distanceArray = await getDoc(accDistRef)
-      setAccDistArray(distanceArray.data()?.dist_arr)
-    }
-    getDistanceArray()
-  }, [constructionSite, constructionSite.cords])
-
-  // useEffect(() => {
-  //   const data = rawData.map((product) => {
-  //     return {
-  //       ...product,
-  //       distance: getAccDistance(product.id)
-  //     }
-  //   })
-  //   setData(data)
-  // }
-  //   , [rawData, constructionSite])
-
-  const distanceButtonHandler = () => {
-    const data = rawData.map((product) => {
-      return {
-        ...product,
-        distance: getAccDistance(product.id)
-      }
-    })
-    setData(data)
-  }
-
 
   const handleRowClick = (id: string | undefined) => {
     if (!id) return
-    navigate(`/productst/${id}`);
+    navigate(`/table/${id}`);
   }
 
-  const columns = React.useMemo<ColumnDef<IProduct>[]>(
+  const columns = React.useMemo<ColumnDef<ICompanyDistance>[]>(
     () => [
       {
         id: 'select',
@@ -121,9 +56,10 @@ function Table() {
           </div>
         ),
       },
+
       {
-        accessorFn: row => row.key,
-        id: 'lastName',
+        accessorFn: row => row.company,
+        id: 'company',
         cell: info => info.getValue(),
         header: () => <span>Firma</span>,
         footer: props => props.column.id,
@@ -136,42 +72,34 @@ function Table() {
         footer: props => props.column.id,
       },
       {
-        accessorFn: row => row.material,
-        id: 'material',
+        accessorFn: row => row.adress,
+        id: 'adress',
         cell: info => info.getValue(),
-        header: () => <span>Material</span>,
+        header: () => <span>Adres</span>,
         footer: props => props.column.id,
       },
       {
-        accessorFn: row => row.price,
-        id: 'price',
+        accessorFn: row => row.mail,
+        id: 'mail',
         cell: info => info.getValue(),
-        header: () => <span>Cena</span>,
+        header: () => <span>Mail</span>,
         footer: props => props.column.id,
       },
       {
-        accessorFn: row => (row.distance ?? 0).toFixed(2),
-        id: 'transport_acc',
+        accessorFn: row => row.phone,
+        id: 'phone',
         cell: info => info.getValue(),
-        header: () => <span>Odległość dok.</span>,
+        header: () => <span>Phone</span>,
         footer: props => props.column.id,
         size: 300
       },
       {
-        accessorFn: row => (row.price + (row.distance * 0.5)).toFixed(2),
-        id: 'franco',
+        accessorFn: row => row.distance,
+        id: 'distance',
         cell: info => info.getValue(),
-        header: () => <span>Cena franco</span>,
+        header: () => <span>Distance</span>,
         footer: props => props.column.id,
       },
-      // {
-      //   accessorFn: row => "Więcej",
-      //   id: 'more',
-      //   cell: info => info.getValue(),
-      //   onClick: () => console.log("działa"),
-      //   header: () => <span>Więcej</span>,
-      //   footer: props => props.column.id,
-      // },
       {
         id: 'more',
         header: ({ table }) => (
@@ -192,7 +120,6 @@ function Table() {
     columns,
     state: {
       sorting,
-      rowSelection,
     },
     initialState: {
       pagination: {
@@ -205,16 +132,9 @@ function Table() {
     getSortedRowModel: getSortedRowModel(),
     getPaginationRowModel: getPaginationRowModel(),
     debugTable: true,
-    onRowSelectionChange: setRowSelection,
     // enableColumnResizing: true,
   })
   //Delete rows 
-
-  const deleteHandler = () => {
-    table.getSelectedRowModel().flatRows.map(row => deleteProduct(row.original.id))
-    table.setRowSelection({})
-  }
-
 
   return (
     <div className="flex-col w-full p-2 flex-center">
@@ -338,10 +258,7 @@ function Table() {
             </option>
           ))}
         </select>
-        <CsvDownloadButton data={data} />
-
-        <button onClick={distanceButtonHandler}>Pobierz odległości</button>
-        <button onClick={deleteHandler}>Usuń</button>
+        <CsvDownloadButton data={dataToExport(data)} />
       </div>
 
     </div >

@@ -5,21 +5,6 @@ export interface ILocation {
   voivodeship?: string;
 }
 
-// export interface ICompany {
-//   id: string;
-//   key: string;
-//   type: string;
-//   group: string;
-//   name: string;
-//   adress: string;
-//   mail: string;
-//   person: string;
-//   phone: string;
-//   siding: string;
-//   location: string;
-//   cords: Cords;
-// }
-
 export interface ICompany {
   group: string;
   company: string;
@@ -28,24 +13,26 @@ export interface ICompany {
   key: string;
   category: string[];
   adress: string;
-  comment: string;
+  cords: Cords;
   mail: string | string[];
   person: string | string[];
   phone: string[];
   siding: string;
-  cords: Cords;
+  comment: string;
 }
 
 export interface IProduct {
   id?: string;
-  material: string;
   category: string;
+  type: string;
+  material: string;
+  transport: string;
   unit: string;
   price: number;
-  company: string;
-  cords_storage: Cords;
-  date?: string;
+  key: string;
   adress?: string;
+  cords: Cords;
+  date?: string;
   distance?: number;
 }
 

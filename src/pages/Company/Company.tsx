@@ -7,12 +7,19 @@ import { ICompany } from '../../types/model';
 import { useAppSelector } from '../../store/app/hooks';
 import CompanyMap from './CompanyMap';
 import { Grid } from '@mui/material';
+import InfoModal from '../../components/InfoModal/InfoModal';
+import AddSite from '../../components/Layout/ChangeSite/AddSite';
+import CompanyForm from './CompanyForm';
 
 const Company = () => {
   const [companyData, setCompanyData] = React.useState({} as ICompany)
   const [distance, setDistance] = React.useState(0)
-  const { name, group, phone, mail, person, cords } = companyData
+  const [changed, setChanged] = React.useState(false)
 
+
+  const [editModalOpen, setEditModalOpen] = React.useState(false)
+
+  const { company, group, phone, mail, person, cords, comment } = companyData
 
   const { id } = useParams();
 
@@ -26,7 +33,8 @@ const Company = () => {
       setCompanyData(docSnap.data() as ICompany)
     }
     getData()
-  }, [])
+    setChanged(false)
+  }, [changed])
 
   const getDistance = (distance: number) => {
     setDistance(distance / 1000)
@@ -34,36 +42,27 @@ const Company = () => {
 
   return (
     <Grid container spacing={2} className='h-full p-2'>
+      <InfoModal open={editModalOpen} onClose={() => setEditModalOpen(false)}>
+        <CompanyForm handleClose={() => setEditModalOpen(false)} companyData={companyData} getRefresh={() => setChanged(true)} edit={true} />
+      </InfoModal>
       <Grid item xs={6} className='h-full flex-center'>
         <div className='flex flex-col items-center text-xl'>
           {/* {group !== "" ? <h1 className='mb-2 text-3xl'>{group}  </h1> : null} */}
-          {name !== "" ? <h1 className='pb-2 mb-4 border-b-2'>{name}</h1> : null}
+          {company !== "" ? <h1 className='pb-2 mb-4 border-b-2'>{company}</h1> : null}
           <h1>{phone}</h1>
           <h1>{mail}</h1>
           <h1>{person}</h1>
+          <h1>{comment}</h1>
+          <button onClick={() => setEditModalOpen(true)}>Edit</button>
           <h1 className='mt-8'>{distance.toFixed(2)} km</h1>
-          <div className='w-[800px] h-[400px] mt-8'>
-            <CompanyMap companyCords={cords} siteCords={siteCords} setDistance={getDistance} />
-          </div>
         </div>
       </Grid>
-      {/* <Grid item xs={6} className='h-full'>
-        <VirtualizedList />
-      </Grid> */}
+      <Grid item xs={6} className='h-full flex-center'>
+        <div className='w-[800px] h-[400px] mt-8'>
+          <CompanyMap companyCords={cords} siteCords={siteCords} setDistance={getDistance} changed={changed} />
+        </div>
+      </Grid>
     </Grid>
-    // <div className='flex flex-col items-center text-2xl'>
-    //   <div>
-    //     <button className='px-4 py-2 my-4 text-white bg-blue-500 rounded hover:bg-blue-600' onClick={() => window.open(`https://www.google.com/maps/dir/?api=1&origin=${siteCords.lat},${siteCords.lng}&destination=${cords.lat},${cords.lng}&travelmode=driving`, '_blank')}>Get directions</button>
-    //   </div>
-    //   {//list of materials and prices based on distance
-    //   }
-    //   <ul>
-    //     <li>
-    //       <h1>{keyToName('cement')} {distance} zł</h1>
-    //     </li>
-    //   </ul>
-    //
-    // </div >
   )
 }
 

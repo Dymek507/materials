@@ -11,7 +11,7 @@ import ProductMap from './ProductMap';
 const Product = () => {
   const [productData, setProductData] = React.useState({} as IProduct)
   const [distance, setDistance] = React.useState(0)
-  const { cords_storage, company, category, price } = productData
+  const { cords, key, category, price } = productData
 
   const { id } = useParams();
 
@@ -36,7 +36,7 @@ const Product = () => {
       <Grid item xs={6} className='h-screen flex-center'>
         <div className='flex flex-col items-center text-3xl'>
           {category !== "" ? <h1 className='mb-2 text-3xl'>{category}</h1> : null}
-          {company !== "" ? <h1 className='pb-2 mb-4 border-b-2'>{company}</h1> : null}
+          {key !== "" ? <h1 className='pb-2 mb-4 border-b-2'>{key}</h1> : null}
           <h2>{price} zł</h2>
           <h2>{distance.toFixed(2)} km</h2>
           <h1>{(price + distance * 0.5).toFixed(2)} zł</h1>
@@ -44,7 +44,7 @@ const Product = () => {
       </Grid>
       <Grid item xs={6} className='h-screen flex-center'>
         <div className='w-[400px] h-[400px] mt-8'>
-          <ProductMap companyCords={cords_storage} siteCords={siteCords} setDistance={getDistance} />
+          <ProductMap companyCords={cords} siteCords={siteCords} setDistance={getDistance} />
         </div>
       </Grid>
     </Grid>

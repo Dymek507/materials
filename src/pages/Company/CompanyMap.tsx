@@ -21,10 +21,11 @@ const icon = L.icon({
 interface ICompanyMapProps {
   companyCords: Cords;
   siteCords: Cords;
-  setDistance: (distance: number) => void
+  setDistance: (distance: number) => void;
+  changed: boolean;
 }
 
-const CompanyMap = ({ companyCords, siteCords, setDistance }: ICompanyMapProps) => {
+const CompanyMap = ({ companyCords, siteCords, setDistance, changed }: ICompanyMapProps) => {
   const [map, setMap] = useState(null);
 
   const [start, setStart] = useState<LatLngExpression | undefined>(undefined)
@@ -35,13 +36,12 @@ const CompanyMap = ({ companyCords, siteCords, setDistance }: ICompanyMapProps) 
       setStart([companyCords.lat, companyCords.lng])
       setEnd([siteCords.lat, siteCords.lng])
     }
-  }, [companyCords, siteCords])
-
+  }, [companyCords, siteCords, changed])
 
 
   return (
     <>
-      {start && end && companyCords && siteCords && (
+      {start && end && companyCords && siteCords && companyCords.lat && (
         <MapContainer
           center={[52.25346032951714, 21.035841641609696]}
           zoom={4}

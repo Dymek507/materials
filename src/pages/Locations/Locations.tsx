@@ -4,24 +4,39 @@ import { Box, Button, Checkbox, Divider, Drawer, List, ListItem, ListItemButton,
 import { ICategory, ICompany } from '../../types/model'
 import { collection, getDocs, onSnapshot, query, where } from 'firebase/firestore'
 import { db } from '../../../firebase'
-import { PRODUCT_TYPES } from './productTypes'
 import CsvDownloadButton from 'react-json-to-csv'
+import { Link } from 'react-router-dom'
+import CompanyForm from '../Company/CompanyForm'
+import InfoModal from '../../components/InfoModal/InfoModal'
+import { useAppSelector } from '../../store/app/hooks'
+import { getLineDistance } from '../../utils/lineDistance'
+import { dataToExport } from '../../utils/dataToExport'
 
 export type Type = {
   kruszywo: boolean
   cement: boolean
 }
 
-const Locations = () => {
-  const [category, setCategory] = React.useState<string>("kruszywo")
+export interface ICompanyDistance extends ICompany {
+  distance: number
+}
 
-  const [companyList, setCompanyList] = useState<ICompany[]>([])
+const Locations = () => {
+  const [category, setCategory] = React.useState<string>("")
+
+  const [companyList, setCompanyList] = useState<ICompanyDistance[]>([])
+
+  const [companyListFiltered, setCompanyListFiltered] = useState<ICompanyDistance[]>([])
 
   const [categories, setCategories] = useState<ICategory[]>()
-  console.log(categories)
 
-  const [radius, setRadius] = useState<number>(50)
+  const [radius, setRadius] = useState<number>(0)
 
+  const [openAddModal, setOpenAddModal] = useState<boolean>(false)
+
+  const [refresh, setRefresh] = useState<boolean>(false)
+
+  const siteCords = useAppSelector(state => state.construction.constructionSite.cords)
 
   //Get categories from server 
 
@@ -38,22 +53,32 @@ const Locations = () => {
     getCategories()
   }, [])
 
-  //Get data once
 
   useEffect(() => {
     const getCompanies = async () => {
       setCompanyList([])
       const q = query(collection(db, "companies"), where("category", "array-contains", category))
-      // const q = query(collection(db, "companies"), whereField("type", arrayContains: type))
       const querySnapshot = await getDocs(q);
-      const newList: ICompany[] = []
+      const newList: ICompanyDistance[] = []
       querySnapshot.forEach((doc) => {
-        newList.push(doc.data() as ICompany)
+        const data = doc.data() as ICompanyDistance
+        data.distance = getLineDistance(data.cords, siteCords)
+        newList.push(data as ICompanyDistance)
       });
       setCompanyList(newList)
     }
     getCompanies()
-  }, [category])
+    setRefresh(false)
+  }, [category, refresh])
+
+  useEffect(() => {
+    if (radius == 0) {
+      return setCompanyListFiltered(companyList)
+    }
+    const filreredList = companyList.filter(item => item.distance <= radius)
+    setCompanyListFiltered(filreredList)
+  }
+    , [radius, companyList, category])
 
   const checkboxHandler = (category: string) => {
     setCategory(category)
@@ -63,10 +88,18 @@ const Locations = () => {
     return `${value}°C`;
   }
 
+
   return (
     <div>
-      <div className='absolute top-40 bg-slate-300 w-72 h-[600px] z-[999] p-4 ml-4  overflow-y-scroll'>
-        <CsvDownloadButton data={companyList} />
+      <InfoModal open={openAddModal} onClose={() => setOpenAddModal(false)}>
+        <CompanyForm handleClose={() => setOpenAddModal(false)} getRefresh={() => setRefresh(true)} edit={false} />
+      </InfoModal>
+      <div className='absolute top-40 bg-slate-300 w-72 h-[600px] z-[999] p-4 ml-4  '>
+        <CsvDownloadButton data={dataToExport(companyListFiltered)} className='text-black' />
+        <Link to='/table' state={{ data: companyListFiltered }}>
+          <button className='ml-4 text-black'>Tabela</button>
+        </Link>
+        <button onClick={() => setOpenAddModal(true)} className='ml-4 text-black'>Dodaj</button>
         <Slider
           aria-label="Temperature"
           defaultValue={0}
@@ -76,9 +109,9 @@ const Locations = () => {
           step={50}
           marks
           min={0}
-          max={250}
+          max={350}
         />
-        <ul className='flex flex-col gap-2 text-black'>
+        <ul className='flex flex-col gap-2 h-[500px] overflow-y-scroll text-black'>
           {categories && categories.map((item) => (
             <li key={item.key} ><Checkbox onChange={e => checkboxHandler(item.key)} checked={item.key == category} />{item.name}</li>
           ))

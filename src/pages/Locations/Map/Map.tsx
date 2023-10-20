@@ -1,4 +1,3 @@
-import React, { useEffect, useState, useRef } from "react";
 import {
   TileLayer,
   MapContainer,
@@ -10,14 +9,11 @@ import {
 import "leaflet-routing-machine";
 import "leaflet-routing-machine/dist/leaflet-routing-machine.css";
 import "leaflet/dist/leaflet.css";
-import placeholder from "./placeholder.png"
 import cemIcon from "./cem-icon.png"
 import site from "./site.png"
 
 
 import L, { LatLngExpression, map } from "leaflet";
-import { collection, onSnapshot } from "firebase/firestore";
-import { db } from "../../../../firebase";
 import { ICompany } from "../../../types/model";
 import { Link } from "react-router-dom";
 import { useAppSelector } from "../../../store/app/hooks";
@@ -43,8 +39,6 @@ const Map = ({ list, circleRadius }: MapProps) => {
         scrollWheelZoom={true}
         className='h-screen'
       >
-        {/* <ResetCenterView centerPosition={routeCords.center} /> */}
-        {/* <RoutingControl routeCords={routeCords} position={'topleft'} /> */}
         <LayersControl position="topright">
           <LayersControl.BaseLayer checked name="Map">
             <TileLayer
@@ -64,9 +58,9 @@ const Map = ({ list, circleRadius }: MapProps) => {
             iconSize: [38, 38],
           })}>
             <Popup>
-              <Link to={`/company/${company.id}`}>
+              <Link to={`/table/${company.id}`}>
                 <p className="text-xl font-bold">
-                  {company.group}
+                  {company.company}
                 </p>
               </Link>
               {company.adress}<br />

@@ -10,18 +10,6 @@ import addProduct from "./utils/addProduct";
 import { useAppDispatch, useAppSelector } from "../../store/app/hooks";
 import { setLastProduct } from "../../store/lastProductSlice";
 
-function Copyright(props: any) {
-  return (
-    <Typography variant="body2" align="center" {...props}>
-      {"Copyright © "}
-      <Link color="inherit" to="/">
-        Materials
-      </Link>{" "}
-      {new Date().getFullYear()}
-    </Typography>
-  );
-}
-
 interface IAddProductProps {
   open: boolean,
   handleClose: () => void
@@ -55,122 +43,114 @@ export default function AddProduct({ open, handleClose }: IAddProductProps) {
   };
 
   return (
-    <Modal
-      open={open}
-      onClose={() => handleClose()}
-      aria-labelledby="modal-modal-title"
-      aria-describedby="modal-modal-description"
-      sx={{
-        backgroundColor: "white",
-        justifyContent: "center",
-        alignItems: "center",
-        display: "flex",
-      }}
-    >
-      <Container component="main" maxWidth="xs" sx={{
-        backgroundColor: "white",
-      }}>
-        <CssBaseline />
+    <Container component="main" maxWidth="xs" sx={{
+      backgroundColor: "white",
+    }}>
+      {/* <CssBaseline /> */}
+      <Box
+        sx={{
+          paddingTop: 4,
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+        }}
+      >
+        <Typography component="h1" variant="h5">
+          Dodaj produkt
+        </Typography>
         <Box
-          sx={{
-            paddingTop: 4,
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-          }}
+          component="form"
+          onSubmit={handleSubmit}
+          noValidate
+          sx={{ mt: 1 }}
         >
-          <Typography component="h1" variant="h5">
-            Dodaj produkt
-          </Typography>
-          <Box
-            component="form"
-            onSubmit={handleSubmit}
-            noValidate
-            sx={{ mt: 1 }}
+          <TextField
+            margin="normal"
+            required
+            fullWidth
+            id="company"
+            type="text"
+            label="Nazwa firmy"
+            name="company"
+            defaultValue={lastProduct.key}
+            autoFocus
+          />
+          <TextField
+            margin="normal"
+            required
+            fullWidth
+            id="category"
+            type="text"
+            label="Kategoria"
+            name="category"
+            defaultValue={lastProduct.category}
+            autoFocus
+          />
+          <TextField
+            margin="normal"
+            required
+            fullWidth
+            id="type"
+            type="text"
+            label="Type"
+            name="type"
+            defaultValue={lastProduct.type}
+            autoFocus
+          />
+          <TextField
+            margin="normal"
+            required
+            fullWidth
+            id="material"
+            type="text"
+            label="Materiał"
+            name="material"
+            defaultValue={lastProduct.material}
+            autoFocus
+          />
+          <TextField
+            margin="normal"
+            required
+            fullWidth
+            id="price"
+            type="number"
+            label="Cena"
+            name="price"
+            defaultValue={lastProduct.price}
+            autoFocus
+          />
+          <TextField
+            margin="normal"
+            required
+            fullWidth
+            id="unit"
+            type="text"
+            label="Jednostka"
+            name="unit"
+            defaultValue={lastProduct.unit}
+            autoFocus
+          />
+          <TextField
+            margin="normal"
+            required
+            fullWidth
+            id="adress"
+            type="text"
+            label="Adres"
+            name="adress"
+            defaultValue={lastProduct.adress}
+            autoFocus
+          />
+          <Button
+            type="submit"
+            fullWidth
+            variant="contained"
+            sx={{ mt: 3, mb: 2 }}
           >
-            <TextField
-              margin="normal"
-              required
-              fullWidth
-              id="company"
-              type="text"
-              label="Nazwa firmy"
-              name="company"
-              defaultValue={lastProduct.company}
-              autoFocus
-            />
-            <TextField
-              margin="normal"
-              required
-              fullWidth
-              id="category"
-              type="text"
-              label="Kategoria"
-              name="category"
-              defaultValue={lastProduct.category}
-              autoFocus
-            />
-            <TextField
-              margin="normal"
-              required
-              fullWidth
-              id="material"
-              type="text"
-              label="Materiał"
-              name="material"
-              defaultValue={lastProduct.material}
-              autoFocus
-            />
-            <TextField
-              margin="normal"
-              required
-              fullWidth
-              id="price"
-              type="number"
-              label="Cena"
-              name="price"
-              defaultValue={lastProduct.price}
-              autoFocus
-            />
-            <TextField
-              margin="normal"
-              required
-              fullWidth
-              id="unit"
-              type="text"
-              label="Jednostka"
-              name="unit"
-              defaultValue={lastProduct.unit}
-              autoFocus
-            />
-            <TextField
-              margin="normal"
-              required
-              fullWidth
-              id="adress"
-              type="text"
-              label="Adres"
-              name="adress"
-              defaultValue={lastProduct.adress}
-              autoFocus
-            />
-
-            {/* <FormControlLabel
-              control={<Checkbox value="remember" color="primary" />}
-              label="Zapamiętaj mnie"
-            /> */}
-            <Button
-              type="submit"
-              fullWidth
-              variant="contained"
-              sx={{ mt: 3, mb: 2 }}
-            >
-              DODAJ
-            </Button>
-          </Box>
+            DODAJ
+          </Button>
         </Box>
-        <Copyright sx={{ mt: 2, pb: 4 }} />
-      </Container>
-    </Modal>
+      </Box>
+    </Container>
   );
 }

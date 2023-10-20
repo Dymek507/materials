@@ -7,6 +7,8 @@ import Locations from "./pages/Locations/Locations";
 import Products from "./pages/ProductsList/ProductsList";
 import Company from "./pages/Company/Company";
 import Product from "./pages/Product/Product";
+import CompaniesTable from "./pages/Locations/Table/root";
+import Masa from "./pages/Masa/root";
 
 
 export const router = createBrowserRouter([
@@ -16,7 +18,15 @@ export const router = createBrowserRouter([
     // errorElement: <Error />,
     children: [
       { path: "", element: <Home /> },
-      { path: "locations", element: <Locations /> },
+      {
+        path: "companies", element: <Locations />
+      },
+      {
+        path: "table", children: [
+          { index: true, element: <CompaniesTable /> },
+          { path: ":id", element: <Company /> },
+        ]
+      },
       {
         path: "products", element: <Products />
       },
@@ -26,10 +36,8 @@ export const router = createBrowserRouter([
         ]
       },
       {
-        path: "company", children: [
-          { path: ":id", element: <Company /> },
-        ]
-      },
+        path: "masa", element: <Masa />
+      }
     ],
   },
 ]);

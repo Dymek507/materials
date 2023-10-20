@@ -36,7 +36,6 @@ const AddSite = ({ onClose }: IAddSiteProps) => {
     <Container component="main" maxWidth="xs" sx={{
       backgroundColor: "white",
     }}>
-      <CssBaseline />
       <Box
         sx={{
           paddingTop: 4,

@@ -7,7 +7,7 @@ import {
 } from "firebase/firestore";
 import { db } from "../../../firebase";
 import accurateDistance from "./accurateDistance";
-import { IConstructionSite, IProduct } from "../../types/model";
+import { IConstructionSite } from "../../types/model";
 
 const sendDistanceList = async (
   constructionSite: IConstructionSite,
@@ -33,7 +33,7 @@ const getDistanceList = async (constructionSite: IConstructionSite) => {
   productsList.forEach(async (product, index) => {
     setTimeout(async () => {
       const acc_dist = await accurateDistance(
-        product.cords_storage,
+        product.cords,
         constructionSite.cords
       );
       sendDistanceList(constructionSite, acc_dist, product.id);
