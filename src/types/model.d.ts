@@ -19,6 +19,8 @@ export interface ICompany {
   phone: string[];
   siding: string;
   comment: string;
+  date?: string;
+  update?: string;
 }
 
 export interface IProduct {
@@ -34,6 +36,8 @@ export interface IProduct {
   cords: Cords;
   date?: string;
   distance?: number;
+  masa?: boolean;
+  masa_type?: string;
 }
 
 export type Cords = {

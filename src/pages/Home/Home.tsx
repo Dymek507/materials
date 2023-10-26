@@ -11,9 +11,9 @@ const Home = () => {
       <Link to="products">
         <Button size="large" variant="contained">Materiały</Button>
       </Link>
-      {/* <Link to="masa">
+      <Link to="masa">
         <Button size="large" variant="contained">Masa</Button>
-      </Link> */}
+      </Link>
     </div>
   );
 };

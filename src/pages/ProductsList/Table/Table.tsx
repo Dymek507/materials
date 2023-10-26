@@ -24,9 +24,7 @@ function Table() {
 
   const [sorting, setSorting] = React.useState<SortingState>([])
 
-  const [data, setData] = React.useState<IProduct[]>([{ category: "beton", key: "wibro", type: "kruszywo", transport: "", cords: { lat: 51.4735902, lng: 22.61918503 }, date: "7/11/23", id: "1", material: "ccc", price: 174, unit: "m2" }])
-
-  const [rawData, setRawData] = React.useState<IProduct[]>([{ category: "beton", key: "wibro", type: "kruszywo", transport: "", cords: { lat: 51.4735902, lng: 22.61918503 }, date: "7/11/23", id: "1", material: "ccc", price: 174, unit: "m2" }])
+  const [data, setData] = React.useState<IProduct[]>([])
 
   const [accDistArray, setAccDistArray] = React.useState<IDistanceList[]>([{ id: "1", acc_dist: 0 }])
 
@@ -47,19 +45,6 @@ function Table() {
   }
 
   useEffect(() => {
-    const unsub = onSnapshot(productsRef, (products) => {
-      const firebaseProductsList = [] as IProduct[]
-      products.forEach((product) => {
-        firebaseProductsList.push(product.data() as IProduct)
-      });
-      setRawData(firebaseProductsList)
-    });
-    return () => {
-      unsub()
-    }
-  }, [constructionSite, constructionSite.cords])
-
-  useEffect(() => {
     const getDistanceArray = async () => {
       const accDistRef = doc(db, "sites", constructionSite.id);
       const distanceArray = await getDoc(accDistRef)
@@ -68,27 +53,20 @@ function Table() {
     getDistanceArray()
   }, [constructionSite, constructionSite.cords])
 
-  // useEffect(() => {
-  //   const data = rawData.map((product) => {
-  //     return {
-  //       ...product,
-  //       distance: getAccDistance(product.id)
-  //     }
-  //   })
-  //   setData(data)
-  // }
-  //   , [rawData, constructionSite])
-
-  const distanceButtonHandler = () => {
-    const data = rawData.map((product) => {
-      return {
-        ...product,
-        distance: getAccDistance(product.id)
-      }
-    })
-    setData(data)
-  }
-
+  useEffect(() => {
+    const unsub = onSnapshot(productsRef, (products) => {
+      const firebaseProductsList = [] as IProduct[]
+      products.forEach((product) => {
+        const productData = product.data() as IProduct
+        productData.distance = getAccDistance(productData.id)
+        firebaseProductsList.push(productData)
+      });
+      setData(firebaseProductsList)
+    });
+    return () => {
+      unsub()
+    }
+  }, [constructionSite, constructionSite.cords, accDistArray])
 
   const handleRowClick = (id: string | undefined) => {
     if (!id) return
@@ -164,14 +142,6 @@ function Table() {
         header: () => <span>Cena franco</span>,
         footer: props => props.column.id,
       },
-      // {
-      //   accessorFn: row => "Więcej",
-      //   id: 'more',
-      //   cell: info => info.getValue(),
-      //   onClick: () => console.log("działa"),
-      //   header: () => <span>Więcej</span>,
-      //   footer: props => props.column.id,
-      // },
       {
         id: 'more',
         header: ({ table }) => (
@@ -339,8 +309,6 @@ function Table() {
           ))}
         </select>
         <CsvDownloadButton data={data} />
-
-        <button onClick={distanceButtonHandler}>Pobierz odległości</button>
         <button onClick={deleteHandler}>Usuń</button>
       </div>
 

@@ -1,6 +1,7 @@
 import { doc, setDoc } from "firebase/firestore";
 import { ICompany } from "../../../types/model";
 import { db } from "../../../../firebase";
+import { getDate } from "../../../utils/getDate";
 
 const addCompany = async (company: ICompany) => {
   if (company.cords == undefined) {
@@ -9,6 +10,12 @@ const addCompany = async (company: ICompany) => {
       lng: 18,
     };
   }
+  if (typeof company.category === "string") {
+    //@ts-nocheck
+    const dividedCategory = company.category.split(",");
+    company.category = dividedCategory.map((item) => item.trim());
+  }
+  company.date = getDate();
   await setDoc(doc(db, "companies", company.id), company);
 };
 

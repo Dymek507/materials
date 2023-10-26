@@ -1,44 +1,49 @@
 import { Box, Grid, MenuItem, TextField } from '@mui/material'
-import React from 'react'
+import { collection, getDocs, query, where } from 'firebase/firestore'
+import React, { useEffect } from 'react'
+import { db } from '../../../firebase'
+import { IProduct } from '../../types/model'
 
 
 const Masa = () => {
-  const materials = [
-    {
-      supplier: 'Supplier 1',
-      material: '2/5',
-      price_loco: 100,
-      distance: 10,
-    },
-    {
-      supplier: 'Supplier 2',
-      material: '2/5',
-      price_loco: 100,
-      distance: 10,
-    }]
+  const [materials, setMaterials] = React.useState<IProduct[]>([])
 
-  const currencies = [
-    {
-      value: 'USD',
-      label: '$',
-    },
-    {
-      value: 'EUR',
-      label: '€',
-    },
-    {
-      value: 'BTC',
-      label: '฿',
-    },
-    {
-      value: 'JPY',
-      label: '¥',
-    },
-  ];
+  // const materials = [
+  //   {
+  //     supplier: 'Supplier 1',
+  //     material: '2/5',
+  //     price_loco: 100,
+  //     distance: 10,
+  //   },
+  //   {
+  //     supplier: 'Supplier 2',
+  //     material: '2/5',
+  //     price_loco: 100,
+  //     distance: 10,
+  //   }]
+
+  useEffect(() => {
+    const getMaterials = async () => {
+      setMaterials([])
+      const q = query(collection(db, "products"), where('masa', "==", true))
+      const materialsSnapshot = await getDocs(q);
+      const newList: IProduct[] = []
+      materialsSnapshot.forEach((doc) => {
+        const data = doc.data() as IProduct
+        newList.push(data as IProduct)
+      });
+      setMaterials(newList)
+    }
+    getMaterials()
+  }, [])
 
   return (
-    <div className='h-full bg-sky-700'>
-      <Grid container gap={4} justifyContent="center">
+    <div className='h-full bg-white'>
+      {materials.map((material) => (
+        <Grid key={material.id} container gap={4} justifyContent="center">
+          {material.masa_type}
+        </Grid>))}
+      {/* <Grid container gap={4} justifyContent="center">
         <Grid item xs={5}>
           <Box
             component="form"
@@ -75,7 +80,7 @@ const Masa = () => {
             <TextField fullWidth id="standard-basic" label="Standard" variant="standard" />
           </Box>
         </Grid>
-      </Grid>
+      </Grid> */}
     </div>
   )
 }

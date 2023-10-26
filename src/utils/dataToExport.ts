@@ -8,6 +8,7 @@ export const dataToExport = (data: ICompanyDistance[]) => {
       mail: item.mail,
       phone: item.phone?.toString(),
       comment: item.comment,
+      siding: item.siding,
     };
   });
   return dataToExport;

@@ -26,8 +26,11 @@ interface IProps {
   edit: boolean;
 }
 
+//ogarnac
+
+
 export default function CompanyForm({ handleClose, companyData, getRefresh, edit }: IProps) {
-  const { id, group, company, nip, key, category, adress, comment, mail, person, phone, siding, cords } = companyData ?? {} as ICompany;
+  const { id, group, company, nip, key, category, adress, comment, mail, person, phone, siding, cords, date } = companyData ?? {} as ICompany;
 
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
@@ -49,7 +52,7 @@ export default function CompanyForm({ handleClose, companyData, getRefresh, edit
       phone: [data.get("phone")] as string[],
       siding: data.get("siding") as string,
       cords: data.get("adress") !== "" ? await getCords(data.get("adress") as string) : cords,
-      date: getDate(),
+      date: date ?? "",
       update: getDate(),
     };
 
@@ -91,10 +94,10 @@ export default function CompanyForm({ handleClose, companyData, getRefresh, edit
               <TextField
                 margin="normal"
                 fullWidth
-                id="group"
+                id="category"
                 type="text"
                 label="Grupa"
-                name="group"
+                name="category"
                 defaultValue={group}
                 autoFocus
               />

@@ -35,7 +35,7 @@ export default function AddProduct({ open, handleClose }: IAddProductProps) {
       unit: data.get('unit') as string,
       adress: data.get('adress') as string,
       date: new Date().toLocaleDateString(),
-      cords_storage: await getCords(data.get('adress') as string)
+      cords: await getCords(data.get('adress') as string)
     }
     addProduct(product)
     dispatch(setLastProduct(product))

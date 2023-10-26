@@ -19,7 +19,7 @@ const Company = () => {
 
   const [editModalOpen, setEditModalOpen] = React.useState(false)
 
-  const { company, group, phone, mail, person, cords, comment } = companyData
+  const { company, group, phone, mail, person, cords, comment, siding } = companyData
 
   const { id } = useParams();
 
@@ -53,6 +53,7 @@ const Company = () => {
           <h1>{mail}</h1>
           <h1>{person}</h1>
           <h1>{comment}</h1>
+          <h1>{siding ? siding : "Nie ma"}</h1>
           <button onClick={() => setEditModalOpen(true)}>Edit</button>
           <h1 className='mt-8'>{distance.toFixed(2)} km</h1>
         </div>
