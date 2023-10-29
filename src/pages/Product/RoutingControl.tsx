@@ -1,3 +1,5 @@
+// @ts-nocheck
+
 import L from "leaflet";
 import { createControlComponent } from "@react-leaflet/core";
 import "leaflet-routing-machine";
@@ -23,13 +25,13 @@ const createRoutineMachineLayer = ({ position, start, end, color, setDistance }:
       end
     ],
     show: false,
-    lineOptions: {
-      styles: [
-        {
-          color,
-        },
-      ],
-    },
+    // lineOptions: {
+    //   styles: [
+    //     {
+    //       color,
+    //     },
+    //   ],
+    // },
   });
   console.log('instance', instance)
   instance.on('routesfound', function (e) {

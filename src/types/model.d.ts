@@ -25,6 +25,7 @@ export interface ICompany {
 
 export interface IProduct {
   id?: string;
+  company?: string;
   category: string;
   type: string;
   material: string;

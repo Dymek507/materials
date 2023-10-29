@@ -1,4 +1,4 @@
-import { IConstructionSite, IProduct } from "../types/model";
+import { IConstructionSite } from "../types/model";
 import { doc, setDoc } from "firebase/firestore";
 import { db } from "../../firebase";
 

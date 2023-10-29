@@ -13,7 +13,7 @@ import cemIcon from "./cem-icon.png"
 import site from "./site.png"
 
 
-import L, { LatLngExpression, map } from "leaflet";
+import L from "leaflet";
 import { ICompany } from "../../../types/model";
 import { Link } from "react-router-dom";
 import { useAppSelector } from "../../../store/app/hooks";

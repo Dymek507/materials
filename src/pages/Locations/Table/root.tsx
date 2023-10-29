@@ -109,7 +109,7 @@ function Table() {
       },
       {
         id: 'more',
-        header: ({ table }) => (
+        header: () => (
           "Więcej"
         ),
         cell: ({ row }) => (

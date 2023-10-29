@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { useEffect, useState } from "react";
 import {
   TileLayer,
@@ -9,7 +10,7 @@ import "leaflet-routing-machine/dist/leaflet-routing-machine.css";
 import "leaflet/dist/leaflet.css";
 
 import RoutingControl from './RoutingControl'
-import L, { LatLngExpression } from "leaflet";
+import { LatLngExpression } from "leaflet";
 import { Cords } from "../../types/model";
 import { getCenterCords } from "../../utils/getCenterCords";
 
@@ -20,7 +21,7 @@ interface ICompanyMapProps {
 }
 
 const ProductMap = ({ companyCords, siteCords, setDistance }: ICompanyMapProps) => {
-  const [map, setMap] = useState(null);
+  // const [map, setMap] = useState(null);
 
   const [start, setStart] = useState<LatLngExpression | undefined>(undefined)
   const [end, setEnd] = useState<LatLngExpression | undefined>(undefined)

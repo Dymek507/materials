@@ -1,10 +1,9 @@
-import React from "react";
-import { collection, query, where, getDocs } from "firebase/firestore";
+import { collection, query, getDocs } from "firebase/firestore";
 import { db } from "../../firebase";
 import accurateDistance from "./accuratePrice/accurateDistance";
 import { Cords } from "../types/model";
 
-const sendDistancesMap = async (id: string, cords: Cords) => {
+const sendDistancesMap = async (cords: Cords) => {
   const q = query(collection(db, "products"));
 
   const distanceMap: any = [];
@@ -19,11 +18,6 @@ const sendDistancesMap = async (id: string, cords: Cords) => {
     });
     console.log("resolved");
   });
-
-  const distanceObj = {
-    id: id,
-    distanceMap: [],
-  };
 };
 
 export default sendDistancesMap;

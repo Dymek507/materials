@@ -1,9 +1,6 @@
 import React from "react";
-import { Link, useNavigate } from "react-router-dom";
 import { v1 as uuidv1 } from "uuid";
-
-import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
-import { FormControlLabel, Checkbox, Grid, Box, Avatar, Button, CssBaseline, TextField, Typography, Container, Modal } from "@mui/material";
+import { Box, Button, TextField, Typography, Container } from "@mui/material";
 import { IProduct } from "../../types/model";
 import getCords from "../../utils/getCords";
 import addProduct from "./utils/addProduct";
@@ -15,7 +12,7 @@ interface IAddProductProps {
   handleClose: () => void
 }
 
-export default function AddProduct({ open, handleClose }: IAddProductProps) {
+export default function AddProduct({ handleClose }: IAddProductProps) {
 
   const lastProduct = useAppSelector((state) => state.lastProduct)
   console.log(lastProduct)
@@ -32,6 +29,9 @@ export default function AddProduct({ open, handleClose }: IAddProductProps) {
       category: data.get('category') as string,
       material: data.get('material') as string,
       price: Number(data.get('price')) as number,
+      type: data.get('type') as string,
+      transport: "",
+      key: "",
       unit: data.get('unit') as string,
       adress: data.get('adress') as string,
       date: new Date().toLocaleDateString(),

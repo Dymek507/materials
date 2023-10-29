@@ -1,4 +1,3 @@
-import React from "react";
 import { Cords } from "../../types/model";
 
 const accurateDistance = async (start: Cords, end: Cords): Promise<number> => {

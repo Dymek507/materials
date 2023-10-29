@@ -1,4 +1,4 @@
-import React, { HTMLProps, useEffect } from 'react'
+import React, { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import '../../../index.css'
 
@@ -10,7 +10,6 @@ import {
   getSortedRowModel,
   SortingState,
   useReactTable,
-  getFilteredRowModel,
 } from '@tanstack/react-table'
 import { collection, doc, getDoc, onSnapshot } from 'firebase/firestore'
 import { db } from '../../../../firebase'
@@ -136,7 +135,7 @@ function Table() {
         size: 300
       },
       {
-        accessorFn: row => (row.price + (row.distance * 0.5)).toFixed(2),
+        accessorFn: row => (row.price + (row.distance ?? 0 * 0.5)).toFixed(2),
         id: 'franco',
         cell: info => info.getValue(),
         header: () => <span>Cena franco</span>,

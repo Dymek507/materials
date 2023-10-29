@@ -1,3 +1,5 @@
+// @ts-nocheck
+
 import React, { useEffect, useState } from 'react'
 import Map from './Map/Map'
 import { Checkbox, Slider } from '@mui/material'

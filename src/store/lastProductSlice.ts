@@ -3,6 +3,13 @@ import { IProduct } from "../types/model";
 
 const initialState: IProduct = {
   company: "",
+  type: "",
+  key: "",
+  cords: {
+    lat: 0,
+    lng: 0,
+  },
+  transport: "",
   category: "",
   material: "",
   price: 0,

@@ -1,6 +1,3 @@
-import React from "react";
-import { Cords } from "../types/model";
-
 const getCords = async (adress: string) => {
   const url = `https://dev.virtualearth.net/REST/v1/Locations?query={${adress}}&maxResults=1&key=Ai_BZ9url52vzFfpAgssUNh7suy-R8y726zoLL_pgt8k7cE5u7ypi20MInzvwC71`;
   const response = await fetch(url)

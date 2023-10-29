@@ -1,6 +1,6 @@
 import React from 'react'
 import Table from './Table/Table'
-import { Button, Modal } from '@mui/material'
+import { Button } from '@mui/material'
 import AddProduct from './AddProduct'
 import InfoModal from '../../components/InfoModal/InfoModal'
 
