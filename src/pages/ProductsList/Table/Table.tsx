@@ -14,7 +14,7 @@ import {
 } from '@tanstack/react-table'
 import { collection, doc, getDoc, onSnapshot } from 'firebase/firestore'
 import { db } from '../../../../firebase'
-import { Cords, IDistanceList, IProduct } from '../../../types/model'
+import { IDistanceList, IProduct } from '../../../types/model'
 import { useAppSelector } from '../../../store/app/hooks'
 import CsvDownloadButton from 'react-json-to-csv'
 import deleteProduct from '../utils/deleteProduct'
@@ -144,7 +144,7 @@ function Table() {
       },
       {
         id: 'more',
-        header: ({ table }) => (
+        header: () => (
           "Więcej"
         ),
         cell: ({ row }) => (
@@ -181,15 +181,15 @@ function Table() {
   //Delete rows 
 
   const deleteHandler = () => {
-    table.getSelectedRowModel().flatRows.map(row => deleteProduct(row.original.id))
+    table.getSelectedRowModel().flatRows.map(row => deleteProduct(row.original.id ?? ""))
     table.setRowSelection({})
   }
 
 
   return (
-    <div className="flex-col w-full p-2 flex-center">
+    <div className="flex-col w-full p-2 flex-center ">
       <div className="h-2" />
-      <table className='w-4/6'>
+      <table className='w-4/6 '>
         <thead>
           {table.getHeaderGroups().map(headerGroup => (
             <tr key={headerGroup.id}>
@@ -221,13 +221,13 @@ function Table() {
             </tr>
           ))}
         </thead>
-        <tbody className=''>
+        <tbody className='text-black bg-slate-200'>
           {table
             .getRowModel()
             .rows.slice(0, 50)
             .map(row => {
               return (
-                <tr className='' key={row.id} >
+                <tr className='h-8 odd:bg-white' key={row.id} >
                   {/* <tr className='' onClick={() => handleRowClick(row.original.id)} key={row.id} > */}
                   {row.getVisibleCells().map(cell => {
                     return (

@@ -8,20 +8,6 @@ import { IProduct } from '../../types/model'
 const Masa = () => {
   const [materials, setMaterials] = React.useState<IProduct[]>([])
 
-  // const materials = [
-  //   {
-  //     supplier: 'Supplier 1',
-  //     material: '2/5',
-  //     price_loco: 100,
-  //     distance: 10,
-  //   },
-  //   {
-  //     supplier: 'Supplier 2',
-  //     material: '2/5',
-  //     price_loco: 100,
-  //     distance: 10,
-  //   }]
-
   useEffect(() => {
     const getMaterials = async () => {
       setMaterials([])

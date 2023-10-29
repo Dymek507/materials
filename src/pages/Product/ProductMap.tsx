@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from "react";
+import { useEffect, useState } from "react";
 import {
   TileLayer,
   MapContainer,
@@ -7,17 +7,11 @@ import {
 import "leaflet-routing-machine";
 import "leaflet-routing-machine/dist/leaflet-routing-machine.css";
 import "leaflet/dist/leaflet.css";
-import placeholder from "./placeholder.png"
 
 import RoutingControl from './RoutingControl'
 import L, { LatLngExpression } from "leaflet";
-import { Cords, IRouteCords } from "../../types/model";
+import { Cords } from "../../types/model";
 import { getCenterCords } from "../../utils/getCenterCords";
-
-const icon = L.icon({
-  iconUrl: placeholder,
-  iconSize: [38, 38],
-});
 
 interface ICompanyMapProps {
   companyCords: Cords;
@@ -50,7 +44,7 @@ const ProductMap = ({ companyCords, siteCords, setDistance }: ICompanyMapProps) 
           zoom={7}
           scrollWheelZoom={true}
           className='h-[400px]'
-          whenReady={setMap}
+        // whenReady={setMap}
         >
           {/* <ResetCenterView centerPosition={routeCords.center} /> */}
           <RoutingControl position={'topleft'} start={start} end={end} color={'#757de8'} setDistance={setDistance} />

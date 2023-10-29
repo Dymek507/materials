@@ -58,6 +58,13 @@ function Table() {
       },
 
       {
+        accessorFn: row => row.group,
+        id: 'group',
+        cell: info => info.getValue(),
+        header: () => <span>Grupa</span>,
+        footer: props => props.column.id,
+      },
+      {
         accessorFn: row => row.company,
         id: 'company',
         cell: info => info.getValue(),

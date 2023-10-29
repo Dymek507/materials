@@ -2,7 +2,6 @@ import L from "leaflet";
 import { createControlComponent } from "@react-leaflet/core";
 import "leaflet-routing-machine";
 import "leaflet-routing-machine/dist/leaflet-routing-machine.css"
-import { useEffect } from "react";
 // import createRoutineMachineLayer from "./RoutingControl";
 
 
@@ -15,21 +14,21 @@ interface IRoutingMachineProps {
 }
 
 
-const createRoutineMachineLayer = ({ position, start, end, color, setDistance }: IRoutingMachineProps) => {
+const createRoutineMachineLayer = ({ position, start, end, setDistance }: IRoutingMachineProps) => {
   const instance = L.Routing.control({
-    position,
+    // position,
     waypoints: [
       start,
       end
     ],
     show: false,
-    lineOptions: {
-      styles: [
-        {
-          color,
-        },
-      ],
-    },
+    // lineOptions: {
+    //   styles: [
+    //     {
+    //       color,
+    //     },
+    //   ],
+    // },
   });
 
   instance.on('routesfound', function (e) {

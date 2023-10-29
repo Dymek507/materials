@@ -1,19 +1,17 @@
-import { Button } from "@mui/material";
-import React from "react";
 import { Link } from "react-router-dom";
+import { companies_2, materials_1 } from "../../assets";
+import ActionCard from "./ActionCard";
 
 const Home = () => {
   return (
     <div className="gap-4 mt-72 flex-center">
-      <Link to="companies">
-        <Button size="large" variant="contained">Firmy</Button>
-      </Link>
       <Link to="products">
-        <Button size="large" variant="contained">Materiały</Button>
+        <ActionCard title="Materiały" image={materials_1} />
       </Link>
-      <Link to="masa">
-        <Button size="large" variant="contained">Masa</Button>
+      <Link to="companies">
+        <ActionCard title="Firmy" image={companies_2} />
       </Link>
+
     </div>
   );
 };

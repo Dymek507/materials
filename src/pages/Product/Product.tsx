@@ -1,9 +1,8 @@
 import React, { useEffect } from 'react'
 import { useParams } from "react-router-dom";
-import { keyToName } from './helpers/keyToName';
 import { doc, getDoc } from "firebase/firestore";
 import { db } from '../../../firebase';
-import { ICompany, IProduct } from '../../types/model';
+import { IProduct } from '../../types/model';
 import { useAppSelector } from '../../store/app/hooks';
 import { Grid } from '@mui/material';
 import ProductMap from './ProductMap';

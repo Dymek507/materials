@@ -4,16 +4,13 @@ import { v1 as uuidv1 } from "uuid";
 import {
   Grid,
   Box,
-  Avatar,
   Button,
-  CssBaseline,
   TextField,
   Typography,
   Container,
-  Modal,
 } from "@mui/material";
 
-import { ICompany, IProduct } from "../../types/model";
+import { ICompany } from "../../types/model";
 import getCords from "../../utils/getCords";
 import updateCompany from "./helpers/updateCompany";
 import addCompany from "./helpers/addCompany";

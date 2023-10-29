@@ -5,9 +5,9 @@ import MenuItem from '@mui/material/MenuItem';
 
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import { Divider } from '@mui/material';
-import { collection, getDoc, getDocs, query } from 'firebase/firestore';
+import { collection, getDocs, query } from 'firebase/firestore';
 import { db } from '../../../../firebase';
-import { ICompany, IConstructionSite } from '../../../types/model';
+import { IConstructionSite } from '../../../types/model';
 import InfoModal from '../../InfoModal/InfoModal';
 import AddSite from './AddSite';
 import { useAppDispatch } from '../../../store/app/hooks';
@@ -83,6 +83,8 @@ export default function ChangeSite({ site }: { site: string }) {
   }
 
   const setSite = async (site: IConstructionSite) => {
+    //set default site
+    localStorage.setItem("def_site", site.id)
     dispatch(setConstructionSite(site))
     handleClose()
   }
@@ -97,6 +99,10 @@ export default function ChangeSite({ site }: { site: string }) {
         newList.push(doc.data() as IConstructionSite)
       });
       setSiteList(newList)
+      //load default site
+      const site = newList.find(site => site.id == localStorage.getItem("def_site"))
+
+      dispatch(setConstructionSite(site || newList[0]))
     }
     getCompanies()
   }, [])

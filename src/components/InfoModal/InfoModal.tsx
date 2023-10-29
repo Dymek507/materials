@@ -1,7 +1,6 @@
 import React from 'react'
 
-import { Modal, Box, Select } from '@mui/material'
-import { styled } from '@mui/material/styles';
+import { Modal, Box } from '@mui/material'
 
 
 type InfoModalProps = {

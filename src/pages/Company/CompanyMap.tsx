@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from "react";
+import { useEffect, useState } from "react";
 import {
   TileLayer,
   MapContainer,
@@ -7,16 +7,10 @@ import {
 import "leaflet-routing-machine";
 import "leaflet-routing-machine/dist/leaflet-routing-machine.css";
 import "leaflet/dist/leaflet.css";
-import placeholder from "./placeholder.png"
 
 import RoutingControl from './RoutingControl'
-import L, { LatLngExpression } from "leaflet";
-import { Cords, IRouteCords } from "../../types/model";
-
-const icon = L.icon({
-  iconUrl: placeholder,
-  iconSize: [38, 38],
-});
+import { LatLngExpression } from "leaflet";
+import { Cords } from "../../types/model";
 
 interface ICompanyMapProps {
   companyCords: Cords;
@@ -26,7 +20,7 @@ interface ICompanyMapProps {
 }
 
 const CompanyMap = ({ companyCords, siteCords, setDistance, changed }: ICompanyMapProps) => {
-  const [map, setMap] = useState(null);
+  // const [map, setMap] = useState(null);
 
   const [start, setStart] = useState<LatLngExpression | undefined>(undefined)
   const [end, setEnd] = useState<LatLngExpression | undefined>(undefined)
@@ -47,10 +41,11 @@ const CompanyMap = ({ companyCords, siteCords, setDistance, changed }: ICompanyM
           zoom={4}
           scrollWheelZoom={true}
           className='h-[400px]'
-          whenReady={setMap}
+        // whenReady={setMap}
         >
           {/* <ResetCenterView centerPosition={routeCords.center} /> */}
           <RoutingControl position={'topleft'} start={start} end={end} color={'#757de8'} setDistance={setDistance} />
+          {/* <RoutingControl position={'topleft'} start={start} end={end} color={'#757de8'} setDistance={setDistance} /> */}
           {/* <RoutingControl routeCords={routeCords} position={'topleft'} /> */}
           <LayersControl position="topright">
             <LayersControl.BaseLayer checked name="Map">

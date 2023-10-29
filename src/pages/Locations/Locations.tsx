@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import Map from './Map/Map'
-import { Box, Button, Checkbox, Divider, Drawer, List, ListItem, ListItemButton, ListItemIcon, ListItemText, Slider } from '@mui/material'
+import { Checkbox, Slider } from '@mui/material'
 import { ICategory, ICompany } from '../../types/model'
-import { collection, getDocs, onSnapshot, query, where } from 'firebase/firestore'
+import { collection, getDocs, query, where } from 'firebase/firestore'
 import { db } from '../../../firebase'
 import CsvDownloadButton from 'react-json-to-csv'
 import { Link } from 'react-router-dom'
@@ -49,6 +49,8 @@ const Locations = () => {
         newList.push(doc.data() as ICategory)
       });
       setCategories(newList)
+      //load default category
+      setCategory(localStorage.getItem("def_category") || "")
     }
     getCategories()
   }, [])
@@ -82,6 +84,8 @@ const Locations = () => {
 
   const checkboxHandler = (category: string) => {
     setCategory(category)
+    //save default category
+    localStorage.setItem("def_category", category);
   }
 
   const valuetext = (value: number) => {
@@ -104,7 +108,10 @@ const Locations = () => {
           aria-label="Temperature"
           defaultValue={0}
           getAriaValueText={valuetext}
-          onChange={e => setRadius(e?.target?.value ? e.target.value : 0)}
+          onChange={e => {
+            setRadius(e?.target?.value ? e.target.value : 0)
+          }
+          }
           valueLabelDisplay="auto"
           step={50}
           marks
