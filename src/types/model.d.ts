@@ -76,3 +76,8 @@ export interface ICategory {
   name: string;
   key: string;
 }
+
+export type UserData = {
+  login: string;
+  uId: string | null;
+};
