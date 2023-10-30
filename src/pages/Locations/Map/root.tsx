@@ -11,13 +11,11 @@ import "leaflet-routing-machine/dist/leaflet-routing-machine.css";
 import "leaflet/dist/leaflet.css";
 import cemIcon from "./cem-icon.png"
 import site from "./site.png"
-
-
 import L from "leaflet";
 import { ICompany } from "../../../types/model";
 import { Link } from "react-router-dom";
 import { useAppSelector } from "../../../store/app/hooks";
-
+import CustomPopup from "./CustomPopup";
 
 interface MapProps {
   list: ICompany[];
@@ -37,7 +35,7 @@ const Map = ({ list, circleRadius }: MapProps) => {
         }
         zoom={7}
         scrollWheelZoom={true}
-        className='h-screen'
+        className='wh-full'
       >
         <LayersControl position="topright">
           <LayersControl.BaseLayer checked name="Map">
@@ -58,14 +56,7 @@ const Map = ({ list, circleRadius }: MapProps) => {
             iconSize: [38, 38],
           })}>
             <Popup>
-              <Link to={`/table/${company.id}`}>
-                <p className="text-xl font-bold">
-                  {company.company}
-                </p>
-              </Link>
-              {company.adress}<br />
-              {company.phone}<br />
-              {company.mail}<br />
+              <CustomPopup company={company} />
             </Popup>
           </Marker>
         ))}

@@ -43,22 +43,18 @@ const Company = () => {
       <InfoModal open={editModalOpen} onClose={() => setEditModalOpen(false)}>
         <CompanyForm handleClose={() => setEditModalOpen(false)} companyData={companyData} getRefresh={() => setChanged(true)} edit={true} />
       </InfoModal>
-      <Grid item xs={6} className='h-full flex-center'>
-        <div className='flex flex-col items-center text-xl'>
-          {company !== "" ? <h1 className='pb-2 mb-4 border-b-2'>{company}</h1> : null}
-          <h1>{phone}</h1>
-          <h1>{mail}</h1>
-          <h1>{person}</h1>
-          <h1>{comment}</h1>
-          <h1>{category && category[0] === "kruszywo" ? siding : null}</h1>
-          <button onClick={() => setEditModalOpen(true)}>Edit</button>
-          <h1 className='mt-8'>{distance.toFixed(2)} km</h1>
-        </div>
+      <Grid item xs={6} className='flex-col h-full flex-center'>
+        {company !== "" ? <h1 className='pb-2 mb-4 border-b-2'>{company}</h1> : null}
+        <h1>{phone}</h1>
+        <h1>{mail}</h1>
+        <h1>{person}</h1>
+        <h1>{comment}</h1>
+        <h1>{category && category[0] === "kruszywo" ? siding : null}</h1>
+        <button onClick={() => setEditModalOpen(true)}>Edit</button>
+        <h1 className='mt-8'>{distance.toFixed(2)} km</h1>
       </Grid>
-      <Grid item xs={6} className='h-full flex-center'>
-        <div className='w-[800px] h-[400px] mt-8'>
-          <CompanyMap companyCords={cords} siteCords={siteCords} setDistance={getDistance} changed={changed} />
-        </div>
+      <Grid item xs={6} className='w-full h-full'>
+        <CompanyMap companyCords={cords} siteCords={siteCords} setDistance={getDistance} changed={changed} />
       </Grid>
     </Grid>
   )

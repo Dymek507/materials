@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
-import Map from './Map/Map'
+import Map from './Map/root'
 import { Checkbox, Slider } from '@mui/material'
-import { ICategory, ICompany } from '../../types/model'
+import { ICategory } from '../../types/model'
 import { collection, getDocs, query, where } from 'firebase/firestore'
 import { db } from '../../../firebase'
 import CsvDownloadButton from 'react-json-to-csv'
@@ -11,23 +11,14 @@ import InfoModal from '../../components/InfoModal/InfoModal'
 import { useAppSelector } from '../../store/app/hooks'
 import { getLineDistance } from '../../utils/lineDistance'
 import { dataToExport } from '../../utils/dataToExport'
-import Example from './Table/table'
-
-export type Type = {
-  kruszywo: boolean
-  cement: boolean
-}
-
-export interface ICompanyDistance extends ICompany {
-  distance: number
-}
+import { ICompanywithDistance } from './helpers/types'
 
 const Locations = () => {
   const [category, setCategory] = React.useState<string>("")
 
-  const [companyList, setCompanyList] = useState<ICompanyDistance[]>([])
+  const [companyList, setCompanyList] = useState<ICompanywithDistance[]>([])
 
-  const [companyListFiltered, setCompanyListFiltered] = useState<ICompanyDistance[]>([])
+  const [companyListFiltered, setCompanyListFiltered] = useState<ICompanywithDistance[]>([])
 
   const [categories, setCategories] = useState<ICategory[]>()
 
@@ -62,11 +53,11 @@ const Locations = () => {
       setCompanyList([])
       const q = query(collection(db, "companies"), where("category", "array-contains", category))
       const querySnapshot = await getDocs(q);
-      const newList: ICompanyDistance[] = []
+      const newList: ICompanywithDistance[] = []
       querySnapshot.forEach((doc) => {
-        const data = doc.data() as ICompanyDistance
+        const data = doc.data() as ICompanywithDistance
         data.distance = getLineDistance(data.cords, siteCords)
-        newList.push(data as ICompanyDistance)
+        newList.push(data as ICompanywithDistance)
       });
       setCompanyList(newList)
     }
@@ -96,8 +87,8 @@ const Locations = () => {
 
 
   return (
-    <div>
-      {/* <InfoModal open={openAddModal} onClose={() => setOpenAddModal(false)}>
+    <div className='wh-full'>
+      <InfoModal open={openAddModal} onClose={() => setOpenAddModal(false)}>
         <CompanyForm handleClose={() => setOpenAddModal(false)} getRefresh={() => setRefresh(true)} edit={false} />
       </InfoModal>
       <div className='absolute top-40 bg-slate-300 w-72 h-[600px] z-[999] p-4 ml-4  '>
@@ -127,8 +118,8 @@ const Locations = () => {
           }
         </ul>
       </div>
-      <Map list={companyList} circleRadius={radius} /> */}
-      <Example />
+      <Map list={companyList} circleRadius={radius} />
+      {/* <Table data={companyListFiltered} /> */}
     </div>
   )
 }

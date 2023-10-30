@@ -1,4 +1,4 @@
-import { ICompanyDistance } from "../pages/Locations/Locations";
+import { ICompanyDistance } from "../pages/Locations/root";
 
 export const dataToExport = (data: ICompanyDistance[]) => {
   const dataToExport = data.map((item) => {

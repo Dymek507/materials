@@ -41,7 +41,7 @@ const CompanyMap = ({ companyCords, siteCords, setDistance, changed }: ICompanyM
           center={[52.25346032951714, 21.035841641609696]}
           zoom={4}
           scrollWheelZoom={true}
-          className='h-[400px]'
+          className='w-full h-full'
         // whenReady={setMap}
         >
           {/* <ResetCenterView centerPosition={routeCords.center} /> */}

@@ -11,15 +11,16 @@ type ActionCardProps = {
 
 export default function ActionCard({ title, image }: ActionCardProps) {
   return (
-    <Card sx={{ maxWidth: 345, bgcolor: 'transparent' }}>
+    <Card sx={{ maxWidth: 345, bgcolor: 'transparent' }} >
       <CardActionArea>
         <CardMedia
           component="img"
           height="140"
           image={image}
           alt=""
+          className='transition-all duration-300 hover:scale-110'
         />
-        <CardContent sx={{ backgroundColor: 'transparent' }}>
+        <CardContent sx={{ backgroundColor: 'black' }}>
           <Typography gutterBottom variant="h5" component="div" color="white" textAlign='center' >
             {title}
           </Typography>
