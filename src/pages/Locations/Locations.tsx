@@ -73,7 +73,7 @@ const Locations = () => {
     }
     getCompanies()
     setRefresh(false)
-  }, [category, refresh])
+  }, [category, refresh, siteCords])
 
   useEffect(() => {
     if (radius == 0) {
@@ -81,8 +81,9 @@ const Locations = () => {
     }
     const filreredList = companyList.filter(item => item.distance <= radius)
     setCompanyListFiltered(filreredList)
+    console.log(filreredList)
   }
-    , [radius, companyList, category])
+    , [radius, companyList, category, refresh, siteCords])
 
   const checkboxHandler = (category: string) => {
     setCategory(category)

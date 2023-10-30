@@ -96,15 +96,15 @@ function Table() {
         accessorFn: row => row.phone,
         id: 'phone',
         cell: info => info.getValue(),
-        header: () => <span>Phone</span>,
+        header: () => <span>Telefon</span>,
         footer: props => props.column.id,
         size: 300
       },
       {
-        accessorFn: row => row.distance,
+        accessorFn: row => row.distance.toFixed(0),
         id: 'distance',
         cell: info => info.getValue(),
-        header: () => <span>Distance</span>,
+        header: () => <span>Odległość</span>,
         footer: props => props.column.id,
       },
       {
@@ -178,13 +178,13 @@ function Table() {
             </tr>
           ))}
         </thead>
-        <tbody className=''>
+        <tbody className='text-black bg-slate-200'>
           {table
             .getRowModel()
             .rows.slice(0, 50)
             .map(row => {
               return (
-                <tr className='' key={row.id} >
+                <tr className='h-8 odd:bg-white' key={row.id} >
                   {/* <tr className='' onClick={() => handleRowClick(row.original.id)} key={row.id} > */}
                   {row.getVisibleCells().map(cell => {
                     return (
