@@ -71,7 +71,6 @@ const Locations = () => {
     }
     const filreredList = companyList.filter(item => item.distance <= radius)
     setCompanyListFiltered(filreredList)
-    console.log(filreredList)
   }
     , [radius, companyList, category, refresh, siteCords])
 
