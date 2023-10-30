@@ -4,10 +4,11 @@ import { doc, getDoc } from "firebase/firestore";
 import { db } from '../../../firebase';
 import { ICompany } from '../../types/model';
 import { useAppSelector } from '../../store/app/hooks';
-import CompanyMap from './CompanyMap';
+import CompanyMap from './Map/root';
 import { Grid } from '@mui/material';
 import InfoModal from '../../components/InfoModal/InfoModal';
 import CompanyForm from './CompanyForm';
+import InfoSection from './InfoSection';
 
 const Company = () => {
   const [companyData, setCompanyData] = React.useState({} as ICompany)
@@ -16,8 +17,6 @@ const Company = () => {
 
 
   const [editModalOpen, setEditModalOpen] = React.useState(false)
-
-  const { company, category, phone, mail, person, cords, comment, siding } = companyData
 
   const { id } = useParams();
 
@@ -38,23 +37,22 @@ const Company = () => {
     setDistance(distance / 1000)
   }
 
+  const handleEdit = () => {
+    setEditModalOpen(true)
+  }
+
   return (
-    <Grid container spacing={2} className='h-full p-2'>
+    <Grid container className='h-full'>
       <InfoModal open={editModalOpen} onClose={() => setEditModalOpen(false)}>
         <CompanyForm handleClose={() => setEditModalOpen(false)} companyData={companyData} getRefresh={() => setChanged(true)} edit={true} />
       </InfoModal>
-      <Grid item xs={6} className='flex-col h-full flex-center'>
-        {company !== "" ? <h1 className='pb-2 mb-4 border-b-2'>{company}</h1> : null}
-        <h1>{phone}</h1>
-        <h1>{mail}</h1>
-        <h1>{person}</h1>
-        <h1>{comment}</h1>
-        <h1>{category && category[0] === "kruszywo" ? siding : null}</h1>
-        <button onClick={() => setEditModalOpen(true)}>Edit</button>
-        <h1 className='mt-8'>{distance.toFixed(2)} km</h1>
+      {/* Company info section */}
+      <Grid item xs={6}>
+        <InfoSection companyData={companyData} distance={distance} handleEdit={handleEdit} />
       </Grid>
-      <Grid item xs={6} className='w-full h-full'>
-        <CompanyMap companyCords={cords} siteCords={siteCords} setDistance={getDistance} changed={changed} />
+      {/* Map section */}
+      <Grid item xs={6} className='w-full h-full '>
+        <CompanyMap companyCords={companyData.cords} siteCords={siteCords} setDistance={getDistance} changed={changed} />
       </Grid>
     </Grid>
   )

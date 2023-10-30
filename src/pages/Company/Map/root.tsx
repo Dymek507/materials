@@ -11,7 +11,7 @@ import "leaflet/dist/leaflet.css";
 
 import RoutingControl from './RoutingControl'
 import { LatLngExpression } from "leaflet";
-import { Cords } from "../../types/model";
+import { Cords } from "../../../types/model";
 
 interface ICompanyMapProps {
   companyCords: Cords;
@@ -43,6 +43,7 @@ const CompanyMap = ({ companyCords, siteCords, setDistance, changed }: ICompanyM
           scrollWheelZoom={true}
           className='w-full h-full'
         // whenReady={setMap}
+
         >
           {/* <ResetCenterView centerPosition={routeCords.center} /> */}
           <RoutingControl position={'topleft'} start={start} end={end} color={'#757de8'} setDistance={setDistance} />

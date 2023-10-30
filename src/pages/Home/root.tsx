@@ -4,12 +4,12 @@ import ActionCard from "./ActionCard";
 
 const Home = () => {
   return (
-    <div className="gap-4 mt-72 flex-center">
+    <div className="gap-4 wh-full flex-center">
       <Link to="products">
-        <ActionCard title="Materiały" image={materials_1} />
+        <ActionCard title="Materiały" image={materials_1} description="Zestawienie materiałów" />
       </Link>
       <Link to="companies">
-        <ActionCard title="Firmy" image={companies_2} />
+        <ActionCard title="Firmy" image={companies_2} description="Zestawienie firm" />
       </Link>
 
     </div>

@@ -24,13 +24,13 @@ const createRoutineMachineLayer = ({ position, start, end, setDistance }: IRouti
       end
     ],
     show: false,
-    // lineOptions: {
-    //   styles: [
-    //     {
-    //       color,
-    //     },
-    //   ],
-    // },
+    lineOptions: {
+      styles: [
+        {
+          color: "blue",
+        },
+      ],
+    },
   });
 
   instance.on('routesfound', function (e) {

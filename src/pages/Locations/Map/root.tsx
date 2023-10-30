@@ -9,11 +9,10 @@ import {
 import "leaflet-routing-machine";
 import "leaflet-routing-machine/dist/leaflet-routing-machine.css";
 import "leaflet/dist/leaflet.css";
-import cemIcon from "./cem-icon.png"
-import site from "./site.png"
+import cemIcon from "./assets/cem-icon.png";
+import site from "./assets/site.png"
 import L from "leaflet";
 import { ICompany } from "../../../types/model";
-import { Link } from "react-router-dom";
 import { useAppSelector } from "../../../store/app/hooks";
 import CustomPopup from "./CustomPopup";
 
