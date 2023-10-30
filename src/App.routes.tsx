@@ -8,8 +8,6 @@ import Company from "./pages/Company/Company";
 import Product from "./pages/Product/Product";
 import CompaniesTable from "./pages/Locations/Table/root";
 import Masa from "./pages/Masa/root";
-import LoginPage from "./pages/Login/LoginPage";
-import RegisterPage from "./pages/Login/RegisterPage";
 
 
 export const router = createBrowserRouter([
@@ -39,19 +37,7 @@ export const router = createBrowserRouter([
       {
         path: "masa", element: <Masa />
       },
-      {
-        path: "/account",
-        children: [
-          {
-            path: "login",
-            element: <LoginPage />,
-          },
-          {
-            path: "register",
-            element: <RegisterPage />,
-          },
-        ],
-      },
+
 
     ],
   },

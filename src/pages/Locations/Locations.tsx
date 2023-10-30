@@ -1,5 +1,3 @@
-// @ts-nocheck
-
 import React, { useEffect, useState } from 'react'
 import Map from './Map/Map'
 import { Checkbox, Slider } from '@mui/material'
@@ -13,6 +11,7 @@ import InfoModal from '../../components/InfoModal/InfoModal'
 import { useAppSelector } from '../../store/app/hooks'
 import { getLineDistance } from '../../utils/lineDistance'
 import { dataToExport } from '../../utils/dataToExport'
+import Example from './Table/table'
 
 export type Type = {
   kruszywo: boolean
@@ -98,7 +97,7 @@ const Locations = () => {
 
   return (
     <div>
-      <InfoModal open={openAddModal} onClose={() => setOpenAddModal(false)}>
+      {/* <InfoModal open={openAddModal} onClose={() => setOpenAddModal(false)}>
         <CompanyForm handleClose={() => setOpenAddModal(false)} getRefresh={() => setRefresh(true)} edit={false} />
       </InfoModal>
       <div className='absolute top-40 bg-slate-300 w-72 h-[600px] z-[999] p-4 ml-4  '>
@@ -128,7 +127,8 @@ const Locations = () => {
           }
         </ul>
       </div>
-      <Map list={companyList} circleRadius={radius} />
+      <Map list={companyList} circleRadius={radius} /> */}
+      <Example />
     </div>
   )
 }

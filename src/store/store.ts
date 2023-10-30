@@ -1,13 +1,11 @@
 import { configureStore } from "@reduxjs/toolkit";
 import constructionReducer from "./constructionSlice";
 import lastProductReducer from "./lastProductSlice";
-import uiSlice from "./uiSlice";
 
 const store = configureStore({
   reducer: {
     construction: constructionReducer,
     lastProduct: lastProductReducer,
-    ui: uiSlice,
   },
 });
 

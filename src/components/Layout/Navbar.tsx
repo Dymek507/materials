@@ -3,12 +3,13 @@ import { useAppSelector } from "../../store/app/hooks"
 import AccountMenu from "./AccountMenu"
 import ChangeSite from "./ChangeSite/ChangeSite"
 import getDistanceList from "../../utils/accuratePrice/getDistanceList"
+import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+
+
 
 const Navbar = () => {
 
   const constructionSite = useAppSelector(state => state.construction.constructionSite)
-  const userData = useAppSelector(state => state.ui)
-
 
   const clickHandler = () => {
     getDistanceList(constructionSite);
@@ -49,7 +50,7 @@ const Navbar = () => {
           </ul>
         </div>
         <div className="navbar-end ">
-          {userData.logged ? <AccountMenu /> : <Link to="account/login" className="btn btn-ghost btn-sm rounded-btn">Zaloguj się</Link>}
+          <AccountMenu />
         </div>
       </div>
     </div>
