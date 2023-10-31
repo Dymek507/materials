@@ -26,7 +26,6 @@ interface IProps {
 export default function CompanyForm({ handleClose, companyData, getRefresh, edit }: IProps) {
   const { id, group, company, nip, key, category, adress, comment, mail, person, phone, siding, cords } = companyData ?? {} as ICompany;
 
-
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);

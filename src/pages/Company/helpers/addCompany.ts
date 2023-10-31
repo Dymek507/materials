@@ -12,12 +12,12 @@ const addCompany = async (company: ICompany) => {
       lng: 18,
     };
   }
-  // if (typeof company.category === "string") {
-  //   const dividedCategory = company.category.split(",");
-  //   company.category = dividedCategory.map((item) => item.trim());
-  // }
+  // const dividedCategory = company.category.split(",");
+  // company.category = dividedCategory.map((item) => item.trim());
+
   company.date = getDate();
-  await setDoc(doc(db, "companies", company.id), company);
+  console.log(company);
+  // await setDoc(doc(db, "companies", company.id), company);
 };
 
 export default addCompany;

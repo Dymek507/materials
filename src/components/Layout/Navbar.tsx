@@ -3,6 +3,7 @@ import { useAppSelector } from "../../store/app/hooks"
 import AccountMenu from "./AccountMenu"
 import ChangeSite from "./ChangeSite/ChangeSite"
 import getDistanceList from "../../utils/accuratePrice/getDistanceList"
+import MultiSelect from "../multiSelect"
 
 const Navbar = () => {
 
@@ -45,6 +46,7 @@ const Navbar = () => {
               Aktualizuj odległości
             </button>
           </li>
+          <MultiSelect />
         </ul>
       </div>
       <div className="navbar-end ">
