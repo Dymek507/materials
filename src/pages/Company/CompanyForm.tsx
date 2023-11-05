@@ -15,6 +15,7 @@ import getCords from "../../utils/getCords";
 import updateCompany from "./helpers/updateCompany";
 import addCompany from "./helpers/addCompany";
 import { getDate } from "../../utils/getDate";
+import MultiSelect from "../../components/multiSelect";
 
 interface IProps {
   handleClose: () => void;
@@ -125,7 +126,7 @@ export default function CompanyForm({ handleClose, companyData, getRefresh, edit
                 defaultValue={key}
                 autoFocus
               />
-              <TextField
+              {/* <TextField
                 margin="normal"
                 required
                 fullWidth
@@ -135,7 +136,8 @@ export default function CompanyForm({ handleClose, companyData, getRefresh, edit
                 name="category"
                 defaultValue={category}
                 autoFocus
-              />
+              /> */}
+              <MultiSelect />
             </Grid>
             <Grid item xxs={5}>
               <TextField

@@ -46,7 +46,6 @@ const Navbar = () => {
               Aktualizuj odległości
             </button>
           </li>
-          <MultiSelect />
         </ul>
       </div>
       <div className="navbar-end ">

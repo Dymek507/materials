@@ -12,6 +12,10 @@ const MultiSelect = () => {
 
   const [selectOptions, setSelectOptions] = useState<OptionsType[]>([]);
 
+  const selectHandler = (e: any) => {
+    console.log(e);
+  }
+
   useEffect(() => {
     const getCategories = async () => {
       const categoriesRef = collection(db, "categories")
@@ -34,8 +38,8 @@ const MultiSelect = () => {
     , [])
 
   return (
-    <CreatableSelect isMulti options={selectOptions} />
+    <CreatableSelect isMulti options={selectOptions} onChange={e => selectHandler(e)} />
   );
 }
 
-export default MultiSelect;
+export default MultiSelect
