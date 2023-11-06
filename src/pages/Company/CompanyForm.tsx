@@ -15,7 +15,7 @@ import getCords from "../../utils/getCords";
 import updateCompany from "./helpers/updateCompany";
 import addCompany from "./helpers/addCompany";
 import { getDate } from "../../utils/getDate";
-import MultiSelect from "../../components/multiSelect";
+import MultiSelect from "../../components/MultiSelect";
 
 interface IProps {
   handleClose: () => void;
@@ -27,10 +27,12 @@ interface IProps {
 export default function CompanyForm({ handleClose, companyData, getRefresh, edit }: IProps) {
   const { id, group, company, nip, key, category, adress, comment, mail, person, phone, siding, cords } = companyData ?? {} as ICompany;
 
+  const [selectedCategories, setSelectedCategories] = React.useState<string[]>(category ?? []);
+
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    if (data.get("email") || data.get("category") === "") return;
+    if (data.get("email") || data.get("category")?.length === 0) return;
 
     const company: ICompany = {
       id: id ?? uuidv1(),
@@ -38,7 +40,7 @@ export default function CompanyForm({ handleClose, companyData, getRefresh, edit
       company: data.get("company") as string,
       nip: data.get("nip") as string,
       key: data.get("key") as string,
-      category: [data.get("category")] as string[],
+      category: selectedCategories,
       adress: data.get("adress") as string,
       comment: data.get("comment") as string,
       mail: data.get("mail") as string,
@@ -58,6 +60,10 @@ export default function CompanyForm({ handleClose, companyData, getRefresh, edit
     getRefresh();
     handleClose();
   };
+
+  const selectCategories = (e: string[]) => {
+    setSelectedCategories(e);
+  }
 
   return (
     <Container component="main" maxWidth="xl" sx={{
@@ -126,18 +132,9 @@ export default function CompanyForm({ handleClose, companyData, getRefresh, edit
                 defaultValue={key}
                 autoFocus
               />
-              {/* <TextField
-                margin="normal"
-                required
-                fullWidth
-                id="category"
-                type="text"
-                label="Kategoria"
-                name="category"
-                defaultValue={category}
-                autoFocus
-              /> */}
-              <MultiSelect />
+              <Box sx={{ mt: '1rem' }}>
+                <MultiSelect defaultCategories={selectedCategories} selectCategories={selectCategories} />
+              </Box>
             </Grid>
             <Grid item xxs={5}>
               <TextField

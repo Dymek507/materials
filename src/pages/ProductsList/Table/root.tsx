@@ -135,7 +135,7 @@ function Table() {
         size: 300
       },
       {
-        accessorFn: row => (row.price + (row.distance ?? 0 * 0.5)).toFixed(2),
+        accessorFn: row => (row.price + (row.distance ?? 0 * 0.65)).toFixed(2),
         id: 'franco',
         cell: info => info.getValue(),
         header: () => <span>Cena franco</span>,

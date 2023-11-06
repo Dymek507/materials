@@ -2,7 +2,7 @@ import { themeMain } from "./AppMuiTheme";
 import { ThemeProvider } from "@mui/material";
 import { RouterProvider } from "react-router-dom";
 import { router } from "./App.routes"
-import { getAuth, createUserWithEmailAndPassword, onAuthStateChanged } from "firebase/auth";
+import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { useAppDispatch } from "./store/app/hooks";
 import { doc, getDoc } from "firebase/firestore";
 import { db } from "../firebase";

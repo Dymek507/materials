@@ -8,12 +8,26 @@ type OptionsType = {
   label: string;
 };
 
-const MultiSelect = () => {
+type MultiSelectProps = {
+  defaultCategories: string[];
+  selectCategories: (e: any) => void;
+}
+
+const stringArrayToOptionArray = (categoryArray: string[]) => {
+  return categoryArray.map(item => ({
+    value: item,
+    label: item
+  }))
+}
+
+const MultiSelect = ({ defaultCategories, selectCategories }: MultiSelectProps) => {
 
   const [selectOptions, setSelectOptions] = useState<OptionsType[]>([]);
 
-  const selectHandler = (e: any) => {
-    console.log(e);
+
+  const selectHandler = (e: readonly OptionsType[]) => {
+    const categoriesArray = e.map(item => item.value)
+    selectCategories(categoriesArray);
   }
 
   useEffect(() => {
@@ -37,8 +51,16 @@ const MultiSelect = () => {
   }
     , [])
 
+  const selectStyles = {
+    control: (base: any) => ({
+      ...base,
+      height: 55,
+      minHeight: 55,
+    }),
+  };
+
   return (
-    <CreatableSelect isMulti options={selectOptions} onChange={e => selectHandler(e)} />
+    <CreatableSelect isMulti options={selectOptions} onChange={e => selectHandler(e)} styles={selectStyles} defaultValue={stringArrayToOptionArray(defaultCategories)} className='z-10' />
   );
 }
 

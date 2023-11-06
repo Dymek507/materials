@@ -10,9 +10,16 @@ import Tooltip from '@mui/material/Tooltip';
 import PersonAdd from '@mui/icons-material/PersonAdd';
 import Settings from '@mui/icons-material/Settings';
 import Logout from '@mui/icons-material/Logout';
+import { useAppDispatch, useAppSelector } from '../../store/app/hooks';
+import { uiActions } from '../../store/ui-slice';
 
 export default function AccountMenu() {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
+
+  const dispatch = useAppDispatch()
+
+  const userData = useAppSelector(state => state.ui.userData)
+
   const open = Boolean(anchorEl);
   const handleClick = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
@@ -20,8 +27,17 @@ export default function AccountMenu() {
   const handleClose = () => {
     setAnchorEl(null);
   };
+
+  const handleLogout = () => {
+    dispatch(uiActions.logout())
+    handleClose()
+  }
+
   return (
     <React.Fragment>
+      <p>
+        {userData.login}
+      </p>
       <Box sx={{ display: 'flex', alignItems: 'right', textAlign: 'center' }}>
         <Tooltip title="Account settings">
           <IconButton
@@ -90,7 +106,7 @@ export default function AccountMenu() {
           </ListItemIcon>
           Settings
         </MenuItem>
-        <MenuItem onClick={handleClose}>
+        <MenuItem onClick={handleLogout}>
           <ListItemIcon>
             <Logout fontSize="small" />
           </ListItemIcon>

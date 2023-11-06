@@ -2,6 +2,11 @@ import { IconButton } from "@mui/material";
 import { ICompany } from "../../types/model"
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
+import { deleteCompany } from "./helpers/deleteCompany";
+import { useNavigate } from "react-router-dom";
+import { useState } from "react";
+import CheckModal from "../../components/AlertDialog";
+import AlertDialog from "../../components/AlertDialog";
 
 type InfoSectionProps = {
   companyData: ICompany
@@ -10,18 +15,29 @@ type InfoSectionProps = {
 }
 
 const InfoSection = ({ companyData, distance, handleEdit }: InfoSectionProps) => {
-  const { company, phone, mail, person, comment, category, siding } = companyData
+  const { id, company, phone, mail, person, comment, category, siding } = companyData
+
+  const [showModal, setShowModal] = useState(false)
+
+  const navigate = useNavigate()
+
+  const deleteCompanyHandler = () => {
+    deleteCompany(id)
+    navigate('/companies')
+  }
+
   return (
     <section>
+      <AlertDialog open={showModal} onClose={() => setShowModal(false)} callbackFn={deleteCompanyHandler} />
       <div className="">
         <h1 className='self-start p-2 mb-4 mr-8 text-3xl font-bold border-b-4 border-black'>{company}
         </h1>
       </div>
       <div className="flex justify-end mb-8 mr-8">
-        <IconButton>
-          <EditIcon onClick={handleEdit} />
+        <IconButton onClick={handleEdit}>
+          <EditIcon />
         </IconButton>
-        <IconButton>
+        <IconButton onClick={() => setShowModal(true)}>
           <DeleteIcon />
         </IconButton>
       </div>
