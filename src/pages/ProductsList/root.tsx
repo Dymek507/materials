@@ -11,14 +11,12 @@ const Products = () => {
     setOpenAddProduct(false)
   }
 
-
   return (
-    <div className='flex-col flex-center'>
+    <div className='flex-col mt-2 flex-center'>
       <InfoModal open={openAddProduct} onClose={() => setOpenAddProduct(false)}>
         <AddProduct open={openAddProduct} handleClose={handleClose} />
       </InfoModal >
-      <Button onClick={() => setOpenAddProduct(true)} variant='contained' color='primary' sx={{ mb: 2 }}>Dodaj produkt</Button>
-      <Table />
+      <Table handleOpenAddModal={() => setOpenAddProduct(true)} />
     </div>
   )
 }

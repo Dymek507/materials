@@ -17,7 +17,7 @@ const Table = () => {
   const columns = useMemo<MRT_ColumnDef<ICompanywithDistance>[]>(
     () => [
       {
-        accessorKey: 'group', //access nested data with dot notation
+        accessorKey: 'group',
         header: 'Grupa',
         size: 150,
       },
@@ -27,7 +27,7 @@ const Table = () => {
         size: 150,
       },
       {
-        accessorKey: 'category', //normal accessorKey
+        accessorKey: 'category',
         header: 'Asortyment',
         size: 200,
       },

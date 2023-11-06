@@ -5,13 +5,15 @@ import { db } from '../../../firebase';
 import { IProduct } from '../../types/model';
 import { useAppSelector } from '../../store/app/hooks';
 import { Grid } from '@mui/material';
-import ProductMap from './ProductMap';
+import ProductMap from './Map/ProductMap';
 import InfoModal from '../../components/InfoModal/InfoModal';
+import InfoSection from './InfoSection';
 
 const Product = () => {
   const [productData, setProductData] = React.useState({} as IProduct)
   const [distance, setDistance] = React.useState(0)
   const [openEditModal, setOpenEditModal] = React.useState(false)
+
   const { cords, key, category, price } = productData
 
   const { id } = useParams();
@@ -31,25 +33,21 @@ const Product = () => {
   const getDistance = (distance: number) => {
     setDistance(distance / 1000)
   }
+  const handleEdit = () => {
+    console.log('edit')
+  }
 
   return (
-    <Grid container spacing={2} className='h-full p-2'>
+    <Grid container className='h-full'>
       <InfoModal open={openEditModal} onClose={() => setOpenEditModal(false)}>
-
       </InfoModal >
-      <Grid item xs={6} className='h-screen flex-center'>
-        <div className='flex flex-col items-center text-3xl'>
-          {category !== "" ? <h1 className='mb-2 text-3xl'>{category}</h1> : null}
-          {key !== "" ? <h1 className='pb-2 mb-4 border-b-2'>{key}</h1> : null}
-          <h2>{price} zł</h2>
-          <h2>{distance.toFixed(2)} km</h2>
-          <h1>{(price + distance * 0.5).toFixed(2)} zł</h1>
-        </div>
+      {/* Product info section */}
+      <Grid item xs={6}>
+        <InfoSection productData={productData} distance={distance} handleEdit={handleEdit} />
       </Grid>
-      <Grid item xs={6} className='h-screen flex-center'>
-        <div className='w-[400px] h-[400px] mt-8'>
-          <ProductMap companyCords={cords} siteCords={siteCords} setDistance={getDistance} />
-        </div>
+      {/* Map section */}
+      <Grid item xs={6} className='w-full h-full '>
+        <ProductMap companyCords={cords} siteCords={siteCords} setDistance={getDistance} />
       </Grid>
     </Grid>
   )

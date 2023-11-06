@@ -3,9 +3,9 @@ import Layout from "./components/Layout/root";
 
 import Home from "./pages/Home/root";
 import Locations from "./pages/Locations/root";
-import Products from "./pages/ProductsList/ProductsList";
+import Products from "./pages/ProductsList/root";
 import Company from "./pages/Company/root";
-import Product from "./pages/Product/Product";
+import Product from "./pages/Product/root";
 import CompaniesTable from "./pages/Locations/Table/root";
 import Masa from "./pages/Masa/root";
 import LoginPage from "./pages/Login/LoginPage";
@@ -29,13 +29,16 @@ export const router = createBrowserRouter([
         ]
       },
       {
-        path: "products", element: <Products />
-      },
-      {
-        path: "productst", children: [
+        path: "products", children: [
+          { index: true, element: <Products /> },
           { path: ":id", element: <Product /> },
         ]
       },
+      // {
+      //   path: "productst", children: [
+      //     { path: ":id", element: <Product /> },
+      //   ]
+      // },
       {
         path: "masa", element: <Masa />
       },

@@ -11,8 +11,8 @@ import "leaflet/dist/leaflet.css";
 
 import RoutingControl from './RoutingControl'
 import { LatLngExpression } from "leaflet";
-import { Cords } from "../../types/model";
-import { getCenterCords } from "../../utils/getCenterCords";
+import { Cords } from "../../../types/model";
+import { getCenterCords } from "../../../utils/getCenterCords";
 
 interface ICompanyMapProps {
   companyCords: Cords;
@@ -44,7 +44,7 @@ const ProductMap = ({ companyCords, siteCords, setDistance }: ICompanyMapProps) 
           center={center}
           zoom={7}
           scrollWheelZoom={true}
-          className='h-[400px]'
+          className='wh-full'
         // whenReady={setMap}
         >
           {/* <ResetCenterView centerPosition={routeCords.center} /> */}

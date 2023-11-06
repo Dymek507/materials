@@ -15,7 +15,6 @@ const Company = () => {
   const [distance, setDistance] = React.useState(0)
   const [changed, setChanged] = React.useState(false)
 
-
   const [editModalOpen, setEditModalOpen] = React.useState(false)
 
   const { id } = useParams();

@@ -1,47 +1,27 @@
-import React, { useEffect } from 'react'
-import { useNavigate } from 'react-router-dom'
-import '../../../index.css'
-
+import { useEffect, useMemo, useState } from 'react';
 import {
-  ColumnDef,
-  flexRender,
-  getCoreRowModel,
-  getPaginationRowModel,
-  getSortedRowModel,
-  SortingState,
-  useReactTable,
-} from '@tanstack/react-table'
-import { collection, doc, getDoc, onSnapshot } from 'firebase/firestore'
-import { db } from '../../../../firebase'
-import { IDistanceList, IProduct } from '../../../types/model'
-import { useAppSelector } from '../../../store/app/hooks'
-import CsvDownloadButton from 'react-json-to-csv'
-import deleteProduct from '../utils/deleteProduct'
-import IndeterminateCheckbox from './IndeterminateCheckbox'
+  MaterialReactTable,
+  useMaterialReactTable,
+  type MRT_ColumnDef,
+} from 'material-react-table';
+import ActionMenu from './ActionMenu';
+import { collection, doc, getDoc, onSnapshot } from 'firebase/firestore';
+import { db } from '../../../../firebase';
+import { useAppSelector } from '../../../store/app/hooks';
+import { IDistanceList, IProduct } from '../../../types/model';
+import { Button } from '@mui/material';
 
-function Table() {
+type TableProps = {
+  handleOpenAddModal: () => void
+}
 
-  const [sorting, setSorting] = React.useState<SortingState>([])
-
-  const [data, setData] = React.useState<IProduct[]>([])
-
-  const [accDistArray, setAccDistArray] = React.useState<IDistanceList[]>([{ id: "1", acc_dist: 0 }])
-
-  const [rowSelection, setRowSelection] = React.useState({})
-
-  const navigate = useNavigate()
+const Table = ({ handleOpenAddModal }: TableProps) => {
 
   const constructionSite = useAppSelector(state => state.construction.constructionSite)
 
-  const productsRef = collection(db, "products");
+  const [data, setData] = useState<IProduct[]>([])
 
-  const getAccDistance = (id: string | undefined) => {
-    if (!id || accDistArray?.length === 0) return 0
-
-    const accDist = accDistArray?.find((accDist) => accDist.id === id)
-
-    return accDist?.acc_dist
-  }
+  const [accDistArray, setAccDistArray] = useState<IDistanceList[]>([{ id: "1", acc_dist: 0 }])
 
   useEffect(() => {
     const getDistanceArray = async () => {
@@ -51,6 +31,16 @@ function Table() {
     }
     getDistanceArray()
   }, [constructionSite, constructionSite.cords])
+
+  const getAccDistance = (id: string | undefined) => {
+    if (!id || accDistArray?.length === 0) return 0
+
+    const accDist = accDistArray?.find((accDist) => accDist.id === id)
+
+    return accDist?.acc_dist
+  }
+
+  const productsRef = collection(db, "products");
 
   useEffect(() => {
     const unsub = onSnapshot(productsRef, (products) => {
@@ -67,252 +57,71 @@ function Table() {
     }
   }, [constructionSite, constructionSite.cords, accDistArray])
 
-  const handleRowClick = (id: string | undefined) => {
-    if (!id) return
-    navigate(`/productst/${id}`);
-  }
-
-  const columns = React.useMemo<ColumnDef<IProduct>[]>(
+  const columns = useMemo<MRT_ColumnDef<IProduct>[]>(
     () => [
       {
-        id: 'select',
-        header: ({ table }) => (
-          <IndeterminateCheckbox
-            {...{
-              checked: table.getIsAllRowsSelected(),
-              indeterminate: table.getIsSomeRowsSelected(),
-              onChange: table.getToggleAllRowsSelectedHandler(),
-            }}
-          />
-        ),
-        cell: ({ row }) => (
-          <div className="px-1">
-            <IndeterminateCheckbox
-              {...{
-                checked: row.getIsSelected(),
-                disabled: !row.getCanSelect(),
-                indeterminate: row.getIsSomeSelected(),
-                onChange: row.getToggleSelectedHandler(),
-              }}
-            />
-          </div>
-        ),
+        accessorKey: 'key',
+        header: 'Grupa',
+        size: 150,
       },
       {
-        accessorFn: row => row.key,
-        id: 'lastName',
-        cell: info => info.getValue(),
-        header: () => <span>Firma</span>,
-        footer: props => props.column.id,
+        accessorKey: 'category',
+        header: 'Asortyment',
+        size: 100,
       },
       {
-        accessorFn: row => row.category,
-        id: 'category',
-        cell: info => info.getValue(),
-        header: () => <span>Asortyment</span>,
-        footer: props => props.column.id,
+        accessorKey: 'material',
+        header: 'Materiał',
+        size: 350,
       },
       {
-        accessorFn: row => row.material,
-        id: 'material',
-        cell: info => info.getValue(),
-        header: () => <span>Material</span>,
-        footer: props => props.column.id,
+        accessorKey: 'price',
+        enableClickToCopy: true,
+        header: 'Cena',
+        size: 100,
       },
       {
-        accessorFn: row => row.price,
-        id: 'price',
-        cell: info => info.getValue(),
-        header: () => <span>Cena</span>,
-        footer: props => props.column.id,
+        accessorFn: (row) => (row.distance ?? 0).toFixed(0),
+        enableClickToCopy: true,
+        header: 'Odległość dok.',
+        size: 100,
       },
       {
-        accessorFn: row => (row.distance ?? 0).toFixed(2),
-        id: 'transport_acc',
-        cell: info => info.getValue(),
-        header: () => <span>Odległość dok.</span>,
-        footer: props => props.column.id,
-        size: 300
-      },
-      {
-        accessorFn: row => (row.price + (row.distance ?? 0 * 0.65)).toFixed(2),
-        id: 'franco',
-        cell: info => info.getValue(),
-        header: () => <span>Cena franco</span>,
-        footer: props => props.column.id,
-      },
-      {
-        id: 'more',
-        header: () => (
-          "Więcej"
-        ),
-        cell: ({ row }) => (
-          <div className="px-1">
-            <button onClick={() => handleRowClick(row.original.id)}>Więcej</button>
-          </div>
-        ),
+        accessorFn: row => (row.price + (row.distance ?? 0 * 0.65)).toFixed(0),
+        enableClickToCopy: true,
+        header: 'Cena franco',
+        size: 100,
       },
     ],
-    []
-  )
+    [],
+  );
 
-  const table = useReactTable({
-    data,
+  const table = useMaterialReactTable({
     columns,
-    state: {
-      sorting,
-      rowSelection,
-    },
-    initialState: {
-      pagination: {
-        pageSize: 30,
-      },
-    },
+    data,
+    enableRowActions: true,
     enableRowSelection: true,
-    onSortingChange: setSorting,
-    getCoreRowModel: getCoreRowModel(),
-    getSortedRowModel: getSortedRowModel(),
-    getPaginationRowModel: getPaginationRowModel(),
-    debugTable: true,
-    onRowSelectionChange: setRowSelection,
-    // enableColumnResizing: true,
-  })
-  //Delete rows 
+    renderRowActionMenuItems: ({ closeMenu, row }) => [
+      <ActionMenu key={row.id} closeMenu={closeMenu} row={row} />
+    ],
+    renderTopToolbarCustomActions: () => (
+      <Button
+        variant="contained"
+        onClick={() => {
+          handleOpenAddModal()
+        }}
 
-  const deleteHandler = () => {
-    table.getSelectedRowModel().flatRows.map(row => deleteProduct(row.original.id ?? ""))
-    table.setRowSelection({})
-  }
+      >
+        Dodaj produkt
+      </Button>
+    )
+  });
 
 
   return (
-    <div className="flex-col w-full p-2 flex-center ">
-      <div className="h-2" />
-      <table className='w-4/6 '>
-        <thead>
-          {table.getHeaderGroups().map(headerGroup => (
-            <tr key={headerGroup.id}>
-              {headerGroup.headers.map(header => {
-                return (
-                  <th key={header.id} colSpan={header.colSpan}>
-                    {header.isPlaceholder ? null : (
-                      <div
-                        {...{
-                          className: header.column.getCanSort()
-                            ? 'cursor-pointer select-none'
-                            : '',
-                          onClick: header.column.getToggleSortingHandler(),
-                        }}
-                      >
-                        {flexRender(
-                          header.column.columnDef.header,
-                          header.getContext()
-                        )}
-                        {{
-                          asc: ' 🔼',
-                          desc: ' 🔽',
-                        }[header.column.getIsSorted() as string] ?? null}
-                      </div>
-                    )}
-                  </th>
-                )
-              })}
-            </tr>
-          ))}
-        </thead>
-        <tbody className='text-black bg-slate-200'>
-          {table
-            .getRowModel()
-            .rows.slice(0, 50)
-            .map(row => {
-              return (
-                <tr className='h-8 odd:bg-white' key={row.id} >
-                  {/* <tr className='' onClick={() => handleRowClick(row.original.id)} key={row.id} > */}
-                  {row.getVisibleCells().map(cell => {
-                    return (
-                      <td className='px-2' key={cell.id}>
-
-                        {
-                          flexRender(
-                            cell.column.columnDef.cell,
-                            cell.getContext()
-                          )
-                        }
-                      </td>
-                    )
-                  })}
-                </tr>
-              )
-            })}
-        </tbody>
-      </table >
-      <div className="h-2" />
-      <div className="flex items-center gap-2">
-        <button
-          className="p-1 border rounded"
-          onClick={() => table.setPageIndex(0)}
-          disabled={!table.getCanPreviousPage()}
-        >
-          {'<<'}
-        </button>
-        <button
-          className="p-1 border rounded"
-          onClick={() => table.previousPage()}
-          disabled={!table.getCanPreviousPage()}
-        >
-          {'<'}
-        </button>
-        <button
-          className="p-1 border rounded"
-          onClick={() => table.nextPage()}
-          disabled={!table.getCanNextPage()}
-        >
-          {'>'}
-        </button>
-        <button
-          className="p-1 border rounded"
-          onClick={() => table.setPageIndex(table.getPageCount() - 1)}
-          disabled={!table.getCanNextPage()}
-        >
-          {'>>'}
-        </button>
-        <span className="flex items-center gap-1">
-          <div>Page</div>
-          <strong>
-            {table.getState().pagination.pageIndex + 1} of{' '}
-            {table.getPageCount()}
-          </strong>
-        </span>
-        <span className="flex items-center gap-1">
-          | Go to page:
-          <input
-            type="number"
-            defaultValue={table.getState().pagination.pageIndex + 1}
-            onChange={e => {
-              const page = e.target.value ? Number(e.target.value) - 1 : 0
-              table.setPageIndex(page)
-            }}
-            className="w-16 p-1 border rounded"
-          />
-        </span>
-        <select
-          value={table.getState().pagination.pageSize}
-          onChange={e => {
-            table.setPageSize(Number(e.target.value))
-          }}
-        >
-          {[10, 20, 30, 40, 50].map(pageSize => (
-            <option key={pageSize} value={pageSize}>
-              Show {pageSize}
-            </option>
-          ))}
-        </select>
-        <CsvDownloadButton data={data} />
-        <button onClick={deleteHandler}>Usuń</button>
-      </div>
-
-    </div >
+    <MaterialReactTable table={table} />
   )
-}
 
-export default Table
+};
+
+export default Table;
