@@ -16,7 +16,7 @@ const Products = ({ companyData }: ProductsProps) => {
   }
 
   return (
-    <div className='h-1/2 bg-sky-700'>
+    <div className='h-1/2'>
       <InfoModal open={openAddProduct} onClose={() => setOpenAddProduct(false)}>
         <AddProduct open={openAddProduct} handleClose={handleClose} companyData={companyData} />
       </InfoModal >

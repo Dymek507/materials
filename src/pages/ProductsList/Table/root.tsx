@@ -9,7 +9,9 @@ import { collection, doc, getDoc, onSnapshot } from 'firebase/firestore';
 import { db } from '../../../../firebase';
 import { useAppSelector } from '../../../store/app/hooks';
 import { IDistanceList, IProduct } from '../../../types/model';
-import { Button } from '@mui/material';
+import { Button, IconButton } from '@mui/material';
+import deleteProduct from '../utils/deleteProduct';
+import { AddIcon, DeleteIcon } from '@mui/icons-material';
 
 type TableProps = {
   handleOpenAddModal: () => void
@@ -60,8 +62,8 @@ const Table = ({ handleOpenAddModal }: TableProps) => {
   const columns = useMemo<MRT_ColumnDef<IProduct>[]>(
     () => [
       {
-        accessorKey: 'key',
-        header: 'Grupa',
+        accessorKey: 'company',
+        header: 'Firma',
         size: 200,
       },
       {
@@ -104,16 +106,28 @@ const Table = ({ handleOpenAddModal }: TableProps) => {
     renderRowActionMenuItems: ({ closeMenu, row }) => [
       <ActionMenu key={row.id} closeMenu={closeMenu} row={row} />
     ],
-    renderTopToolbarCustomActions: () => (
-      <Button
-        variant="contained"
-        onClick={() => {
-          handleOpenAddModal()
-        }}
+    renderTopToolbarCustomActions: ({ table }) => (
+      //Add button icon and after delete clear array of selected rows
+      <div>
+        <IconButton
+          variant="contained"
+          onClick={() => {
+            handleOpenAddModal()
+          }}
+        >
 
-      >
-        Dodaj produkt
-      </Button>
+        </IconButton>
+        <IconButton
+          onClick={() => {
+            const selectedRows = table.getSelectedRowModel().rows;
+            selectedRows.forEach((row) => {
+              deleteProduct(row.original.id)
+            })
+          }}
+        >
+          Usuń produkty
+        </IconButton>
+      </div>
     )
   });
 

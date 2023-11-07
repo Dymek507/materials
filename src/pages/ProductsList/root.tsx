@@ -1,6 +1,5 @@
 import React from 'react'
 import Table from './Table/root'
-import { Button } from '@mui/material'
 import AddProduct from './AddProduct'
 import InfoModal from '../../components/InfoModal/InfoModal'
 

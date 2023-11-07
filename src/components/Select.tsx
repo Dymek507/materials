@@ -6,12 +6,13 @@ import { ICategory } from '../types/model';
 
 type MultiSelectProps = {
   selectCategories: (e: string) => void;
+  defaultValue?: string;
 }
 
-const SingleSelect = ({ selectCategories }: MultiSelectProps) => {
+const SingleSelect = ({ selectCategories, defaultValue }: MultiSelectProps) => {
 
   const [selectOptions, setSelectOptions] = useState<ICategory[]>([]);
-  const [option, setOption] = useState<string>("" as string);
+  const [option, setOption] = useState<string>(defaultValue ?? "");
 
   useEffect(() => {
     const getCategories = async () => {

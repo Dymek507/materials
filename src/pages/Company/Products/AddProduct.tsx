@@ -16,7 +16,7 @@ interface IAddProductProps {
 }
 
 export default function AddProduct({ handleClose, companyData }: IAddProductProps) {
-  const { id, group, company, adress, cords } = companyData
+  const { id, category: companyCategory, group, company, adress, cords } = companyData
 
   const [category, setCategory] = React.useState<string>("")
 
@@ -85,7 +85,7 @@ export default function AddProduct({ handleClose, companyData }: IAddProductProp
             disabled
             autoFocus
           />
-          <SingleSelect selectCategories={selectCategories} />
+          <SingleSelect selectCategories={selectCategories} defaultValue={companyCategory[0]} />
           <TextField
             margin="normal"
             required

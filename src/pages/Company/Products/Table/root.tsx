@@ -4,11 +4,12 @@ import {
   useMaterialReactTable,
   type MRT_ColumnDef,
 } from 'material-react-table';
-import { collection, doc, getDoc, onSnapshot, query, where } from 'firebase/firestore';
+import { collection, doc, getDoc, getDocs, onSnapshot, query, where } from 'firebase/firestore';
 import { db } from '../../../../../firebase';
 import { useAppSelector } from '../../../../store/app/hooks';
 import { ICompany, IDistanceList, IProduct } from '../../../../types/model';
-import { Button } from '@mui/material';
+import { Button, Icon, IconButton } from '@mui/material';
+import AddIcon from '@mui/icons-material/Add';
 
 type TableProps = {
   handleOpenAddModal: () => void,
@@ -16,7 +17,6 @@ type TableProps = {
 }
 
 const Table = ({ handleOpenAddModal, companyData }: TableProps) => {
-
   const constructionSite = useAppSelector(state => state.construction.constructionSite)
 
   const [data, setData] = useState<IProduct[]>([])
@@ -40,23 +40,23 @@ const Table = ({ handleOpenAddModal, companyData }: TableProps) => {
     return accDist?.acc_dist
   }
 
-  const productsRef = collection(db, "products")
-  const q = query(productsRef, where("key", "==", companyData.id));
-
   useEffect(() => {
-    const unsub = onSnapshot(productsRef, (products) => {
+    if (!companyData?.id) return
+    const fetchData = async () => {
+      const productsRef = collection(db, "products")
+      const q = query(productsRef, where("key", "==", companyData?.id))
       const firebaseProductsList = [] as IProduct[]
-      products.forEach((product) => {
+
+      const productsSnap = await getDocs(q)
+      productsSnap.forEach((product) => {
         const productData = product.data() as IProduct
         productData.distance = getAccDistance(productData.id)
         firebaseProductsList.push(productData)
       });
       setData(firebaseProductsList)
-    });
-    return () => {
-      unsub()
     }
-  }, [constructionSite, constructionSite.cords, accDistArray])
+    fetchData()
+  }, [constructionSite, constructionSite.cords, accDistArray, companyData.id])
 
   const columns = useMemo<MRT_ColumnDef<IProduct>[]>(
     () => [
@@ -89,29 +89,17 @@ const Table = ({ handleOpenAddModal, companyData }: TableProps) => {
   const table = useMaterialReactTable({
     columns,
     data,
-    // enableRowActions: true,
     enableRowSelection: true,
-    // renderRowActionMenuItems: ({ closeMenu, row }) => [
-    //   <ActionMenu key={row.id} closeMenu={closeMenu} row={row} />
-    // ],
     renderTopToolbarCustomActions: () => (
-      <Button
-        variant="contained"
-        onClick={() => {
-          handleOpenAddModal()
-        }}
-
-      >
-        Dodaj produkt
-      </Button>
-    )
+      <IconButton onClick={() => {
+        handleOpenAddModal()
+      }}><AddIcon /></IconButton>
+    ),
   });
-
-
   return (
-    <div className='h-full overflow-scroll'>
+    <div className='h-full overflow-scroll' >
       <MaterialReactTable table={table} />
-    </div>
+    </div >
   )
 
 };
