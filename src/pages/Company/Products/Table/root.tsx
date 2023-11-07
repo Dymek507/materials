@@ -4,18 +4,18 @@ import {
   useMaterialReactTable,
   type MRT_ColumnDef,
 } from 'material-react-table';
-import ActionMenu from './ActionMenu';
-import { collection, doc, getDoc, onSnapshot } from 'firebase/firestore';
-import { db } from '../../../../firebase';
-import { useAppSelector } from '../../../store/app/hooks';
-import { IDistanceList, IProduct } from '../../../types/model';
+import { collection, doc, getDoc, onSnapshot, query, where } from 'firebase/firestore';
+import { db } from '../../../../../firebase';
+import { useAppSelector } from '../../../../store/app/hooks';
+import { ICompany, IDistanceList, IProduct } from '../../../../types/model';
 import { Button } from '@mui/material';
 
 type TableProps = {
-  handleOpenAddModal: () => void
+  handleOpenAddModal: () => void,
+  companyData: ICompany,
 }
 
-const Table = ({ handleOpenAddModal }: TableProps) => {
+const Table = ({ handleOpenAddModal, companyData }: TableProps) => {
 
   const constructionSite = useAppSelector(state => state.construction.constructionSite)
 
@@ -40,7 +40,8 @@ const Table = ({ handleOpenAddModal }: TableProps) => {
     return accDist?.acc_dist
   }
 
-  const productsRef = collection(db, "products");
+  const productsRef = collection(db, "products")
+  const q = query(productsRef, where("key", "==", companyData.id));
 
   useEffect(() => {
     const unsub = onSnapshot(productsRef, (products) => {
@@ -60,11 +61,6 @@ const Table = ({ handleOpenAddModal }: TableProps) => {
   const columns = useMemo<MRT_ColumnDef<IProduct>[]>(
     () => [
       {
-        accessorKey: 'key',
-        header: 'Grupa',
-        size: 200,
-      },
-      {
         accessorKey: 'category',
         header: 'Asortyment',
         size: 100,
@@ -72,18 +68,12 @@ const Table = ({ handleOpenAddModal }: TableProps) => {
       {
         accessorKey: 'material',
         header: 'Materiał',
-        size: 350,
+        size: 300,
       },
       {
         accessorKey: 'price',
         enableClickToCopy: true,
         header: 'Cena',
-        size: 100,
-      },
-      {
-        accessorFn: (row) => (row.distance ?? 0).toFixed(0),
-        enableClickToCopy: true,
-        header: 'Odległość dok.',
         size: 100,
       },
       {
@@ -99,11 +89,11 @@ const Table = ({ handleOpenAddModal }: TableProps) => {
   const table = useMaterialReactTable({
     columns,
     data,
-    enableRowActions: true,
+    // enableRowActions: true,
     enableRowSelection: true,
-    renderRowActionMenuItems: ({ closeMenu, row }) => [
-      <ActionMenu key={row.id} closeMenu={closeMenu} row={row} />
-    ],
+    // renderRowActionMenuItems: ({ closeMenu, row }) => [
+    //   <ActionMenu key={row.id} closeMenu={closeMenu} row={row} />
+    // ],
     renderTopToolbarCustomActions: () => (
       <Button
         variant="contained"
@@ -119,7 +109,9 @@ const Table = ({ handleOpenAddModal }: TableProps) => {
 
 
   return (
-    <MaterialReactTable table={table} />
+    <div className='h-full overflow-scroll'>
+      <MaterialReactTable table={table} />
+    </div>
   )
 
 };

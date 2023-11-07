@@ -60,7 +60,7 @@ const MultiSelect = ({ defaultCategories, selectCategories }: MultiSelectProps) 
   };
 
   return (
-    <CreatableSelect isMulti options={selectOptions} onChange={e => selectHandler(e)} styles={selectStyles} defaultValue={stringArrayToOptionArray(defaultCategories)} className='z-10' />
+    <CreatableSelect options={selectOptions} onChange={e => selectHandler(e)} styles={selectStyles} defaultValue={stringArrayToOptionArray(defaultCategories)} className='z-10' />
   );
 }
 

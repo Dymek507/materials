@@ -9,6 +9,7 @@ import { Grid } from '@mui/material';
 import InfoModal from '../../components/InfoModal/InfoModal';
 import CompanyForm from './CompanyForm';
 import InfoSection from './InfoSection';
+import Products from './Products/root';
 
 const Company = () => {
   const [companyData, setCompanyData] = React.useState({} as ICompany)
@@ -46,8 +47,9 @@ const Company = () => {
         <CompanyForm handleClose={() => setEditModalOpen(false)} companyData={companyData} getRefresh={() => setChanged(true)} edit={true} />
       </InfoModal>
       {/* Company info section */}
-      <Grid item xs={6}>
+      <Grid item xs={6} className='h-full'>
         <InfoSection companyData={companyData} distance={distance} handleEdit={handleEdit} />
+        <Products companyData={companyData} />
       </Grid>
       {/* Map section */}
       <Grid item xs={6} className='w-full h-full '>

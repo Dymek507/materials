@@ -26,7 +26,7 @@ const InfoSection = ({ companyData, distance, handleEdit }: InfoSectionProps) =>
   }
 
   return (
-    <section>
+    <section className="h-1/2">
       <AlertDialog open={showModal} onClose={() => setShowModal(false)} callbackFn={deleteCompanyHandler} />
       <div className="">
         <h1 className='self-start p-2 mb-4 mr-8 text-3xl font-bold border-b-4 border-black'>{company}
