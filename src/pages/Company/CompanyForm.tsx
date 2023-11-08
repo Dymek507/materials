@@ -133,7 +133,7 @@ export default function CompanyForm({ handleClose, companyData, getRefresh, edit
                 autoFocus
               />
               <Box sx={{ mt: '1rem' }}>
-                <MultiSelect defaultCategories={selectedCategories} selectCategories={selectCategories} />
+                <MultiSelect defaultCategories={category} selectCategories={selectCategories} />
               </Box>
             </Grid>
             <Grid item xxs={5}>

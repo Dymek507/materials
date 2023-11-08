@@ -3,41 +3,45 @@ import { v1 as uuidv1 } from "uuid";
 import { Box, Button, TextField, Typography, Container } from "@mui/material";
 import { IProduct } from "../../types/model";
 import getCords from "../../utils/getCords";
-import addProduct from "./utils/addProduct";
 import { useAppDispatch, useAppSelector } from "../../store/app/hooks";
 import { setLastProduct } from "../../store/lastProductSlice";
+import updateProduct from "./helpers/updateProduct";
+import SingleSelect from "../../components/Select";
 
-interface IAddProductProps {
-  open: boolean,
-  handleClose: () => void
+type UpdateProductProps = {
+  handleClose: () => void,
+  productData: IProduct
 }
 
-export default function AddProduct({ handleClose }: IAddProductProps) {
-
-  const lastProduct = useAppSelector((state) => state.lastProduct)
-  console.log(lastProduct)
+const EditProduct = ({ handleClose, productData }: UpdateProductProps) => {
   const dispatch = useAppDispatch()
+
+  const [category, setCategory] = React.useState<string>(productData.category ?? "")
+  const selectCategories = (e: string) => {
+    setCategory(e)
+  }
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
     if (data.get('company') && data.get('category') === "") return
 
+    // Get company name from this
     const product: IProduct = {
-      id: uuidv1(),
-      company: data.get('company') as string,
-      category: data.get('category') as string,
+      id: productData.id,
+      company: productData.company ?? "",
+      category: category as string,
       material: data.get('material') as string,
       price: Number(data.get('price')) as number,
       type: data.get('type') as string,
       transport: "",
-      key: "",
+      key: productData.key ?? "",
       unit: data.get('unit') as string,
-      adress: data.get('adress') as string,
+      adress: productData.adress,
       date: new Date().toLocaleDateString(),
-      cords: await getCords(data.get('adress') as string)
+      cords: productData.cords,
     }
-    addProduct(product)
+    updateProduct(product)
     dispatch(setLastProduct(product))
     handleClose()
   };
@@ -72,20 +76,10 @@ export default function AddProduct({ handleClose }: IAddProductProps) {
             type="text"
             label="Nazwa firmy"
             name="company"
-            defaultValue={lastProduct.company}
+            defaultValue={productData.company}
             autoFocus
           />
-          <TextField
-            margin="normal"
-            required
-            fullWidth
-            id="category"
-            type="text"
-            label="Kategoria"
-            name="category"
-            defaultValue={lastProduct.category}
-            autoFocus
-          />
+          <SingleSelect selectCategories={selectCategories} defaultValue={category} />
           <TextField
             margin="normal"
             required
@@ -94,7 +88,7 @@ export default function AddProduct({ handleClose }: IAddProductProps) {
             type="text"
             label="Type"
             name="type"
-            defaultValue={lastProduct.type}
+            defaultValue={productData.type}
             autoFocus
           />
           <TextField
@@ -105,7 +99,7 @@ export default function AddProduct({ handleClose }: IAddProductProps) {
             type="text"
             label="Materiał"
             name="material"
-            defaultValue={lastProduct.material}
+            defaultValue={productData.material}
             autoFocus
           />
           <TextField
@@ -116,7 +110,7 @@ export default function AddProduct({ handleClose }: IAddProductProps) {
             type="number"
             label="Cena"
             name="price"
-            defaultValue={lastProduct.price}
+            defaultValue={productData.price}
             autoFocus
           />
           <TextField
@@ -127,7 +121,7 @@ export default function AddProduct({ handleClose }: IAddProductProps) {
             type="text"
             label="Jednostka"
             name="unit"
-            defaultValue={lastProduct.unit}
+            defaultValue={productData.unit}
             autoFocus
           />
           <TextField
@@ -138,7 +132,7 @@ export default function AddProduct({ handleClose }: IAddProductProps) {
             type="text"
             label="Adres"
             name="adress"
-            defaultValue={lastProduct.adress}
+            defaultValue={productData.adress}
             autoFocus
           />
           <Button
@@ -147,10 +141,12 @@ export default function AddProduct({ handleClose }: IAddProductProps) {
             variant="contained"
             sx={{ mt: 3, mb: 2 }}
           >
-            DODAJ
+            Zapisz
           </Button>
         </Box>
       </Box>
     </Container>
   );
 }
+
+export default EditProduct

@@ -18,14 +18,14 @@ interface IAddProductProps {
 export default function AddProduct({ handleClose, companyData }: IAddProductProps) {
   const { id, category: companyCategory, group, company, adress, cords } = companyData
 
-  const [category, setCategory] = React.useState<string>("")
+  const [category, setCategory] = React.useState<string>(companyCategory[0])
+  const selectCategories = (e: string) => {
+    setCategory(e)
+  }
 
   const lastProduct = useAppSelector((state) => state.lastProduct)
   const dispatch = useAppDispatch()
 
-  const selectCategories = (e: string) => {
-    setCategory(e)
-  }
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();

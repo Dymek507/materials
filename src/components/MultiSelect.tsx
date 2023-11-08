@@ -14,6 +14,7 @@ type MultiSelectProps = {
 }
 
 const stringArrayToOptionArray = (categoryArray: string[]) => {
+  if (!categoryArray) return
   return categoryArray.map(item => ({
     value: item,
     label: item
@@ -60,7 +61,7 @@ const MultiSelect = ({ defaultCategories, selectCategories }: MultiSelectProps) 
   };
 
   return (
-    <CreatableSelect options={selectOptions} onChange={e => selectHandler(e)} styles={selectStyles} defaultValue={stringArrayToOptionArray(defaultCategories)} className='z-10' />
+    <CreatableSelect isMulti options={selectOptions} onChange={e => selectHandler(e)} styles={selectStyles} defaultValue={stringArrayToOptionArray(defaultCategories)} className='z-10' />
   );
 }
 

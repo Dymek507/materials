@@ -4,14 +4,16 @@ import {
   useMaterialReactTable,
   type MRT_ColumnDef,
 } from 'material-react-table';
-import ActionMenu from './ActionMenu';
 import { collection, doc, getDoc, onSnapshot } from 'firebase/firestore';
 import { db } from '../../../../firebase';
 import { useAppSelector } from '../../../store/app/hooks';
 import { IDistanceList, IProduct } from '../../../types/model';
 import { Button, IconButton } from '@mui/material';
 import deleteProduct from '../utils/deleteProduct';
-import { AddIcon, DeleteIcon } from '@mui/icons-material';
+import AddIcon from '@mui/icons-material/Add';
+import DeleteIcon from '@mui/icons-material/Delete';
+import { useNavigate } from 'react-router-dom';
+import InfoIcon from '@mui/icons-material/Info';
 
 type TableProps = {
   handleOpenAddModal: () => void
@@ -24,6 +26,8 @@ const Table = ({ handleOpenAddModal }: TableProps) => {
   const [data, setData] = useState<IProduct[]>([])
 
   const [accDistArray, setAccDistArray] = useState<IDistanceList[]>([{ id: "1", acc_dist: 0 }])
+
+  const navigate = useNavigate()
 
   useEffect(() => {
     const getDistanceArray = async () => {
@@ -85,14 +89,27 @@ const Table = ({ handleOpenAddModal }: TableProps) => {
       {
         accessorFn: (row) => (row.distance ?? 0).toFixed(0),
         enableClickToCopy: true,
-        header: 'Odległość dok.',
-        size: 100,
+        header: 'Odl.',
+        size: 50,
       },
       {
         accessorFn: row => (row.price + (row.distance ?? 0 * 0.65)).toFixed(0),
         enableClickToCopy: true,
-        header: 'Cena franco',
-        size: 100,
+        header: 'Franco',
+        size: 50,
+      },
+      {
+        accessorFn: (row) => (
+          <IconButton
+            onClick={() => {
+              navigate(`/products/${row.id}`)
+            }}
+          >
+            <InfoIcon />
+          </IconButton>
+        ),
+        header: 'Więcej',
+        size: 50,
       },
     ],
     [],
@@ -101,21 +118,14 @@ const Table = ({ handleOpenAddModal }: TableProps) => {
   const table = useMaterialReactTable({
     columns,
     data,
-    enableRowActions: true,
     enableRowSelection: true,
-    renderRowActionMenuItems: ({ closeMenu, row }) => [
-      <ActionMenu key={row.id} closeMenu={closeMenu} row={row} />
-    ],
     renderTopToolbarCustomActions: ({ table }) => (
       //Add button icon and after delete clear array of selected rows
       <div>
         <IconButton
-          variant="contained"
-          onClick={() => {
-            handleOpenAddModal()
-          }}
+          onClick={handleOpenAddModal}
         >
-
+          <AddIcon />
         </IconButton>
         <IconButton
           onClick={() => {
@@ -123,9 +133,10 @@ const Table = ({ handleOpenAddModal }: TableProps) => {
             selectedRows.forEach((row) => {
               deleteProduct(row.original.id)
             })
+            selectedRows.length = 0;
           }}
         >
-          Usuń produkty
+          <DeleteIcon />
         </IconButton>
       </div>
     )
