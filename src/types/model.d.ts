@@ -37,8 +37,7 @@ export interface IProduct {
   cords: Cords;
   date?: string;
   distance?: number;
-  masa?: boolean;
-  masa_type?: string;
+  masa?: string;
 }
 
 export type Cords = {

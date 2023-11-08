@@ -9,7 +9,7 @@ type OptionsType = {
 };
 
 type MultiSelectProps = {
-  defaultCategories: string[];
+  defaultCategories?: string[];
   selectCategories: (e: any) => void;
 }
 
@@ -21,7 +21,7 @@ const stringArrayToOptionArray = (categoryArray: string[]) => {
   }))
 }
 
-const MultiSelect = ({ defaultCategories, selectCategories }: MultiSelectProps) => {
+const MultiSelect = ({ defaultCategories = [], selectCategories }: MultiSelectProps) => {
 
   const [selectOptions, setSelectOptions] = useState<OptionsType[]>([]);
 
@@ -55,6 +55,9 @@ const MultiSelect = ({ defaultCategories, selectCategories }: MultiSelectProps) 
   const selectStyles = {
     control: (base: any) => ({
       ...base,
+      backgroundColor: 'transparent',
+      marginTop: '17px',
+      width: '100%',
       height: 55,
       minHeight: 55,
     }),
