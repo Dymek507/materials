@@ -1,5 +1,5 @@
-import { IProduct } from "../../types/model";
-import { TextFieldType } from "./types/formTypes";
+import { IProduct } from "../types/model";
+import { TextFieldType } from "../components/Form/types/formTypes";
 
 export const productData = (defaultData?: IProduct): TextFieldType[] => {
   return [
@@ -25,9 +25,15 @@ export const productData = (defaultData?: IProduct): TextFieldType[] => {
       defaultValue: defaultData?.price,
     },
     {
+      id: "unit",
+      label: "Jednostka",
+      defaultValue: defaultData?.unit,
+    },
+    {
       id: "date",
       label: "Data",
       type: "date",
+      defaultValue: "2023-11-16",
     },
     {
       id: "masa",

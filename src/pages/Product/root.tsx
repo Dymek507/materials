@@ -9,7 +9,7 @@ import ProductMap from './Map/ProductMap';
 import InfoModal from '../../components/InfoModal/InfoModal';
 import InfoSection from './InfoSection';
 import { Edit } from '@mui/icons-material';
-import EditProduct from './EditProduct';
+import EditProduct from './UpdateProduct';
 
 const Product = () => {
   const [productData, setProductData] = React.useState({} as IProduct)
