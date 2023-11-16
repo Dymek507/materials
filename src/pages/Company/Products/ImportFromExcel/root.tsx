@@ -1,13 +1,19 @@
 import { ReactSpreadsheetImport, StepType } from "react-spreadsheet-import";
+import { Result } from "react-spreadsheet-import/types/types";
+
+type ImportFromExcelProps = {
+  open: boolean
+  onClose: () => void
+}
 
 const ImportFromExcel
-  = () => {
+  = ({ open, onClose }: ImportFromExcelProps) => {
     const fields = [
       {
         // Visible in table header and when matching columns.
-        label: "Name",
+        label: "First Name",
         // This is the key used for this field when we call onSubmit.
-        key: "name",
+        key: "firstname",
         // Allows for better automatic column matching. Optional.
         alternateMatches: ["first name", "first"],
         // Used when editing and validating information.
@@ -28,9 +34,31 @@ const ImportFromExcel
           },
         ],
       },
+      {
+        label: "Last Name",
+        key: "lastname",
+        alternateMatches: ["last name", "second name", "last"],
+        fieldType: {
+          type: "input",
+        },
+        example: "Fox",
+        validations: [
+          {
+            rule: "required",
+            errorMessage: "Name is required",
+            level: "error",
+          },
+        ],
+      },
     ] as const
+
+    const onSubmit = (data: Result<string>) => {
+      console.log(data)
+    }
+
+
     return (
-      <ReactSpreadsheetImport isOpen={isOpen} onClose={onClose} onSubmit={onSubmit} fields={fields} />
+      <ReactSpreadsheetImport isOpen={open} onClose={onClose} onSubmit={onSubmit} fields={fields} />
     )
   }
 

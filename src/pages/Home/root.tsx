@@ -1,8 +1,10 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import { companies_2, materials_1 } from "../../assets";
 import ActionCard from "./ActionCard";
 import ImportFromExcel from "../Company/Products/ImportFromExcel/root";
 const Home = () => {
+  const [showImportModal, setShowImportModal] = useState(true);
 
   return (
     <div className="gap-4 wh-full flex-center">
@@ -12,7 +14,7 @@ const Home = () => {
       <Link to="companies">
         <ActionCard title="Firmy" image={companies_2} description="Zestawienie firm" />
       </Link> */}
-      <ImportFromExcel />
+      <ImportFromExcel open={showImportModal} onClose={() => setShowImportModal(false)} />
     </div>
   );
 };
