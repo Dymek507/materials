@@ -4,11 +4,11 @@ import {
   useMaterialReactTable,
   type MRT_ColumnDef,
 } from 'material-react-table';
-import { collection, doc, getDoc, getDocs, onSnapshot, query, where } from 'firebase/firestore';
+import { collection, doc, getDoc, getDocs, query, where } from 'firebase/firestore';
 import { db } from '../../../../../firebase';
 import { useAppSelector } from '../../../../store/app/hooks';
 import { ICompany, IDistanceList, IProduct } from '../../../../types/model';
-import { Button, Icon, IconButton } from '@mui/material';
+import { IconButton } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
 
 type TableProps = {
@@ -20,6 +20,7 @@ const Table = ({ handleOpenAddModal, companyData }: TableProps) => {
   const constructionSite = useAppSelector(state => state.construction.constructionSite)
 
   const [data, setData] = useState<IProduct[]>([])
+  console.log(data)
 
   const [accDistArray, setAccDistArray] = useState<IDistanceList[]>([{ id: "1", acc_dist: 0 }])
 
@@ -77,7 +78,7 @@ const Table = ({ handleOpenAddModal, companyData }: TableProps) => {
         size: 100,
       },
       {
-        accessorFn: row => (row.price + (row.distance ?? 0 * 0.65)).toFixed(0),
+        accessorFn: row => (row.price + (row.distance ? row.distance * 0.35 : 0)).toFixed(0),
         enableClickToCopy: true,
         header: 'Cena franco',
         size: 100,

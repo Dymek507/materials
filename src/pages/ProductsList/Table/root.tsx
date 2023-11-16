@@ -9,7 +9,7 @@ import { db } from '../../../../firebase';
 import { useAppSelector } from '../../../store/app/hooks';
 import { IDistanceList, IProduct } from '../../../types/model';
 import { Button, IconButton } from '@mui/material';
-import deleteProduct from '../utils/deleteProduct';
+import deleteProduct from '../../Product/helpers/deleteProduct';
 import AddIcon from '@mui/icons-material/Add';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { useNavigate } from 'react-router-dom';
@@ -71,6 +71,11 @@ const Table = ({ handleOpenAddModal }: TableProps) => {
         size: 200,
       },
       {
+        accessorKey: 'key',
+        header: 'Klucz',
+        size: 100,
+      },
+      {
         accessorKey: 'category',
         header: 'Asortyment',
         size: 100,
@@ -93,7 +98,7 @@ const Table = ({ handleOpenAddModal }: TableProps) => {
         size: 50,
       },
       {
-        accessorFn: row => (row.price + (row.distance ?? 0 * 0.65)).toFixed(0),
+        accessorFn: row => (row.price + (row.distance ? row.distance * 0.35 : 0)).toFixed(0),
         enableClickToCopy: true,
         header: 'Franco',
         size: 50,

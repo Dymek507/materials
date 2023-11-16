@@ -8,8 +8,7 @@ import { Grid } from '@mui/material';
 import ProductMap from './Map/ProductMap';
 import InfoModal from '../../components/InfoModal/InfoModal';
 import InfoSection from './InfoSection';
-import { Edit } from '@mui/icons-material';
-import EditProduct from './UpdateProduct';
+import UpdateProduct from './UpdateProduct';
 
 const Product = () => {
   const [productData, setProductData] = React.useState({} as IProduct)
@@ -31,7 +30,6 @@ const Product = () => {
     }
     getData()
   }, [])
-
   const getDistance = (distance: number) => {
     setDistance(distance / 1000)
   }
@@ -42,7 +40,7 @@ const Product = () => {
   return (
     <Grid container className='h-full'>
       <InfoModal open={openEditModal} onClose={() => setOpenEditModal(false)}>
-        <EditProduct handleClose={() => setOpenEditModal(false)} productData={productData} />
+        <UpdateProduct handleClose={() => setOpenEditModal(false)} productData={productData} />
       </InfoModal >
       {/* Product info section */}
       <Grid item xs={6}>

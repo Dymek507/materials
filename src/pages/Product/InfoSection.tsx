@@ -5,6 +5,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import AlertDialog from "../../components/AlertDialog";
+import deleteProduct from "./helpers/deleteProduct";
 
 type InfoSectionProps = {
   productData: IProduct
@@ -13,14 +14,15 @@ type InfoSectionProps = {
 }
 
 const InfoSection = ({ productData, distance, handleEdit }: InfoSectionProps) => {
-  const { material, cords, key, category, price } = productData
+  const { id, company, material, cords, key, category, price } = productData
+  console.log(productData)
 
   const [showModal, setShowModal] = useState(false)
 
   const navigate = useNavigate()
 
   const deleteCompanyHandler = () => {
-    // deleteCompany(id)
+    deleteProduct(id)
     navigate('/products')
   }
 
@@ -40,13 +42,14 @@ const InfoSection = ({ productData, distance, handleEdit }: InfoSectionProps) =>
         </IconButton>
       </div>
       <div className="flex-col text-xl flex-center">
-        {category !== "" ? <h1 className='mb-2 text-3xl'>{category}</h1> : null}
+        {category?.[0] !== "" ? <h1 className='mb-2 text-3xl'>{category}</h1> : null}
+        <h2>{company}</h2>
+        <h2>{key}</h2>
         <h2>{price} zł</h2>
         <h2>{distance.toFixed(2)} km</h2>
         <h1>{(price + distance * 0.65).toFixed(2)} zł</h1>
       </div>
     </section>
-
   )
 }
 

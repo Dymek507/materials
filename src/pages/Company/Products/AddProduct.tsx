@@ -3,7 +3,7 @@ import { v1 as uuidv1 } from "uuid";
 import addProduct from "./utils/addProduct";
 import { ICompany, IProduct } from "../../../types/model";
 import Form from "../../../components/Form/root";
-import { productData } from "../../../data/data_product";
+import { productFormData } from "../../../data/data_product";
 
 
 interface IAddProductProps {
@@ -41,6 +41,6 @@ export default function AddProduct({ handleClose, companyData }: IAddProductProp
 
 
   return (
-    <Form inputData={productData()} getData={handleSubmit} />
+    <Form inputData={productFormData()} getData={handleSubmit} />
   );
 }

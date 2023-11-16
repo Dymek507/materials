@@ -1,7 +1,7 @@
 import { IProduct } from "../types/model";
 import { TextFieldType } from "../components/Form/types/formTypes";
 
-export const productData = (defaultData?: IProduct): TextFieldType[] => {
+export const productFormData = (defaultData?: IProduct): TextFieldType[] => {
   return [
     {
       id: "type",

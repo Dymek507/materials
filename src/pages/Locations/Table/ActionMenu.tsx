@@ -14,7 +14,7 @@ const ActionMenu = ({ closeMenu, row }: ActionMenuProps) => {
   return (
     <div>
       <Link to={`/table/${row.original.id}`}>
-        <MenuItem
+        {/* <MenuItem
           key={0}
           onClick={() => {
             // View profile logic...
@@ -40,7 +40,9 @@ const ActionMenu = ({ closeMenu, row }: ActionMenuProps) => {
           <Send />
         </ListItemIcon>
         Send Email
-      </MenuItem></div>
+      </MenuItem> */}
+      </Link>
+    </div>
   )
 }
 
