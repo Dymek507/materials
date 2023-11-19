@@ -2,6 +2,7 @@ import { IconButton } from "@mui/material";
 import { ICompany } from "../../types/model"
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
+import GridOnIcon from '@mui/icons-material/GridOn';
 import { deleteCompany } from "./helpers/deleteCompany";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
@@ -11,9 +12,11 @@ type InfoSectionProps = {
   companyData: ICompany
   distance: number
   handleEdit: () => void
+  handleImport: () => void
 }
 
-const InfoSection = ({ companyData, distance, handleEdit }: InfoSectionProps) => {
+
+const InfoSection = ({ companyData, distance, handleEdit, handleImport }: InfoSectionProps) => {
   const { id, company, phone, mail, person, comment, category, siding } = companyData
 
   const [showModal, setShowModal] = useState(false)
@@ -33,6 +36,9 @@ const InfoSection = ({ companyData, distance, handleEdit }: InfoSectionProps) =>
         </h1>
       </div>
       <div className="flex justify-end mb-8 mr-8">
+        <IconButton onClick={handleImport}>
+          <GridOnIcon />
+        </IconButton>
         <IconButton onClick={handleEdit}>
           <EditIcon />
         </IconButton>

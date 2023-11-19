@@ -5,7 +5,7 @@ import { db } from '../../../firebase';
 import { IProduct } from '../../types/model';
 import { useAppSelector } from '../../store/app/hooks';
 import { Grid } from '@mui/material';
-import ProductMap from './Map/ProductMap';
+import ProductMap from './Map/rootMap';
 import InfoModal from '../../components/InfoModal/InfoModal';
 import InfoSection from './InfoSection';
 import UpdateProductForm from './UpdateProductForm/root';
