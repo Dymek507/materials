@@ -5,7 +5,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import AlertDialog from "../../components/AlertDialog";
-import deleteProduct from "./helpers/deleteProduct";
+import deleteProduct from "../../utils/productUtils/deleteProduct";
 
 type InfoSectionProps = {
   productData: IProduct
@@ -15,7 +15,6 @@ type InfoSectionProps = {
 
 const InfoSection = ({ productData, distance, handleEdit }: InfoSectionProps) => {
   const { id, company, material, cords, key, category, price } = productData
-  console.log(productData)
 
   const [showModal, setShowModal] = useState(false)
 

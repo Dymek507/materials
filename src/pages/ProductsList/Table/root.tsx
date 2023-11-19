@@ -8,9 +8,8 @@ import { collection, doc, getDoc, onSnapshot } from 'firebase/firestore';
 import { db } from '../../../../firebase';
 import { useAppSelector } from '../../../store/app/hooks';
 import { IDistanceList, IProduct } from '../../../types/model';
-import { Button, IconButton } from '@mui/material';
-import deleteProduct from '../../Product/helpers/deleteProduct';
-import AddIcon from '@mui/icons-material/Add';
+import { IconButton } from '@mui/material';
+import deleteProduct from '../../../utils/productUtils/deleteProduct';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { useNavigate } from 'react-router-dom';
 import InfoIcon from '@mui/icons-material/Info';
@@ -127,11 +126,6 @@ const Table = ({ handleOpenAddModal }: TableProps) => {
     renderTopToolbarCustomActions: ({ table }) => (
       //Add button icon and after delete clear array of selected rows
       <div>
-        <IconButton
-          onClick={handleOpenAddModal}
-        >
-          <AddIcon />
-        </IconButton>
         <IconButton
           onClick={() => {
             const selectedRows = table.getSelectedRowModel().rows;

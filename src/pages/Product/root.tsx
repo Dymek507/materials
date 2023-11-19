@@ -8,7 +8,7 @@ import { Grid } from '@mui/material';
 import ProductMap from './Map/ProductMap';
 import InfoModal from '../../components/InfoModal/InfoModal';
 import InfoSection from './InfoSection';
-import UpdateProduct from './UpdateProduct';
+import UpdateProductForm from './UpdateProductForm/root';
 
 const Product = () => {
   const [productData, setProductData] = React.useState({} as IProduct)
@@ -40,7 +40,7 @@ const Product = () => {
   return (
     <Grid container className='h-full'>
       <InfoModal open={openEditModal} onClose={() => setOpenEditModal(false)}>
-        <UpdateProduct handleClose={() => setOpenEditModal(false)} productData={productData} />
+        <UpdateProductForm handleClose={() => setOpenEditModal(false)} productData={productData} />
       </InfoModal >
       {/* Product info section */}
       <Grid item xs={6}>

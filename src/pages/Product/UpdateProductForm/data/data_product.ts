@@ -1,5 +1,5 @@
-import { IProduct } from "../types/model";
-import { TextFieldType } from "../components/Form/types/formTypes";
+import { IProduct } from "../../../../types/model";
+import { TextFieldType } from "../../../../components/Form/types/formTypes";
 
 export const productFormData = (defaultData?: IProduct): TextFieldType[] => {
   return [

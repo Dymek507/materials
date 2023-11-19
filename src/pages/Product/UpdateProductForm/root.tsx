@@ -1,19 +1,16 @@
 import React from "react";
-import { v1 as uuidv1 } from "uuid";
-import { IProduct } from "../../types/model";
-import getCords from "../../utils/getCords";
-import { useAppDispatch, useAppSelector } from "../../store/app/hooks";
-import { setLastProduct } from "../../store/lastProductSlice";
-import updateProduct from "./helpers/updateProduct";
-import { productFormData } from "../../data/data_product";
-import Form from "../../components/Form/root";
+
+import { IProduct } from "../../../types/model";
+import updateProduct from "../../../utils/productUtils/updateProduct";
+import { productFormData } from "./data/data_product";
+import Form from "../../../components/Form/root";
 
 type UpdateProductProps = {
   handleClose: () => void,
   productData: IProduct
 }
 
-const UpdateProduct = ({ handleClose, productData }: UpdateProductProps) => {
+const UpdateProductForm = ({ handleClose, productData }: UpdateProductProps) => {
   const { company, id, adress, key, cords } = productData
 
   const handleSubmit = async (categories: string[], event: React.FormEvent<HTMLFormElement>) => {
@@ -45,4 +42,4 @@ const UpdateProduct = ({ handleClose, productData }: UpdateProductProps) => {
   );
 }
 
-export default UpdateProduct
+export default UpdateProductForm
