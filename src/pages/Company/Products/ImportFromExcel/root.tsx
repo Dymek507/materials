@@ -14,6 +14,7 @@ type ImportFromExcelProps = {
 const ImportFromExcel
   = ({ open, onClose, companyData }: ImportFromExcelProps) => {
     const fields = IMPORT_FIELDS
+    console.log(fields)
 
     const onSubmit = (data: Result<string>) => {
       data.validData.forEach((row) => {
