@@ -2,11 +2,11 @@ import { createBrowserRouter } from "react-router-dom";
 import Layout from "./components/Layout/root";
 
 import Home from "./pages/Home/root";
-import Locations from "./pages/Locations/root";
+import Locations from "./pages/Manufacturers/root";
 import Products from "./pages/ProductsList/root";
-import Company from "./pages/Company/root";
-import Product from "./pages/Product/root";
-import CompaniesTable from "./pages/Locations/Table/root";
+import Company from "./pages/CardCompany/root";
+import Product from "./pages/CardProduct/root";
+import CompaniesTable from "./pages/Manufacturers/Table/root";
 import Masa from "./pages/Masa/root";
 import LoginPage from "./pages/Login/LoginPage";
 import RegisterPage from "./pages/Login/RegisterPage";

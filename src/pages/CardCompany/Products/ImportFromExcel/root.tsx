@@ -1,7 +1,7 @@
-import { ReactSpreadsheetImport, StepType } from "react-spreadsheet-import";
+import { ReactSpreadsheetImport } from "react-spreadsheet-import";
 import { Result } from "react-spreadsheet-import/types/types";
 import { IMPORT_FIELDS } from "./data";
-import { ICompany, IProduct } from "../../../../types/model";
+import { ICompany } from "../../../../types/model";
 import { v1 as uuidv1 } from "uuid";
 import addProduct from "../../../../utils/productUtils/addProduct";
 
@@ -14,7 +14,6 @@ type ImportFromExcelProps = {
 const ImportFromExcel
   = ({ open, onClose, companyData }: ImportFromExcelProps) => {
     const fields = IMPORT_FIELDS
-    console.log(fields)
 
     const onSubmit = (data: Result<string>) => {
       data.validData.forEach((row) => {
