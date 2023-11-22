@@ -1,17 +1,19 @@
 import { useEffect, useMemo, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import {
   MaterialReactTable,
   useMaterialReactTable,
   type MRT_ColumnDef,
 } from 'material-react-table';
 import { collection, doc, getDoc, onSnapshot } from 'firebase/firestore';
+
 import { db } from '../../../../firebase';
 import { useAppSelector } from '../../../store/app/hooks';
 import { IDistanceList, IProduct } from '../../../types/model';
-import { IconButton } from '@mui/material';
 import deleteProduct from '../../../utils/productUtils/deleteProduct';
+
+import { IconButton } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
-import { useNavigate } from 'react-router-dom';
 import InfoIcon from '@mui/icons-material/Info';
 
 type TableProps = {
@@ -67,12 +69,7 @@ const Table = ({ handleOpenAddModal }: TableProps) => {
       {
         accessorKey: 'company',
         header: 'Firma',
-        size: 200,
-      },
-      {
-        accessorKey: 'key',
-        header: 'Klucz',
-        size: 100,
+        size: 300,
       },
       {
         accessorKey: 'category',
@@ -113,7 +110,7 @@ const Table = ({ handleOpenAddModal }: TableProps) => {
           </IconButton>
         ),
         header: 'Więcej',
-        size: 50,
+        size: 40,
       },
     ],
     [],

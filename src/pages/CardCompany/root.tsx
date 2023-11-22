@@ -33,7 +33,11 @@ const Company = () => {
     }
     getData()
     setChanged(false)
-  }, [changed])
+  }, [editModalOpen, showImportModal])
+
+  const getRefresh = () => {
+    setChanged(prev => !prev)
+  }
 
   const getDistance = (distance: number) => {
     setDistance(distance / 1000)
@@ -51,7 +55,7 @@ const Company = () => {
   return (
     <Grid container className='h-full'>
       <InfoModal open={editModalOpen} onClose={() => setEditModalOpen(false)}>
-        <CompanyForm handleClose={() => setEditModalOpen(false)} companyData={companyData} getRefresh={() => setChanged(true)} edit={true} />
+        <CompanyForm handleClose={() => setEditModalOpen(false)} companyData={companyData} getRefresh={getRefresh} edit={true} />
       </InfoModal>
       <ImportFromExcel open={showImportModal} onClose={() => setShowImportModal(false)} companyData={companyData} />
       {/* Company info section */}

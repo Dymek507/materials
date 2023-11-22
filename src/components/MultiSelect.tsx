@@ -15,6 +15,7 @@ type MultiSelectProps = {
 
 const stringArrayToOptionArray = (categoryArray: string[]) => {
   if (!categoryArray) return
+  // console.log(categoryArray)
   return categoryArray.map(item => ({
     value: item,
     label: item
@@ -25,8 +26,8 @@ const MultiSelect = ({ defaultCategories = [], selectCategories }: MultiSelectPr
 
   const [selectOptions, setSelectOptions] = useState<OptionsType[]>([]);
 
-
   const selectHandler = (e: readonly OptionsType[]) => {
+    console.log(e)
     const categoriesArray = e.map(item => item.value)
     selectCategories(categoriesArray);
   }

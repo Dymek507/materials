@@ -14,7 +14,7 @@ type InfoSectionProps = {
 }
 
 const InfoSection = ({ productData, distance, handleEdit }: InfoSectionProps) => {
-  const { id, company, material, cords, key, category, price } = productData
+  const { id, company, material, category, price } = productData
 
   const [showModal, setShowModal] = useState(false)
 
@@ -43,7 +43,6 @@ const InfoSection = ({ productData, distance, handleEdit }: InfoSectionProps) =>
       <div className="flex-col text-xl flex-center">
         {category?.[0] !== "" ? <h1 className='mb-2 text-3xl'>{category}</h1> : null}
         <h2>{company}</h2>
-        <h2>{key}</h2>
         <h2>{price} zł</h2>
         <h2>{distance.toFixed(2)} km</h2>
         <h1>{(price + distance * 0.65).toFixed(2)} zł</h1>

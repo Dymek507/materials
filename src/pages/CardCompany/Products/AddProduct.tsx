@@ -1,6 +1,6 @@
 import React from "react";
 import { v1 as uuidv1 } from "uuid";
-import addProduct from "./utils/addProduct";
+import addProduct from "../../../utils/productUtils/addProduct";
 import { ICompany, IProduct } from "../../../types/model";
 import Form from "../../../components/Form/root";
 import { productFormData } from "../../CardProduct/UpdateProductForm/data/data_product";

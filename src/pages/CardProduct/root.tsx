@@ -15,7 +15,7 @@ const Product = () => {
   const [distance, setDistance] = React.useState(0)
   const [openEditModal, setOpenEditModal] = React.useState(false)
 
-  const { cords, key, category, price } = productData
+  const { cords } = productData
 
   const { id } = useParams();
 
@@ -29,13 +29,16 @@ const Product = () => {
       setProductData(docSnap.data() as IProduct)
     }
     getData()
-  }, [])
+  }, [openEditModal])
+
   const getDistance = (distance: number) => {
     setDistance(distance / 1000)
   }
   const handleEdit = () => {
     setOpenEditModal(true)
   }
+
+  // console.log('cardProduct refresh')
 
   return (
     <Grid container className='h-full'>

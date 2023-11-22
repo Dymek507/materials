@@ -1,15 +1,22 @@
 import { useEffect, useMemo, useState } from 'react';
+
 import {
   MaterialReactTable,
   useMaterialReactTable,
   type MRT_ColumnDef,
 } from 'material-react-table';
-import { collection, doc, getDoc, getDocs, query, where } from 'firebase/firestore';
+import { collection, doc, getDoc, onSnapshot, query, where } from 'firebase/firestore';
+
 import { db } from '../../../../../firebase';
 import { useAppSelector } from '../../../../store/app/hooks';
+import deleteProduct from '../../../../utils/productUtils/deleteProduct';
 import { ICompany, IDistanceList, IProduct } from '../../../../types/model';
+
 import { IconButton } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
+import DeleteIcon from '@mui/icons-material/Delete';
+import InfoIcon from '@mui/icons-material/Info';
+import { useNavigate } from 'react-router-dom';
 
 type TableProps = {
   handleOpenAddModal: () => void,
@@ -20,9 +27,10 @@ const Table = ({ handleOpenAddModal, companyData }: TableProps) => {
   const constructionSite = useAppSelector(state => state.construction.constructionSite)
 
   const [data, setData] = useState<IProduct[]>([])
-  console.log(data)
 
   const [accDistArray, setAccDistArray] = useState<IDistanceList[]>([{ id: "1", acc_dist: 0 }])
+
+  const navigate = useNavigate()
 
   useEffect(() => {
     const getDistanceArray = async () => {
@@ -46,15 +54,16 @@ const Table = ({ handleOpenAddModal, companyData }: TableProps) => {
     const fetchData = async () => {
       const productsRef = collection(db, "products")
       const q = query(productsRef, where("key", "==", companyData?.id))
-      const firebaseProductsList = [] as IProduct[]
-
-      const productsSnap = await getDocs(q)
-      productsSnap.forEach((product) => {
-        const productData = product.data() as IProduct
-        productData.distance = getAccDistance(productData.id)
-        firebaseProductsList.push(productData)
+      const unsubscribe = onSnapshot(q, (querySnapshot) => {
+        const firebaseProductsList = [] as IProduct[]
+        querySnapshot.forEach((product) => {
+          const productData = product.data() as IProduct
+          productData.distance = getAccDistance(productData.id)
+          firebaseProductsList.push(productData)
+        });
+        setData(firebaseProductsList)
       });
-      setData(firebaseProductsList)
+      return () => unsubscribe()
     }
     fetchData()
   }, [constructionSite, constructionSite.cords, accDistArray, companyData.id])
@@ -75,13 +84,26 @@ const Table = ({ handleOpenAddModal, companyData }: TableProps) => {
         accessorKey: 'price',
         enableClickToCopy: true,
         header: 'Cena',
-        size: 100,
+        size: 50,
       },
       {
         accessorFn: row => (row.price + (row.distance ? row.distance * 0.35 : 0)).toFixed(0),
         enableClickToCopy: true,
         header: 'Cena franco',
-        size: 100,
+        size: 50,
+      },
+      {
+        accessorFn: (row) => (
+          <IconButton
+            onClick={() => {
+              navigate(`/products/${row.id}`)
+            }}
+          >
+            <InfoIcon />
+          </IconButton>
+        ),
+        header: 'Więcej',
+        size: 50,
       },
     ],
     [],
@@ -92,9 +114,22 @@ const Table = ({ handleOpenAddModal, companyData }: TableProps) => {
     data,
     enableRowSelection: true,
     renderTopToolbarCustomActions: () => (
-      <IconButton onClick={() => {
-        handleOpenAddModal()
-      }}><AddIcon /></IconButton>
+      <div>
+        <IconButton onClick={() => {
+          handleOpenAddModal()
+        }}><AddIcon /></IconButton>
+        <IconButton
+          onClick={() => {
+            const selectedRows = table.getSelectedRowModel().rows;
+            selectedRows.forEach((row) => {
+              deleteProduct(row.original.id)
+            })
+            selectedRows.length = 0;
+          }}
+        >
+          <DeleteIcon />
+        </IconButton>
+      </div>
     ),
   });
   return (

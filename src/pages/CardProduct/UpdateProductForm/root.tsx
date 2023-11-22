@@ -11,7 +11,7 @@ type UpdateProductProps = {
 }
 
 const UpdateProductForm = ({ handleClose, productData }: UpdateProductProps) => {
-  const { company, id, adress, key, cords } = productData
+  const { company, category, id, adress, key, cords } = productData
 
   const handleSubmit = async (categories: string[], event: React.FormEvent<HTMLFormElement>) => {
 
@@ -38,7 +38,7 @@ const UpdateProductForm = ({ handleClose, productData }: UpdateProductProps) => 
   };
 
   return (
-    <Form inputData={productFormData(productData)} getData={handleSubmit} />
+    <Form inputData={productFormData(productData)} defaultCategory={category} getData={handleSubmit} />
   );
 }
 

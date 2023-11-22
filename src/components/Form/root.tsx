@@ -7,11 +7,13 @@ import { TextFieldType } from "./types/formTypes"
 
 type FormProps = {
   inputData: TextFieldType[],
+  defaultCategory?: string[],
   getData?: (categories: string[], event: any) => void
 }
 
-const Form = ({ inputData, getData = () => { console.log('brak danych') } }: FormProps) => {
-  const category = useRef([])
+const Form = ({ inputData, defaultCategory = [], getData = () => { console.log('brak danych') } }: FormProps) => {
+  const category = useRef(defaultCategory)
+  console.log(category.current)
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
@@ -48,7 +50,7 @@ const Form = ({ inputData, getData = () => { console.log('brak danych') } }: For
         >
           <Grid container className="w-full bg-slate-200" justifyContent="center" gap={2}>
             <Grid item xs={5}>
-              <MultiSelect selectCategories={selectCategories} />
+              <MultiSelect selectCategories={selectCategories} defaultCategories={defaultCategory} />
             </Grid>
             {inputData.map((item, index) => {
               return (

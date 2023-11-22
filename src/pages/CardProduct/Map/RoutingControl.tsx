@@ -13,7 +13,6 @@ interface IRoutingMachineProps {
   end: L.LatLng
   color: string
   setDistance: (distance: number) => void
-  // cargo: ICargo
 }
 
 
@@ -33,11 +32,9 @@ const createRoutineMachineLayer = ({ position, start, end, color, setDistance }:
     //   ],
     // },
   });
-  console.log('instance', instance)
   instance.on('routesfound', function (e) {
     const routes = e.routes;
     const summary = routes[0].summary;
-    console.log('summary', summary)
     setDistance(summary.totalDistance)
     // sendDistanceToFirebase(cargo, summary)
   });
