@@ -12,7 +12,7 @@ type InfoSectionProps = {
   companyData: ICompany
   distance: number
   handleEdit: () => void
-  handleImport: () => void
+  handleImport: () => voidnpmnpm
 }
 
 

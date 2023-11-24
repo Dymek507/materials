@@ -27,7 +27,6 @@ const MultiSelect = ({ defaultCategories = [], selectCategories }: MultiSelectPr
   const [selectOptions, setSelectOptions] = useState<OptionsType[]>([]);
 
   const selectHandler = (e: readonly OptionsType[]) => {
-    console.log(e)
     const categoriesArray = e.map(item => item.value)
     selectCategories(categoriesArray);
   }

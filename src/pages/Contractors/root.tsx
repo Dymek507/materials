@@ -96,7 +96,6 @@ const Locations = () => {
           <button className='ml-4 text-black'>Tabela</button>
         </Link>
         <button onClick={() => setOpenAddModal(true)} className='ml-4 text-black'>Dodaj</button>
-
         <Slider
           aria-label="Temperature"
           defaultValue={0}
