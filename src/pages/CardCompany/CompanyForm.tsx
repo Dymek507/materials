@@ -18,8 +18,6 @@ import addCompany from "./helpers/addCompany";
 import { getDate } from "../../utils/getDate";
 import MultiSelect from "../../components/MultiSelect";
 
-import GridOnIcon from '@mui/icons-material/GridOn';
-
 interface IProps {
   handleClose: () => void;
   companyData?: ICompany;
@@ -85,9 +83,6 @@ export default function CompanyForm({ handleClose, companyData, getRefresh, edit
           <Typography component="h1" variant="h5" color="gray" className="ml-8">
             Dodaj firmę
           </Typography>
-          <IconButton onClick={() => ""}>
-            <GridOnIcon />
-          </IconButton>
         </Box>
         <Box
           component="form"

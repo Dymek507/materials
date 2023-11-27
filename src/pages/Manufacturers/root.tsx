@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import Map from './Map/root'
-import { Checkbox, Slider } from '@mui/material'
+import { Checkbox, IconButton, Slider } from '@mui/material'
 import { ICategory } from '../../types/model'
 import { collection, getDocs, query, where } from 'firebase/firestore'
 import { db } from '../../../firebase'
@@ -12,6 +12,9 @@ import { useAppSelector } from '../../store/app/hooks'
 import { getLineDistance } from '../../utils/lineDistance'
 import { dataToExport } from '../../utils/dataToExport'
 import { ICompanywithDistance } from './helpers/types'
+
+import GridOnIcon from '@mui/icons-material/GridOn';
+import ImportCompaniesFromExcel from './ImportCompaniesFromExcel/root'
 
 const Locations = () => {
   const [category, setCategory] = React.useState<string>("")
@@ -25,6 +28,8 @@ const Locations = () => {
   const [radius, setRadius] = useState<number>(0)
 
   const [openAddModal, setOpenAddModal] = useState<boolean>(false)
+
+  const [openImportModal, setOpenImportModal] = useState<boolean>(false)
 
   const [refresh, setRefresh] = useState<boolean>(false)
 
@@ -81,7 +86,7 @@ const Locations = () => {
   }
 
   const valuetext = (value: number) => {
-    return `${value}°C`;
+    return `${value}`;
   }
 
 
@@ -90,19 +95,27 @@ const Locations = () => {
       <InfoModal open={openAddModal} onClose={() => setOpenAddModal(false)}>
         <CompanyForm handleClose={() => setOpenAddModal(false)} getRefresh={() => setRefresh(true)} edit={false} />
       </InfoModal>
+      {/* This component change navbar color */}
+      <ImportCompaniesFromExcel open={openImportModal} onClose={() => setOpenImportModal(false)} />
       <div className='absolute top-40 bg-slate-300 w-72 h-[600px] z-[999] p-4 ml-4  '>
-        <CsvDownloadButton data={dataToExport(companyListFiltered)} className='text-black' />
+        <CsvDownloadButton data={dataToExport(companyListFiltered)} className='text-black' >
+          Export
+        </CsvDownloadButton>
         <Link to='/table' state={{ data: companyListFiltered }}>
           <button className='ml-4 text-black'>Tabela</button>
         </Link>
         <button onClick={() => setOpenAddModal(true)} className='ml-4 text-black'>Dodaj</button>
-
+        <IconButton onClick={() => setOpenImportModal(true)} sx={{ ml: '1rem' }}>
+          <GridOnIcon />
+        </IconButton>
         <Slider
           aria-label="Temperature"
           defaultValue={0}
           getAriaValueText={valuetext}
           onChange={e => {
-            setRadius(e?.target?.value ? e.target.value : 0)
+            const radius = e.target as HTMLInputElement
+            const value = Number(radius.value)
+            setRadius(value)
           }
           }
           valueLabelDisplay="auto"
@@ -119,7 +132,6 @@ const Locations = () => {
         </ul>
       </div>
       <Map list={companyList} circleRadius={radius} />
-      {/* <Table data={companyListFiltered} /> */}
     </div>
   )
 }

@@ -5,12 +5,14 @@ import {
   type MRT_ColumnDef,
 } from 'material-react-table';
 import { ICompanywithDistance } from '../helpers/types';
-import { useLocation } from 'react-router-dom';
-import ActionMenu from './ActionMenu';
+import { useLocation, useNavigate } from 'react-router-dom';
 
+import { IconButton } from '@mui/material';
+import MoreIcon from '@mui/icons-material/More';
 
 const Table = () => {
   const location = useLocation()
+  const navigate = useNavigate()
 
   const { data } = location.state as { data: ICompanywithDistance[] }
 
@@ -19,17 +21,17 @@ const Table = () => {
       {
         accessorKey: 'group',
         header: 'Grupa',
-        size: 150,
+        size: 250,
       },
       {
         accessorKey: 'company',
         header: 'Firma',
-        size: 150,
+        size: 250,
       },
       {
         accessorKey: 'category',
         header: 'Asortyment',
-        size: 200,
+        size: 100,
       },
       {
         accessorKey: 'mail',
@@ -41,7 +43,20 @@ const Table = () => {
         accessorKey: 'phone',
         enableClickToCopy: true,
         header: 'Telefon',
-        size: 150,
+        size: 250,
+      },
+      {
+        accessorFn: (row) => (
+          <IconButton
+            onClick={() => {
+              navigate(`/products/${row.id}`)
+            }}
+          >
+            <MoreIcon />
+          </IconButton>
+        ),
+        header: 'Więcej',
+        size: 40,
       },
     ],
     [],
@@ -50,15 +65,21 @@ const Table = () => {
   const table = useMaterialReactTable({
     columns,
     data,
-    enableRowActions: true,
     enableRowSelection: true,
-    renderRowActionMenuItems: ({ closeMenu, row }) => [
-      <ActionMenu key={row.id} closeMenu={closeMenu} row={row} />
-    ],
+    positionToolbarAlertBanner: 'bottom',
+    muiTableBodyCellProps: {
+      sx: {
+        borderRight: '2px solid #e0e0e0',
+        '&:last-child': {
+          borderRight: 'none',
+        },
+        padding: '0.5rem 1rem',
+      },
+    },
   });
 
   return (
-    <div className='m-8'>
+    <div className='flex-col wh-full flex-center'>
       <MaterialReactTable table={table} />
     </div>
   )

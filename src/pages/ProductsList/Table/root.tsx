@@ -14,7 +14,7 @@ import deleteProduct from '../../../utils/productUtils/deleteProduct';
 
 import { IconButton } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
-import InfoIcon from '@mui/icons-material/Info';
+import MoreIcon from '@mui/icons-material/More';
 
 type TableProps = {
   handleOpenAddModal: () => void
@@ -106,7 +106,7 @@ const Table = ({ handleOpenAddModal }: TableProps) => {
               navigate(`/products/${row.id}`)
             }}
           >
-            <InfoIcon />
+            <MoreIcon />
           </IconButton>
         ),
         header: 'Więcej',
@@ -120,6 +120,7 @@ const Table = ({ handleOpenAddModal }: TableProps) => {
     columns,
     data,
     enableRowSelection: true,
+    positionToolbarAlertBanner: 'bottom',
     renderTopToolbarCustomActions: ({ table }) => (
       //Add button icon and after delete clear array of selected rows
       <div>
@@ -135,7 +136,16 @@ const Table = ({ handleOpenAddModal }: TableProps) => {
           <DeleteIcon />
         </IconButton>
       </div>
-    )
+    ),
+    muiTableBodyCellProps: {
+      sx: {
+        borderRight: '2px solid #e0e0e0', //add a border between columns
+        '&:last-child': {
+          borderRight: 'none', //remove the border on the last column
+        },
+        padding: '0.5rem 1rem', //add some padding to the cells
+      },
+    },
   });
 
 

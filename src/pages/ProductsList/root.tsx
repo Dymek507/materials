@@ -9,7 +9,7 @@ const Products = () => {
   }
 
   return (
-    <div className='flex-col mt-2 flex-center'>
+    <div className='flex-col wh-full flex-center'>
       <Table handleOpenAddModal={() => setOpenAddProduct(true)} />
     </div>
   )
