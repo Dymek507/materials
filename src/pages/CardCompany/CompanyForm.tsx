@@ -8,6 +8,7 @@ import {
   TextField,
   Typography,
   Container,
+  IconButton,
 } from "@mui/material";
 
 import { ICompany } from "../../types/model";
@@ -16,6 +17,8 @@ import updateCompany from "./helpers/updateCompany";
 import addCompany from "./helpers/addCompany";
 import { getDate } from "../../utils/getDate";
 import MultiSelect from "../../components/MultiSelect";
+
+import GridOnIcon from '@mui/icons-material/GridOn';
 
 interface IProps {
   handleClose: () => void;
@@ -78,9 +81,14 @@ export default function CompanyForm({ handleClose, companyData, getRefresh, edit
           alignItems: "center",
         }}
       >
-        <Typography component="h1" variant="h5">
-          Dodaj produkt
-        </Typography>
+        <Box className="flex flex-row justify-between w-full">
+          <Typography component="h1" variant="h5" color="gray" className="ml-8">
+            Dodaj firmę
+          </Typography>
+          <IconButton onClick={() => ""}>
+            <GridOnIcon />
+          </IconButton>
+        </Box>
         <Box
           component="form"
           onSubmit={handleSubmit}
