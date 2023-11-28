@@ -10,7 +10,7 @@ import { UserData } from "../types/model";
 
 export const logIn =
   (uId: string): ThunkAction<void, RootState, unknown, AnyAction> =>
-  async (dispatch, getState) => {
+  async (dispatch) => {
     if (uId !== null) {
       const userDocRef = doc(db, `users/${uId}`);
       try {
@@ -31,7 +31,7 @@ export const logIn =
   };
 export const logInAsGuest =
   (uId: string): ThunkAction<void, RootState, unknown, AnyAction> =>
-  async (dispatch, getState) => {
+  async (dispatch) => {
     if (uId !== null) {
       const userDocRef = doc(db, `users/${uId}`);
       try {
@@ -52,8 +52,7 @@ export const logInAsGuest =
   };
 
 export const logOut =
-  (): ThunkAction<void, RootState, unknown, AnyAction> =>
-  async (dispatch, getState) => {
+  (): ThunkAction<void, RootState, unknown, AnyAction> => async (dispatch) => {
     signOut(auth)
       .then(() => {
         dispatch(
@@ -68,6 +67,6 @@ export const logOut =
         console.log("Sign-out successful.");
       })
       .catch((error) => {
-        console.log("An error happened.");
+        console.log("An error happened." + error);
       });
   };

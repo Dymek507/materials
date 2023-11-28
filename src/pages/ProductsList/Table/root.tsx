@@ -16,11 +16,7 @@ import { IconButton } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 import MoreIcon from '@mui/icons-material/More';
 
-type TableProps = {
-  handleOpenAddModal: () => void
-}
-
-const Table = ({ handleOpenAddModal }: TableProps) => {
+const Table = () => {
 
   const constructionSite = useAppSelector(state => state.construction.constructionSite)
 

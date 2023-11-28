@@ -5,7 +5,10 @@ import {
   Marker,
   Popup,
   Circle,
+
 } from "react-leaflet";
+// @ts-ignore
+import { GeoJSON, GeoJsonObject } from 'react-leaflet/GeoJSON'
 import "leaflet-routing-machine";
 import "leaflet-routing-machine/dist/leaflet-routing-machine.css";
 import "leaflet/dist/leaflet.css";
@@ -16,6 +19,8 @@ import { ICompany } from "../../../types/model";
 import { useAppSelector } from "../../../store/app/hooks";
 import CustomPopup from "./CustomPopup";
 
+import geoData from '../data/zloza.json'
+
 interface MapProps {
   list: ICompany[];
   circleRadius: number;
@@ -24,6 +29,13 @@ interface MapProps {
 const Map = ({ list, circleRadius }: MapProps) => {
 
   const siteCords = useAppSelector((state) => state.construction.constructionSite.cords);
+
+  const geojson = geoData as GeoJsonObject
+
+  const onPlaceClick = (e: any, layer: any) => {
+    layer.bindPopup(e.properties["NAZWA"] + " typ: " + e.properties["RODZAJ_KOP"]);
+  }
+
 
   return (
     <>
@@ -36,6 +48,7 @@ const Map = ({ list, circleRadius }: MapProps) => {
         scrollWheelZoom={true}
         className='wh-full'
       >
+
         <LayersControl position="topright">
           <LayersControl.BaseLayer checked name="Map">
             <TileLayer
@@ -43,6 +56,21 @@ const Map = ({ list, circleRadius }: MapProps) => {
               url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
             />
           </LayersControl.BaseLayer>
+          <LayersControl.BaseLayer checked name="Kolej">
+            {/* <TileLayer
+              attribution='<a href="https://www.openstreetmap.org/copyright">© OpenStreetMap contributors</a>, Style: <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA 2.0</a> <a href="http://www.openrailwaymap.org/">OpenRailwayMap</a> and OpenStreetMap'
+              url='https://tiles.openrailwaymap.org/standard/{z}/{x}/{y}.png'
+              tileSize={256}
+            /> */}
+            <GeoJSON data={geojson} onEachFeature={(e, layer) => onPlaceClick(e, layer)} />
+          </LayersControl.BaseLayer>
+          {/* <LayersControl.BaseLayer checked name="Kolej">
+            <TileLayer
+              attribution='<a href="https://www.openstreetmap.org/copyright">© OpenStreetMap contributors</a>, Style: <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA 2.0</a> <a href="http://www.openrailwaymap.org/">OpenRailwayMap</a> and OpenStreetMap'
+              url='https://tiles.openrailwaymap.org/standard/{z}/{x}/{y}.png'
+              tileSize={256}
+            />
+          </LayersControl.BaseLayer> */}
         </LayersControl>
         <Marker position={[siteCords.lat, siteCords.lng]} icon={L.icon({
           iconUrl: site,
@@ -65,8 +93,6 @@ const Map = ({ list, circleRadius }: MapProps) => {
           radius={circleRadius * 1000}>
         </Circle>
       </MapContainer>
-
-
     </>
   );
 };

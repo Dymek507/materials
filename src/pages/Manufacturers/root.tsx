@@ -126,7 +126,7 @@ const Locations = () => {
         />
         <ul className='flex flex-col gap-2 h-[500px] overflow-y-scroll text-black'>
           {categories && categories.map((item) => (
-            <li key={item.key} ><Checkbox onChange={e => checkboxHandler(item.key)} checked={item.key == category} />{item.name}</li>
+            <li key={item.key} ><Checkbox onChange={() => checkboxHandler(item.key)} checked={item.key == category} />{item.name}</li>
           ))
           }
         </ul>

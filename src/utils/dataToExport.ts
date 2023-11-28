@@ -1,6 +1,6 @@
-import { ICompanyDistance } from "../pages/Locations/root";
+import { ICompanywithDistance } from "../pages/Manufacturers/helpers/types";
 
-export const dataToExport = (data: ICompanyDistance[]) => {
+export const dataToExport = (data: ICompanywithDistance[]) => {
   const dataToExport = data.map((item) => {
     return {
       name: item.company,

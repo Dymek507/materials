@@ -27,7 +27,7 @@ const Masa = () => {
     <div className='h-full bg-white'>
       {materials.map((material) => (
         <Grid key={material.id} container gap={4} justifyContent="center">
-          {material.masa_type}
+          {material.masa}
         </Grid>))}
       {/* <Grid container gap={4} justifyContent="center">
         <Grid item xs={5}>

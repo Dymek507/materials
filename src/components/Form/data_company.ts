@@ -1,5 +1,4 @@
 import { IProduct } from "../../types/model";
-import { TextFieldType } from "./types/formTypes";
 
 export type TextFieldType = {
   id: string;

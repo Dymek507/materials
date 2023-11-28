@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { Link } from "react-router-dom";
 import { companies_2, materials_1 } from "../../assets";
 import ActionCard from "./ActionCard";
@@ -12,7 +11,6 @@ const Home = () => {
       <Link to="companies">
         <ActionCard title="Firmy" image={companies_2} description="Zestawienie firm" />
       </Link>
-
     </div>
   );
 };

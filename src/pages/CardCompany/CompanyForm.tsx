@@ -8,7 +8,6 @@ import {
   TextField,
   Typography,
   Container,
-  IconButton,
 } from "@mui/material";
 
 import { ICompany } from "../../types/model";

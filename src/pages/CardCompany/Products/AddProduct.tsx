@@ -12,7 +12,7 @@ interface IAddProductProps {
 }
 
 export default function AddProduct({ handleClose, companyData }: IAddProductProps) {
-  const { id, category: companyCategory, group, company, adress, cords } = companyData
+  const { id, company, adress, cords } = companyData
 
   const handleSubmit = async (categories: string[], event: React.FormEvent<HTMLFormElement>) => {
 

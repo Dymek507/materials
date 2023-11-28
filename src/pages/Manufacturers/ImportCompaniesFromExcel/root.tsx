@@ -1,10 +1,7 @@
 import { ReactSpreadsheetImport } from "react-spreadsheet-import";
 
-import { v1 as uuidv1 } from "uuid";
-
 import { Result } from "react-spreadsheet-import/types/types";
 import { IMPORT_COMPANIES_FIELDS } from "./data";
-import addCompany from "../../CardCompany/helpers/addCompany";
 
 
 type ImportCompaniesFromExcelProps = {

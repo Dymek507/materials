@@ -10,7 +10,7 @@ const initialState: IProduct = {
     lng: 0,
   },
   transport: "",
-  category: "",
+  category: [],
   material: "",
   price: 0,
   unit: "",
