@@ -52,25 +52,34 @@ const Map = ({ list, circleRadius }: MapProps) => {
         <LayersControl position="topright">
           <LayersControl.BaseLayer checked name="Map">
             <TileLayer
+              attribution="Google Maps"
+              url="https://www.google.cn/maps/vt?lyrs=m@189&gl=cn&x={x}&y={y}&z={z}"
+            />
+          </LayersControl.BaseLayer>
+          <LayersControl.Overlay name="Open Maps">
+            <TileLayer
               attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
               url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
             />
-          </LayersControl.BaseLayer>
-          <LayersControl.BaseLayer checked name="Kolej">
-            {/* <TileLayer
-              attribution='<a href="https://www.openstreetmap.org/copyright">© OpenStreetMap contributors</a>, Style: <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA 2.0</a> <a href="http://www.openrailwaymap.org/">OpenRailwayMap</a> and OpenStreetMap'
-              url='https://tiles.openrailwaymap.org/standard/{z}/{x}/{y}.png'
-              tileSize={256}
-            /> */}
-            <GeoJSON data={geojson} onEachFeature={(e, layer) => onPlaceClick(e, layer)} />
-          </LayersControl.BaseLayer>
-          {/* <LayersControl.BaseLayer checked name="Kolej">
+
+          </LayersControl.Overlay>
+          <LayersControl.Overlay name="Satelita">
+            <TileLayer
+              url='https://{s}.google.com/vt/lyrs=s&x={x}&y={y}&z={z}'
+              maxZoom={20}
+              subdomains={['mt1', 'mt2', 'mt3']}
+            />
+          </LayersControl.Overlay>
+          <LayersControl.Overlay name="Kolej">
             <TileLayer
               attribution='<a href="https://www.openstreetmap.org/copyright">© OpenStreetMap contributors</a>, Style: <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA 2.0</a> <a href="http://www.openrailwaymap.org/">OpenRailwayMap</a> and OpenStreetMap'
               url='https://tiles.openrailwaymap.org/standard/{z}/{x}/{y}.png'
               tileSize={256}
             />
-          </LayersControl.BaseLayer> */}
+          </LayersControl.Overlay>
+          <LayersControl.Overlay name="Kopalnie">
+            <GeoJSON data={geojson} onEachFeature={(e, layer) => onPlaceClick(e, layer)} />
+          </LayersControl.Overlay>
         </LayersControl>
         <Marker position={[siteCords.lat, siteCords.lng]} icon={L.icon({
           iconUrl: site,
