@@ -2,7 +2,7 @@ import { Link } from "react-router-dom"
 import { useAppSelector } from "../../store/app/hooks"
 import AccountMenu from "./AccountMenu"
 import ChangeSite from "./ChangeSite/ChangeSite"
-import getDistanceList from "../../utils/accuratePrice/getDistanceList"
+import getDistanceList from "../../utils/accurateDistance/getDistanceList"
 
 const Navbar = () => {
 

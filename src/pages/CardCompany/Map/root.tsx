@@ -52,8 +52,8 @@ const CompanyMap = ({ companyCords, siteCords, setDistance, changed }: ICompanyM
           <LayersControl position="topright">
             <LayersControl.BaseLayer checked name="Map">
               <TileLayer
-                attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-                url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                attribution="Google Maps"
+                url="https://www.google.cn/maps/vt?lyrs=m@189&gl=cn&x={x}&y={y}&z={z}"
               />
             </LayersControl.BaseLayer>
           </LayersControl>

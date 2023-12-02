@@ -15,8 +15,6 @@ function App() {
   const dispatch = useAppDispatch();
   const auth = getAuth();
 
-  console.log(auth)
-
   //Fetch user data from firebase and save it in redux store
   const fetchUserData = async (uId: string) => {
     if (uId !== null) {

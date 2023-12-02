@@ -15,6 +15,7 @@ import deleteProduct from '../../../utils/productUtils/deleteProduct';
 import { IconButton } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 import MoreIcon from '@mui/icons-material/More';
+import { getFrancoPrice } from '../../../utils/getFrancoPrice';
 
 const Table = () => {
 
@@ -90,7 +91,7 @@ const Table = () => {
         size: 50,
       },
       {
-        accessorFn: row => (row.price + (row.distance ? row.distance * 0.35 : 0)).toFixed(0),
+        accessorFn: row => getFrancoPrice(row.price, row.distance, row.type).toFixed(0),
         enableClickToCopy: true,
         header: 'Franco',
         size: 50,
