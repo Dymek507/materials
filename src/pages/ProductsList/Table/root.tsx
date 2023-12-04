@@ -91,7 +91,7 @@ const Table = () => {
         size: 50,
       },
       {
-        accessorFn: row => getFrancoPrice(row.price, row.distance, row.type).toFixed(0),
+        accessorFn: row => getFrancoPrice(row.price, row.distance, row.category).toFixed(0),
         enableClickToCopy: true,
         header: 'Franco',
         size: 50,

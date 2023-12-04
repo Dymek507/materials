@@ -1,9 +1,16 @@
 export const getFrancoPrice = (
   price: number,
   distance: number | undefined,
-  type: string
+  category: string[]
 ) => {
-  console.log(price, (distance = 0), type);
-  // return 999;
-  return price + distance * 0.5;
+  console.log(price, distance, category);
+  let perKmPrice = 0;
+
+  if (category.includes("kruszywo")) perKmPrice = 0.4;
+  if (category.includes("cement")) perKmPrice = 0.7;
+  if (category.includes("spoiwo")) perKmPrice = 0.7;
+
+  if (distance === undefined) return 0;
+
+  return price + distance * perKmPrice;
 };
