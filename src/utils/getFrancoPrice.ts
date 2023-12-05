@@ -7,8 +7,8 @@ export const getFrancoPrice = (
   let perKmPrice = 0;
 
   if (category.includes("kruszywo")) perKmPrice = 0.4;
-  if (category.includes("cement")) perKmPrice = 0.7;
-  if (category.includes("spoiwo")) perKmPrice = 0.7;
+  if (category.includes("cement")) perKmPrice = 0.65;
+  if (category.includes("spoiwo")) perKmPrice = 0.65;
 
   if (distance === undefined) return 0;
 
