@@ -27,7 +27,6 @@ export default function AddProduct({ handleClose, companyData }: IAddProductProp
       material: data.get('material') as string,
       price: Number(data.get('price')) as number,
       type: data.get('type') as string,
-      transport: data.get('transport') as string,
       key: id,
       unit: data.get('unit') as string,
       adress: adress,

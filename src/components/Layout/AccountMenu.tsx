@@ -10,7 +10,6 @@ import Tooltip from '@mui/material/Tooltip';
 import Logout from '@mui/icons-material/Logout';
 
 import { useAppDispatch, useAppSelector } from '../../store/app/hooks';
-import { uiActions } from '../../store/ui-slice';
 import { logOut } from '../../store/ui-actions';
 
 export default function AccountMenu() {

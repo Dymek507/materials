@@ -13,7 +13,7 @@ import {
 import { ICompany } from "../../types/model";
 import getCords from "../../utils/getCords";
 import updateCompany from "./helpers/updateCompany";
-import addCompany from "./helpers/addCompany";
+import addCompany from "../../utils/addCompany";
 import { getDate } from "../../utils/getDate";
 import MultiSelect from "../../components/MultiSelect";
 
@@ -25,7 +25,7 @@ interface IProps {
 }
 
 export default function CompanyForm({ handleClose, companyData, getRefresh, edit }: IProps) {
-  const { id, group, company, nip, key, category, adress, comment, mail, person, phone, siding, cords } = companyData ?? {} as ICompany;
+  const { id, group, company, nip, category, adress, comment, mail, person, phone, siding, cords } = companyData ?? {} as ICompany;
 
   const [selectedCategories, setSelectedCategories] = React.useState<string[]>(category ?? []);
 
@@ -39,7 +39,6 @@ export default function CompanyForm({ handleClose, companyData, getRefresh, edit
       group: data.get("group") as string,
       company: data.get("company") as string,
       nip: data.get("nip") as string,
-      key: data.get("key") as string,
       category: selectedCategories,
       adress: data.get("adress") as string,
       comment: data.get("comment") as string,
@@ -122,16 +121,6 @@ export default function CompanyForm({ handleClose, companyData, getRefresh, edit
                 label="NIP"
                 name="nip"
                 defaultValue={nip}
-                autoFocus
-              />
-              <TextField
-                margin="normal"
-                fullWidth
-                id="key"
-                type="text"
-                label="Klucz"
-                name="key"
-                defaultValue={key}
                 autoFocus
               />
               <Box sx={{ mt: '1rem' }}>

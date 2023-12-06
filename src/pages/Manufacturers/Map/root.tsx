@@ -5,8 +5,6 @@ import {
   Marker,
   Popup,
   Circle,
-  WMSTileLayer,
-
 } from "react-leaflet";
 // @ts-ignore
 import { GeoJSON, GeoJsonObject } from 'react-leaflet/GeoJSON'
@@ -53,17 +51,10 @@ const Map = ({ list, circleRadius }: MapProps) => {
         <LayersControl position="topright">
           <LayersControl.BaseLayer checked name="Map">
             <TileLayer
-              attribution="Google Maps"
-              url="https://www.google.cn/maps/vt?lyrs=m@189&gl=cn&x={x}&y={y}&z={z}"
-            />
-          </LayersControl.BaseLayer>
-          <LayersControl.Overlay name="Open Maps">
-            <TileLayer
               attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
               url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
             />
-
-          </LayersControl.Overlay>
+          </LayersControl.BaseLayer>
           <LayersControl.Overlay name="Satelita">
             <TileLayer
               url='https://{s}.google.com/vt/lyrs=s&x={x}&y={y}&z={z}'

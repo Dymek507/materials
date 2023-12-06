@@ -9,7 +9,6 @@ const initialState: IProduct = {
     lat: 0,
     lng: 0,
   },
-  transport: "",
   category: [],
   material: "",
   price: 0,

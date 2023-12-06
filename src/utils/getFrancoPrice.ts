@@ -3,7 +3,6 @@ export const getFrancoPrice = (
   distance: number | undefined,
   category: string[]
 ) => {
-  console.log(price, distance, category);
   let perKmPrice = 0;
 
   if (category.includes("kruszywo")) perKmPrice = 0.4;

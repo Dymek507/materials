@@ -14,11 +14,6 @@ export const productFormData = (defaultData?: IProduct): TextFieldType[] => {
       defaultValue: defaultData?.material,
     },
     {
-      id: "transport",
-      label: "Transport",
-      defaultValue: defaultData?.transport,
-    },
-    {
       id: "price",
       label: "Cena",
       type: "number",

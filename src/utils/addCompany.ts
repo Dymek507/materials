@@ -1,7 +1,7 @@
 import { doc, setDoc } from "firebase/firestore";
-import { ICompany } from "../../../types/model";
-import { db } from "../../../../firebase";
-import { getDate } from "../../../utils/getDate";
+import { ICompany } from "../types/model";
+import { db } from "../../firebase";
+import { getDate } from "./getDate";
 
 //add options to add more category
 

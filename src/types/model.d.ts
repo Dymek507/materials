@@ -8,9 +8,8 @@ export interface ILocation {
 export interface ICompany {
   group: string;
   company: string;
-  nip: string;
+  nip?: string;
   id: string;
-  key: string;
   category: string[];
   adress: string;
   cords: Cords;

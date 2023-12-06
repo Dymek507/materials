@@ -17,7 +17,7 @@ type InfoSectionProps = {
 
 
 const InfoSection = ({ companyData, distance, handleEdit, handleImport }: InfoSectionProps) => {
-  const { id, company, phone, mail, person, comment, category, siding } = companyData
+  const { id, company, phone, mail, person, comment, category, siding, date } = companyData
 
   const [showModal, setShowModal] = useState(false)
 
@@ -49,6 +49,7 @@ const InfoSection = ({ companyData, distance, handleEdit, handleImport }: InfoSe
       <div className="flex-col text-xl flex-center">
         <h1>{phone}</h1>
         <h1>{mail}</h1>
+        <h1>{date ?? ""}</h1>
         <h1>{person}</h1>
         <h1>{comment}</h1>
         <h1>{category && category[0] === "kruszywo" ? siding : null}</h1>
