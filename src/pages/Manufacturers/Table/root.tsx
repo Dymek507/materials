@@ -49,7 +49,7 @@ const Table = () => {
         accessorFn: (row) => (
           <IconButton
             onClick={() => {
-              navigate(`/products/${row.id}`)
+              navigate(`/table/${row.id}`)
             }}
           >
             <MoreIcon />

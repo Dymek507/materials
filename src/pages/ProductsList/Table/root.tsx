@@ -6,6 +6,7 @@ import {
   type MRT_ColumnDef,
 } from 'material-react-table';
 import { collection, doc, getDoc, onSnapshot } from 'firebase/firestore';
+import CsvDownloadButton from 'react-json-to-csv'
 
 import { db } from '../../../../firebase';
 import { useAppSelector } from '../../../store/app/hooks';
@@ -15,7 +16,11 @@ import deleteProduct from '../../../utils/productUtils/deleteProduct';
 import { IconButton } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 import MoreIcon from '@mui/icons-material/More';
+import GetAppIcon from '@mui/icons-material/GetApp';
+
+
 import { getFrancoPrice } from '../../../utils/getFrancoPrice';
+import { csvExportConverter } from './csvExportConverter';
 
 const Table = () => {
 
@@ -132,6 +137,9 @@ const Table = () => {
         >
           <DeleteIcon />
         </IconButton>
+        <CsvDownloadButton data={csvExportConverter(data)} className='text-black' >
+          <GetAppIcon />
+        </CsvDownloadButton>
       </div>
     ),
     muiTableBodyCellProps: {

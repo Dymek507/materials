@@ -17,7 +17,7 @@ const ImportFromExcel
 
     const onSubmit = (data: Result<string>) => {
       data.validData.forEach((row) => {
-        const { category, type, material, transport, price, unit } = row
+        const { category, type, material, price, unit } = row
         if (category === undefined || typeof category === "boolean") return
         addProduct(
           {
@@ -26,7 +26,6 @@ const ImportFromExcel
             category: [category],
             type: type?.toString() ?? "",
             material: material?.toString() ?? "",
-            transport: transport?.toString() ?? "",
             id: uuidv1(),
             adress: companyData.adress,
             company: companyData.company,

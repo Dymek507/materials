@@ -20,7 +20,7 @@ export const router = createBrowserRouter([
     children: [
       { path: "", element: <Home /> },
       {
-        path: "companies", element: <Locations />
+        path: "companies", element: <Locations />,
       },
       {
         path: "table", children: [
@@ -34,11 +34,6 @@ export const router = createBrowserRouter([
           { path: ":id", element: <Product /> },
         ]
       },
-      // {
-      //   path: "productst", children: [
-      //     { path: ":id", element: <Product /> },
-      //   ]
-      // },
       {
         path: "masa", element: <Masa />
       },

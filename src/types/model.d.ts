@@ -29,10 +29,9 @@ export interface IProduct {
   category: string[];
   type: string;
   material: string;
-  transport: string;
   unit: string;
   price: number;
-  key: string;
+  key?: string;
   adress?: string;
   cords: Cords;
   date?: string;

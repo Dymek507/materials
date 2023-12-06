@@ -12,6 +12,7 @@ const Home = () => {
       <Link to="companies">
         <ActionCard title="Firmy" image={companies_2} description="Zestawienie firm" />
       </Link>
+      {/* <ExportExcel excelData={ExcelExportData} fileName="test" /> */}
     </div>
   );
 };
