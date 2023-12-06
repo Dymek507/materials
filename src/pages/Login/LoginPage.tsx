@@ -2,7 +2,7 @@ import SignIn from "./helpers/SignIn";
 
 const LoginPage = () => {
   return (
-    <div className="flex-center">
+    <div className="m-12 flex-center">
       <SignIn />
     </div>
   );

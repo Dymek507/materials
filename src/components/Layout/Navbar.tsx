@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import { useAppSelector } from "../../store/app/hooks"
 import AccountMenu from "./AccountMenu"
 import ChangeSite from "./ChangeSite/ChangeSite"
@@ -8,9 +8,18 @@ const Navbar = () => {
 
   const constructionSite = useAppSelector(state => state.construction.constructionSite)
 
+  const userData = useAppSelector(state => state.ui.userData)
+  const navigate = useNavigate()
+
+  const loginClick = () => {
+    navigate('/login')
+  }
+
+
   const clickHandler = () => {
     getDistanceList(constructionSite);
   }
+
 
   return (
     // <div className="mb-4 ">
@@ -48,6 +57,9 @@ const Navbar = () => {
         </ul>
       </div>
       <div className="navbar-end ">
+        <p>
+          {userData.login ? userData.login : (<button onClick={loginClick}>Login</button>)}
+        </p>
         <AccountMenu />
       </div>
     </div>

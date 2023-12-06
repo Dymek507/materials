@@ -41,6 +41,10 @@ export default function SignIn() {
       });
   };
 
+  const clickHandler = () => {
+    navigate("/register");
+  };
+
   return (
     <Container component="main" maxWidth="xs" sx={{
       backgroundColor: "white",
@@ -108,9 +112,9 @@ export default function SignIn() {
           </Button>
           <Grid container>
             <Grid item xs>
-              <Typography>
-                Zapomniałeś hasła?
-              </Typography>
+              <Button variant="outlined" onClick={clickHandler}>
+                Rejestracja
+              </Button>
             </Grid>
           </Grid>
         </Box>
