@@ -21,8 +21,6 @@ interface ICompanyMapProps {
 }
 
 const CompanyMap = ({ companyCords, siteCords, setDistance, changed }: ICompanyMapProps) => {
-  // const [map, setMap] = useState(null);
-
   const [start, setStart] = useState<LatLngExpression | undefined>(undefined)
   const [end, setEnd] = useState<LatLngExpression | undefined>(undefined)
 
