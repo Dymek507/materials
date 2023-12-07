@@ -19,6 +19,7 @@ import { useAppSelector } from "../../../store/app/hooks";
 import CustomPopup from "./CustomPopup";
 
 import geoData from '../data/zloza.json'
+import { useNavigate } from "react-router-dom";
 
 interface MapProps {
   list: ICompany[];
@@ -27,12 +28,24 @@ interface MapProps {
 
 const Map = ({ list, circleRadius }: MapProps) => {
 
+  const navigate = useNavigate()
+
   const siteCords = useAppSelector((state) => state.construction.constructionSite.cords);
 
   const geojson = geoData as GeoJsonObject
 
   const onPlaceClick = (e: any, layer: any) => {
-    layer.bindPopup(e.properties["NAZWA"] + " typ: " + e.properties["RODZAJ_KOP"]);
+    layer.bindPopup(e.properties["NAZWA"] + " typ: " + e.properties["RODZAJ_KOP"] + " id: " + e.properties["ID"]);
+    // navigate(`https://igs.pgi.gov.pl/zloze.asp?ID=${e.properties.id}&mode=koncesje`)
+    layer.on('click', function (e: any) {
+      window.location.replace(`https://igs.pgi.gov.pl/zloze.asp?ID=${e.target.feature.properties.ID}&mode=koncesje`);
+
+    });
+  }
+
+
+  function picnicFilter(e: any) {
+    if (e.properties["RODZAJ_KOP"] === "KAMIENIE ŁAMANE I BLOCZNE") return true
   }
 
 
@@ -70,7 +83,8 @@ const Map = ({ list, circleRadius }: MapProps) => {
             />
           </LayersControl.Overlay>
           <LayersControl.Overlay name="Kopalnie">
-            <GeoJSON data={geojson} onEachFeature={(e, layer) => onPlaceClick(e, layer)} />
+            <GeoJSON data={geojson} onEachFeature={(e, layer) => onPlaceClick(e, layer)} filter={e => picnicFilter(e)} />
+            {/* <GeoJSON data={geojson.every((e: any) => e.properties["RODZAJ_KOP"] === "Węgiel")} onEachFeature={(e, layer) => onPlaceClick(e, layer)} /> */}
           </LayersControl.Overlay>
         </LayersControl>
         <Marker position={[siteCords.lat, siteCords.lng]} icon={L.icon({
