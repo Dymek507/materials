@@ -6,6 +6,7 @@ import {
   Popup,
   Circle,
 } from "react-leaflet";
+import * as ReactDOMServer from 'react-dom/server';
 // @ts-ignore
 import { GeoJSON, GeoJsonObject } from 'react-leaflet/GeoJSON'
 import "leaflet-routing-machine";
@@ -34,13 +35,29 @@ const Map = ({ list, circleRadius }: MapProps) => {
 
   const geojson = geoData as GeoJsonObject
 
-  const onPlaceClick = (e: any, layer: any) => {
-    layer.bindPopup(e.properties["NAZWA"] + " typ: " + e.properties["RODZAJ_KOP"] + " id: " + e.properties["ID"]);
-    // navigate(`https://igs.pgi.gov.pl/zloze.asp?ID=${e.properties.id}&mode=koncesje`)
-    layer.on('click', function (e: any) {
-      window.location.replace(`https://igs.pgi.gov.pl/zloze.asp?ID=${e.target.feature.properties.ID}&mode=koncesje`);
+  const GeoJSONPopup = ({ feature }: { feature: any }) => {
+    const id = feature.properties["ID_ZLOZ"]
+    console.log(feature)
+    return (
+      <div>
+        <p>{feature.properties["NAZWA"]}</p>
+        <p>{feature.properties["RODZAJ_KOP"]}</p>
+        <a href={`https://igs.pgi.gov.pl/zloze.asp?ID=${id}&mode=koncesje`}>Więcej</a>
+      </div >
+    );
+  };
 
-    });
+  const onPlaceClick = (feature: any, layer: any) => {
+    // layer.bindPopup(e.properties["NAZWA"] + " typ: " + e.properties["RODZAJ_KOP"] + " id: " + e.properties["ID"]);
+    const popupContent = ReactDOMServer.renderToString(
+      <GeoJSONPopup feature={feature} />
+    );
+    layer.bindPopup(popupContent);
+    // navigate(`https://igs.pgi.gov.pl/zloze.asp?ID=${e.properties.id}&mode=koncesje`)
+    // layer.on('click', function (e: any) {
+    //   window.location.replace(`https://igs.pgi.gov.pl/zloze.asp?ID=${e.target.feature.properties.ID}&mode=koncesje`);
+
+    // });
   }
 
 
@@ -83,7 +100,7 @@ const Map = ({ list, circleRadius }: MapProps) => {
             />
           </LayersControl.Overlay>
           <LayersControl.Overlay name="Kopalnie">
-            <GeoJSON data={geojson} onEachFeature={(e, layer) => onPlaceClick(e, layer)} filter={e => picnicFilter(e)} />
+            <GeoJSON data={geojson} onEachFeature={(feature, layer) => onPlaceClick(feature, layer)} filter={e => picnicFilter(e)} />
             {/* <GeoJSON data={geojson.every((e: any) => e.properties["RODZAJ_KOP"] === "Węgiel")} onEachFeature={(e, layer) => onPlaceClick(e, layer)} /> */}
           </LayersControl.Overlay>
         </LayersControl>
