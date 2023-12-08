@@ -61,8 +61,9 @@ const Map = ({ list, circleRadius }: MapProps) => {
   }
 
 
-  function picnicFilter(e: any) {
-    if (e.properties["RODZAJ_KOP"] === "KAMIENIE ŁAMANE I BLOCZNE") return true
+  function picnicFilter(e: any, type: string) {
+    if (type === "") return true
+    if (e.properties["RODZAJ_KOP"] === type) return true
   }
 
 
@@ -99,8 +100,16 @@ const Map = ({ list, circleRadius }: MapProps) => {
               tileSize={256}
             />
           </LayersControl.Overlay>
-          <LayersControl.Overlay name="Kopalnie">
-            <GeoJSON data={geojson} onEachFeature={(feature, layer) => onPlaceClick(feature, layer)} filter={e => picnicFilter(e)} />
+          <LayersControl.Overlay name="Kruszywo">
+            <GeoJSON data={geojson} onEachFeature={(feature, layer) => onPlaceClick(feature, layer)} filter={e => picnicFilter(e, "KAMIENIE ŁAMANE I BLOCZNE")} />
+            {/* <GeoJSON data={geojson.every((e: any) => e.properties["RODZAJ_KOP"] === "Węgiel")} onEachFeature={(e, layer) => onPlaceClick(e, layer)} /> */}
+          </LayersControl.Overlay>
+          <LayersControl.Overlay name="Piasek">
+            <GeoJSON data={geojson} onEachFeature={(feature, layer) => onPlaceClick(feature, layer)} filter={e => picnicFilter(e, "PIASKI I ŻWIRY")} />
+            {/* <GeoJSON data={geojson.every((e: any) => e.properties["RODZAJ_KOP"] === "Węgiel")} onEachFeature={(e, layer) => onPlaceClick(e, layer)} /> */}
+          </LayersControl.Overlay>
+          <LayersControl.Overlay name="Inne">
+            <GeoJSON data={geojson} onEachFeature={(feature, layer) => onPlaceClick(feature, layer)} filter={e => picnicFilter(e, "")} />
             {/* <GeoJSON data={geojson.every((e: any) => e.properties["RODZAJ_KOP"] === "Węgiel")} onEachFeature={(e, layer) => onPlaceClick(e, layer)} /> */}
           </LayersControl.Overlay>
         </LayersControl>
