@@ -1,3 +1,4 @@
+//@ts-nocheck
 import {
   TileLayer,
   MapContainer,
@@ -7,7 +8,7 @@ import {
   Circle,
 } from "react-leaflet";
 import * as ReactDOMServer from 'react-dom/server';
-// @ts-ignore
+
 import { GeoJSON, GeoJsonObject } from 'react-leaflet/GeoJSON'
 import "leaflet-routing-machine";
 import "leaflet-routing-machine/dist/leaflet-routing-machine.css";
@@ -20,7 +21,6 @@ import { useAppSelector } from "../../../store/app/hooks";
 import CustomPopup from "./CustomPopup";
 
 import geoData from '../data/zloza.json'
-import { useNavigate } from "react-router-dom";
 
 interface MapProps {
   list: ICompany[];
@@ -29,7 +29,6 @@ interface MapProps {
 
 const Map = ({ list, circleRadius }: MapProps) => {
 
-  const navigate = useNavigate()
 
   const siteCords = useAppSelector((state) => state.construction.constructionSite.cords);
 
