@@ -101,7 +101,7 @@ const Map = ({ list, circleRadius }: MapProps) => {
             />
           </LayersControl.Overlay>
           <LayersControl.Overlay name="Kruszywo">
-            <GeoJSON data={geojson} onEachFeature={(feature, layer) => onPlaceClick(feature, layer)} filter={e => picnicFilter(e, "KAMIENIE ŁAMANE I BLOCZNE")} />
+            <GeoJSON data={geojson} onEachFeature={(feature, layer) => onPlaceClick(feature, layer)} filter={e => picnicFilter(e, "KAMIENIE ŁAMANE I BLOCZNE")} style={{ color: "red" }} />
             {/* <GeoJSON data={geojson.every((e: any) => e.properties["RODZAJ_KOP"] === "Węgiel")} onEachFeature={(e, layer) => onPlaceClick(e, layer)} /> */}
           </LayersControl.Overlay>
           <LayersControl.Overlay name="Piasek">
