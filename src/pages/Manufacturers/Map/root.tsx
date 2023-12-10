@@ -36,7 +36,6 @@ const Map = ({ list, circleRadius }: MapProps) => {
 
   const GeoJSONPopup = ({ feature }: { feature: any }) => {
     const id = feature.properties["ID_ZLOZ"]
-    console.log(feature)
     return (
       <div>
         <p>{feature.properties["NAZWA"]}</p>
@@ -47,16 +46,10 @@ const Map = ({ list, circleRadius }: MapProps) => {
   };
 
   const onPlaceClick = (feature: any, layer: any) => {
-    // layer.bindPopup(e.properties["NAZWA"] + " typ: " + e.properties["RODZAJ_KOP"] + " id: " + e.properties["ID"]);
     const popupContent = ReactDOMServer.renderToString(
       <GeoJSONPopup feature={feature} />
     );
     layer.bindPopup(popupContent);
-    // navigate(`https://igs.pgi.gov.pl/zloze.asp?ID=${e.properties.id}&mode=koncesje`)
-    // layer.on('click', function (e: any) {
-    //   window.location.replace(`https://igs.pgi.gov.pl/zloze.asp?ID=${e.target.feature.properties.ID}&mode=koncesje`);
-
-    // });
   }
 
 
