@@ -52,12 +52,10 @@ const Map = ({ list, circleRadius }: MapProps) => {
     layer.bindPopup(popupContent);
   }
 
-
   function picnicFilter(e: any, type: string) {
     if (type === "") return true
     if (e.properties["RODZAJ_KOP"] === type) return true
   }
-
 
   return (
     <>
@@ -94,15 +92,12 @@ const Map = ({ list, circleRadius }: MapProps) => {
           </LayersControl.Overlay>
           <LayersControl.Overlay name="Kruszywo">
             <GeoJSON data={geojson} onEachFeature={(feature, layer) => onPlaceClick(feature, layer)} filter={e => picnicFilter(e, "KAMIENIE ŁAMANE I BLOCZNE")} style={{ color: "red" }} />
-            {/* <GeoJSON data={geojson.every((e: any) => e.properties["RODZAJ_KOP"] === "Węgiel")} onEachFeature={(e, layer) => onPlaceClick(e, layer)} /> */}
           </LayersControl.Overlay>
           <LayersControl.Overlay name="Piasek">
             <GeoJSON data={geojson} onEachFeature={(feature, layer) => onPlaceClick(feature, layer)} filter={e => picnicFilter(e, "PIASKI I ŻWIRY")} />
-            {/* <GeoJSON data={geojson.every((e: any) => e.properties["RODZAJ_KOP"] === "Węgiel")} onEachFeature={(e, layer) => onPlaceClick(e, layer)} /> */}
           </LayersControl.Overlay>
           <LayersControl.Overlay name="Inne">
             <GeoJSON data={geojson} onEachFeature={(feature, layer) => onPlaceClick(feature, layer)} filter={e => picnicFilter(e, "")} />
-            {/* <GeoJSON data={geojson.every((e: any) => e.properties["RODZAJ_KOP"] === "Węgiel")} onEachFeature={(e, layer) => onPlaceClick(e, layer)} /> */}
           </LayersControl.Overlay>
         </LayersControl>
         <Marker position={[siteCords.lat, siteCords.lng]} icon={L.icon({

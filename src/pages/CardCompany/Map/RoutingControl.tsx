@@ -31,6 +31,24 @@ const createRoutineMachineLayer = ({ position, start, end, setDistance }: IRouti
         },
       ],
     },
+    createMarker: function (i: number, waypoint: any, n: number) {
+      const marker = L.marker(waypoint.latLng, {
+        draggable: true,
+        bounceOnAdd: false,
+        bounceOnAddOptions: {
+          duration: 1000,
+          height: 800,
+          function() {
+            (bindPopup(myPopup).openOn(map))
+          }
+        },
+        icon: L.icon({
+          iconUrl: placeHolder,
+          iconSize: [40, 40],
+        })
+      });
+      return marker;
+    }
   });
 
   instance.on('routesfound', function (e) {

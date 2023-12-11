@@ -20,6 +20,8 @@ const Company = () => {
 
   const [editModalOpen, setEditModalOpen] = React.useState(false)
 
+  console.log("company refresh")
+
   const { id } = useParams();
 
   const siteCords = useAppSelector((state) => state.construction.constructionSite.cords);
