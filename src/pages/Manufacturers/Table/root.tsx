@@ -5,14 +5,13 @@ import {
   type MRT_ColumnDef,
 } from 'material-react-table';
 import { ICompanywithDistance } from '../helpers/types';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 import { IconButton } from '@mui/material';
 import MoreIcon from '@mui/icons-material/More';
 
 const Table = () => {
   const location = useLocation()
-  const navigate = useNavigate()
 
   const { data } = location.state as { data: ICompanywithDistance[] }
 
@@ -47,13 +46,11 @@ const Table = () => {
       },
       {
         accessorFn: (row) => (
-          <IconButton
-            onClick={() => {
-              navigate(`/table/${row.id}`)
-            }}
-          >
-            <MoreIcon />
-          </IconButton>
+          <Link to={`/table/${row.id}`}>
+            <IconButton>
+              <MoreIcon />
+            </IconButton>
+          </Link>
         ),
         header: 'Więcej',
         size: 40,

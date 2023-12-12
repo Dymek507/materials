@@ -21,6 +21,7 @@ import { useAppSelector } from "../../../store/app/hooks";
 import CustomPopup from "./CustomPopup";
 
 import geoData from '../data/zloza.json'
+import s_11 from '../data/g3.json'
 
 interface MapProps {
   list: ICompany[];
@@ -29,10 +30,10 @@ interface MapProps {
 
 const Map = ({ list, circleRadius }: MapProps) => {
 
-
   const siteCords = useAppSelector((state) => state.construction.constructionSite.cords);
 
   const geojson = geoData as GeoJsonObject
+  const s11_json = s_11 as GeoJsonObject
 
   const GeoJSONPopup = ({ feature }: { feature: any }) => {
     const id = feature.properties["ID_ZLOZ"]
@@ -70,19 +71,19 @@ const Map = ({ list, circleRadius }: MapProps) => {
       >
 
         <LayersControl position="topright">
-          <LayersControl.BaseLayer checked name="Map">
+          <LayersControl.BaseLayer checked name="Mapa">
             <TileLayer
               attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
               url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
             />
           </LayersControl.BaseLayer>
-          <LayersControl.Overlay name="Satelita">
+          <LayersControl.BaseLayer name="Satelita">
             <TileLayer
               url='https://{s}.google.com/vt/lyrs=s&x={x}&y={y}&z={z}'
               maxZoom={20}
               subdomains={['mt1', 'mt2', 'mt3']}
             />
-          </LayersControl.Overlay>
+          </LayersControl.BaseLayer>
           <LayersControl.Overlay name="Kolej">
             <TileLayer
               attribution='<a href="https://www.openstreetmap.org/copyright">© OpenStreetMap contributors</a>, Style: <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA 2.0</a> <a href="http://www.openrailwaymap.org/">OpenRailwayMap</a> and OpenStreetMap'
@@ -98,6 +99,9 @@ const Map = ({ list, circleRadius }: MapProps) => {
           </LayersControl.Overlay>
           <LayersControl.Overlay name="Inne">
             <GeoJSON data={geojson} onEachFeature={(feature, layer) => onPlaceClick(feature, layer)} filter={e => picnicFilter(e, "")} />
+          </LayersControl.Overlay>
+          <LayersControl.Overlay checked={false} name="S11">
+            <GeoJSON data={s11_json} onEachFeature={(feature, layer) => onPlaceClick(feature, layer)} />
           </LayersControl.Overlay>
         </LayersControl>
         <Marker position={[siteCords.lat, siteCords.lng]} icon={L.icon({

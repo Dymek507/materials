@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import {
   MaterialReactTable,
   useMaterialReactTable,
@@ -29,8 +29,6 @@ const Table = () => {
   const [data, setData] = useState<IProduct[]>([])
 
   const [accDistArray, setAccDistArray] = useState<IDistanceList[]>([{ id: "1", acc_dist: 0 }])
-
-  const navigate = useNavigate()
 
   useEffect(() => {
     const getDistanceArray = async () => {
@@ -103,13 +101,11 @@ const Table = () => {
       },
       {
         accessorFn: (row) => (
-          <IconButton
-            onClick={() => {
-              navigate(`/products/${row.id}`)
-            }}
-          >
-            <MoreIcon />
-          </IconButton>
+          <Link to={`/products/${row.id}`}>
+            <IconButton>
+              <MoreIcon />
+            </IconButton>
+          </Link>
         ),
         header: 'Więcej',
         size: 40,
