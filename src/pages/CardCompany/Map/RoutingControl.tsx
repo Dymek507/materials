@@ -5,6 +5,7 @@ import { createControlComponent } from "@react-leaflet/core";
 import "leaflet-routing-machine";
 import "leaflet-routing-machine/dist/leaflet-routing-machine.css"
 // import createRoutineMachineLayer from "./RoutingControl";
+import placeHolder from "./assets/placeholder.svg"
 
 
 interface IRoutingMachineProps {
