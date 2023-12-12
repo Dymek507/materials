@@ -13,8 +13,8 @@ import { GeoJSON, GeoJsonObject } from 'react-leaflet/GeoJSON'
 import "leaflet-routing-machine";
 import "leaflet-routing-machine/dist/leaflet-routing-machine.css";
 import "leaflet/dist/leaflet.css";
-import cemIcon from "./assets/cem-icon.png";
-import site from "./assets/site.png"
+import placeHolder from "./assets/manufacturer.svg";
+import site from "./assets/site.svg"
 import L from "leaflet";
 import { ICompany } from "../../../types/model";
 import { useAppSelector } from "../../../store/app/hooks";
@@ -107,7 +107,7 @@ const Map = ({ list, circleRadius }: MapProps) => {
         </Marker>
         {list.length !== 0 && list.map((company) => (
           <Marker key={company.id} position={[company.cords.lat, company.cords.lng]} icon={L.icon({
-            iconUrl: cemIcon,
+            iconUrl: placeHolder,
             iconSize: [38, 38],
           })}>
             <Popup>
