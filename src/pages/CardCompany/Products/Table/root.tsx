@@ -22,9 +22,10 @@ import { getFrancoPrice } from '../../../../utils/getFrancoPrice';
 type TableProps = {
   handleOpenAddModal: () => void,
   companyData: ICompany,
+  distance: number,
 }
 
-const Table = ({ handleOpenAddModal, companyData }: TableProps) => {
+const Table = ({ handleOpenAddModal, companyData, distance }: TableProps) => {
   const constructionSite = useAppSelector(state => state.construction.constructionSite)
 
   const [data, setData] = useState<IProduct[]>([])

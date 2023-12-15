@@ -20,8 +20,6 @@ const Company = () => {
 
   const [editModalOpen, setEditModalOpen] = React.useState(false)
 
-  console.log("company refresh")
-
   const { id } = useParams();
 
   const siteCords = useAppSelector((state) => state.construction.constructionSite.cords);
@@ -63,7 +61,7 @@ const Company = () => {
       {/* Company info section */}
       <Grid item xs={6} className='h-full'>
         <InfoSection companyData={companyData} distance={distance} handleEdit={handleEdit} handleImport={showImportModalHandler} />
-        <Products companyData={companyData} />
+        <Products companyData={companyData} distance={distance} />
       </Grid>
       {/* Map section */}
       <Grid item xs={6} className='w-full h-full '>

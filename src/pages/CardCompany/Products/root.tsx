@@ -6,17 +6,17 @@ import AddProduct from './AddProduct'
 
 type ProductsProps = {
   companyData: ICompany
+  distance: number
 }
 
-const Products = ({ companyData }: ProductsProps) => {
+const Products = ({ companyData, distance }: ProductsProps) => {
   const [openAddProduct, setOpenAddProduct] = React.useState(false)
-
   return (
     <div className='h-1/2'>
       <InfoModal open={openAddProduct} onClose={() => setOpenAddProduct(false)}>
         <AddProduct handleClose={() => setOpenAddProduct(false)} companyData={companyData} />
       </InfoModal >
-      <Table handleOpenAddModal={() => setOpenAddProduct(true)} companyData={companyData} />
+      <Table handleOpenAddModal={() => setOpenAddProduct(true)} companyData={companyData} distance={distance} />
     </div>
   )
 }
