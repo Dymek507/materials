@@ -29,6 +29,7 @@ const AddSite = ({ onClose }: IAddSiteProps) => {
     }
     addSite(site)
     dispatch(addConstructionSite(site))
+    localStorage.setItem("def_site", site.id)
     onClose()
   };
 

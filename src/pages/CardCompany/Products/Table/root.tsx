@@ -17,6 +17,7 @@ import AddIcon from '@mui/icons-material/Add';
 import DeleteIcon from '@mui/icons-material/Delete';
 import InfoIcon from '@mui/icons-material/Info';
 import { useNavigate } from 'react-router-dom';
+import { getFrancoPrice } from '../../../../utils/getFrancoPrice';
 
 type TableProps = {
   handleOpenAddModal: () => void,
@@ -87,7 +88,7 @@ const Table = ({ handleOpenAddModal, companyData }: TableProps) => {
         size: 50,
       },
       {
-        accessorFn: row => (row.price + (row.distance ? row.distance * 0.35 : 0)).toFixed(0),
+        accessorFn: row => getFrancoPrice(row.price, row.distance, row.category).toFixed(0),
         enableClickToCopy: true,
         header: 'Cena franco',
         size: 50,
