@@ -11,10 +11,9 @@ import CsvDownloadButton from 'react-json-to-csv'
 import { db } from '../../../../firebase';
 import { useAppSelector } from '../../../store/app/hooks';
 import { IDistanceList, IProduct } from '../../../types/model';
-import deleteProduct from '../../../utils/productUtils/deleteProduct';
+
 
 import { IconButton } from '@mui/material';
-import DeleteIcon from '@mui/icons-material/Delete';
 import MoreIcon from '@mui/icons-material/More';
 import GetAppIcon from '@mui/icons-material/GetApp';
 
@@ -119,7 +118,7 @@ const Table = () => {
     data,
     enableRowSelection: true,
     positionToolbarAlertBanner: 'bottom',
-    renderTopToolbarCustomActions: ({ table }) => (
+    renderTopToolbarCustomActions: () => (
       //Add button icon and after delete clear array of selected rows
       <div>
         {/* <IconButton

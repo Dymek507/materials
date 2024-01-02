@@ -33,6 +33,7 @@ const Table = ({ handleOpenAddModal, companyData, distance }: TableProps) => {
   const [accDistArray, setAccDistArray] = useState<IDistanceList[]>([{ id: "1", acc_dist: 0 }])
 
   const navigate = useNavigate()
+  console.log(distance)
 
   useEffect(() => {
     const getDistanceArray = async () => {
