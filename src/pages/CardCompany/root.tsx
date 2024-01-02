@@ -69,7 +69,7 @@ const Company = () => {
       {/* Map section */}
       <Grid item xs={6} className='wh-full'>
         {/* <CompanyMap companyCords={companyData.cords} siteCords={siteCords} setDistance={getDistance} changed={changed} /> */}
-        <div className='wh-full flex-center'>
+        <div className='flex justify-center mt-8 wh-full'>
           <CommentsSection />
         </div>
       </Grid>
