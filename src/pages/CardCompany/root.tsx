@@ -18,6 +18,7 @@ const Company = () => {
   const [distance, setDistance] = React.useState(0)
   const [changed, setChanged] = React.useState(false)
   const [showImportModal, setShowImportModal] = React.useState(false);
+  const [swithView, setSwithView] = React.useState(false)
 
   console.log(companyData.category)
 
@@ -48,6 +49,7 @@ const Company = () => {
 
   const handleEdit = () => {
     setEditModalOpen(true)
+    setSwithView(false)
   }
 
   const showImportModalHandler = () => {
@@ -68,10 +70,13 @@ const Company = () => {
       </Grid>
       {/* Map section */}
       <Grid item xs={6} className='wh-full'>
-        {/* <CompanyMap companyCords={companyData.cords} siteCords={siteCords} setDistance={getDistance} changed={changed} /> */}
-        <div className='flex justify-center mt-8 wh-full'>
-          <CommentsSection />
-        </div>
+        {swithView ?
+          <CompanyMap companyCords={companyData.cords} siteCords={siteCords} setDistance={getDistance} changed={changed} />
+          :
+          <div className='flex justify-center mt-8 wh-full'>
+            <CommentsSection />
+          </div>
+        }
       </Grid>
     </Grid>
   )

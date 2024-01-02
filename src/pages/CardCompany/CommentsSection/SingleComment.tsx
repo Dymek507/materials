@@ -7,11 +7,7 @@ import {
   CommentActions,
   CommentAction,
   CommentAuthor,
-  FormTextArea,
-  Button,
   Comment,
-  Form,
-  Header,
 } from 'semantic-ui-react'
 import { getDate } from '../../../utils/getDate';
 import { IconButton, Typography } from '@mui/material';
@@ -46,7 +42,7 @@ const SiteComments = ({ site, comments }: SiteCommentsProps) => {
           <CommentContent>
             <CommentAuthor as='a'>Damian Dominik</CommentAuthor>
             <CommentMetadata>
-              <div>Just now</div>
+              <div>{date}</div>
             </CommentMetadata>
             <CommentText>{comments}</CommentText>
             <CommentActions>
