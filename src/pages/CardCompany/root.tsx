@@ -11,12 +11,15 @@ import CompanyForm from './CompanyForm';
 import InfoSection from './InfoSection';
 import Products from './Products/root';
 import ImportFromExcel from './Products/ImportFromExcel/root';
+import CommentsSection from './CommentsSection/root';
 
 const Company = () => {
   const [companyData, setCompanyData] = React.useState({} as ICompany)
   const [distance, setDistance] = React.useState(0)
   const [changed, setChanged] = React.useState(false)
   const [showImportModal, setShowImportModal] = React.useState(false);
+
+  console.log(companyData.category)
 
   const [editModalOpen, setEditModalOpen] = React.useState(false)
 
@@ -64,8 +67,11 @@ const Company = () => {
         <Products companyData={companyData} distance={distance} />
       </Grid>
       {/* Map section */}
-      <Grid item xs={6} className='w-full h-full '>
-        <CompanyMap companyCords={companyData.cords} siteCords={siteCords} setDistance={getDistance} changed={changed} />
+      <Grid item xs={6} className='wh-full'>
+        {/* <CompanyMap companyCords={companyData.cords} siteCords={siteCords} setDistance={getDistance} changed={changed} /> */}
+        <div className='wh-full flex-center'>
+          <CommentsSection />
+        </div>
       </Grid>
     </Grid>
   )

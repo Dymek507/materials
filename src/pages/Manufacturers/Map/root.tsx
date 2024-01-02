@@ -68,6 +68,7 @@ const Map = ({ list, circleRadius }: MapProps) => {
         zoom={7}
         scrollWheelZoom={true}
         className='wh-full'
+        zoomControl={false}
       >
 
         <LayersControl position="topright">

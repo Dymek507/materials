@@ -9,6 +9,7 @@ import { db } from "../firebase";
 import { uiActions } from "./store/ui-slice";
 import { useEffect } from "react";
 import { logOut } from "./store/ui-actions";
+import 'semantic-ui-css/semantic.min.css'
 
 function App() {
 

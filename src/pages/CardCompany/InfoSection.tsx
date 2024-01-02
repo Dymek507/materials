@@ -1,12 +1,15 @@
-import { IconButton } from "@mui/material";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+
 import { ICompany } from "../../types/model"
+import AlertDialog from "../../components/AlertDialog";
+
+import { deleteCompany } from "./helpers/deleteCompany";
+
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import GridOnIcon from '@mui/icons-material/GridOn';
-import { deleteCompany } from "./helpers/deleteCompany";
-import { useNavigate } from "react-router-dom";
-import { useState } from "react";
-import AlertDialog from "../../components/AlertDialog";
+import { IconButton } from "@mui/material";
 
 type InfoSectionProps = {
   companyData: ICompany
@@ -14,7 +17,6 @@ type InfoSectionProps = {
   handleEdit: () => void
   handleImport: () => void
 }
-
 
 const InfoSection = ({ companyData, distance, handleEdit, handleImport }: InfoSectionProps) => {
   const { id, company, phone, mail, person, comment, category, siding, date } = companyData

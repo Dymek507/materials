@@ -49,6 +49,8 @@
     "react-spreadsheet-import": "^4.4.1",
     "react-table-plugins": "^1.3.4",
     "react-window": "^1.8.9",
+    "semantic-ui-css": "^2.5.0",
+    "semantic-ui-react": "^2.1.5",
     "sheetjs-style": "^0.15.8",
     "tw-elements": "^1.0.0-beta2",
     "zipcelx": "^1.6.2"

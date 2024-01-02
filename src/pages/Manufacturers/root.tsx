@@ -97,7 +97,7 @@ const Locations = () => {
       </InfoModal>
       {/* This component change navbar color */}
       <ImportCompaniesFromExcel open={openImportModal} onClose={() => setOpenImportModal(false)} />
-      <div className='absolute top-40 bg-slate-300 w-72 h-[600px] z-[999] p-4 ml-4  '>
+      <div className='absolute top-32 bg-slate-300 w-72 h-[600px] z-[999] p-4 ml-4  '>
         <CsvDownloadButton data={dataToExport(companyListFiltered)} className='text-black' >
           Export
         </CsvDownloadButton>
