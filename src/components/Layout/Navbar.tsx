@@ -15,11 +15,9 @@ const Navbar = () => {
     navigate('/login')
   }
 
-
   const clickHandler = () => {
     getDistanceList(constructionSite);
   }
-
 
   return (
     // <div className="mb-4 ">

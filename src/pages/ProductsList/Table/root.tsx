@@ -120,7 +120,7 @@ const Table = () => {
     positionToolbarAlertBanner: 'bottom',
     renderTopToolbarCustomActions: () => (
       //Add button icon and after delete clear array of selected rows
-      <div>
+      <div className='h-full mt-2 ml-2'>
         {/* <IconButton
           onClick={() => {
             const selectedRows = table.getSelectedRowModel().rows;
