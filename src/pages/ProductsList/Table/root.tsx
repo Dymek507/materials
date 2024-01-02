@@ -122,7 +122,7 @@ const Table = () => {
     renderTopToolbarCustomActions: ({ table }) => (
       //Add button icon and after delete clear array of selected rows
       <div>
-        <IconButton
+        {/* <IconButton
           onClick={() => {
             const selectedRows = table.getSelectedRowModel().rows;
             selectedRows.forEach((row) => {
@@ -132,7 +132,7 @@ const Table = () => {
           }}
         >
           <DeleteIcon />
-        </IconButton>
+        </IconButton> */}
         <CsvDownloadButton data={csvExportConverter(data)} className='text-black' >
           <GetAppIcon />
         </CsvDownloadButton>
