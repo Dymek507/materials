@@ -20,8 +20,6 @@ const Company = () => {
   const [showImportModal, setShowImportModal] = React.useState(false);
   const [swithView, setSwithView] = React.useState(false)
 
-  console.log(companyData.category)
-
   const [editModalOpen, setEditModalOpen] = React.useState(false)
 
   const { id } = useParams();
@@ -74,7 +72,7 @@ const Company = () => {
           <CompanyMap companyCords={companyData.cords} siteCords={siteCords} setDistance={getDistance} changed={changed} />
           :
           <div className='flex justify-center mt-8 wh-full'>
-            <CommentsSection />
+            <CommentsSection companyData={companyData} />
           </div>
         }
       </Grid>
