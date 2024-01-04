@@ -1,4 +1,4 @@
-import { doc, getDoc, setDoc, updateDoc } from "firebase/firestore";
+import { doc, getDoc, updateDoc } from "firebase/firestore";
 import { IComment, ICompany } from "../../../../types/model";
 import { db } from "../../../../../firebase";
 

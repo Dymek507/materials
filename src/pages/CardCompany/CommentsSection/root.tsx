@@ -1,8 +1,5 @@
 import {
   CommentGroup,
-  FormTextArea,
-  Button,
-  Form,
   Header,
 } from 'semantic-ui-react'
 
