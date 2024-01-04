@@ -17,10 +17,10 @@ import { useState } from 'react';
 
 type SiteCommentsProps = {
   site: string,
-  comments: string
+  text: string
 }
 
-const SiteComments = ({ site, comments }: SiteCommentsProps) => {
+const SiteComments = ({ site, text }: SiteCommentsProps) => {
 
   const [ExpandMore, setExpandMore] = useState(false)
 
@@ -44,25 +44,13 @@ const SiteComments = ({ site, comments }: SiteCommentsProps) => {
             <CommentMetadata>
               <div>{date}</div>
             </CommentMetadata>
-            <CommentText>{comments}</CommentText>
+            <CommentText>{text}</CommentText>
             <CommentActions>
               <CommentAction>Reply</CommentAction>
             </CommentActions>
           </CommentContent>
         </Comment>
-        <Comment>
-          <CommentAvatar src='https://react.semantic-ui.com/images/avatar/small/elliot.jpg' />
-          <CommentContent>
-            <CommentAuthor as='a'>Dominik Damian</CommentAuthor>
-            <CommentMetadata>
-              <div>Just now</div>
-            </CommentMetadata>
-            <CommentText>Jeszcze nie działa</CommentText>
-            <CommentActions>
-              <CommentAction>Reply</CommentAction>
-            </CommentActions>
-          </CommentContent>
-        </Comment>
+
       </CommentGroup>
     </Comment>
   )

@@ -20,6 +20,7 @@ export interface ICompany {
   comment: string;
   date?: string;
   update?: string;
+  comments?: IComment[];
 }
 
 export interface IProduct {
@@ -72,6 +73,18 @@ export interface IDistanceList {
 export interface ICategory {
   name: string;
   key: string;
+}
+
+export interface IComment {
+  id: string;
+  date: string;
+  text: string;
+  userId: string;
+  userLogin: string;
+  siteId: string;
+  siteName: string;
+  activity: number;
+  ban: boolean;
 }
 
 export type UserData = {
