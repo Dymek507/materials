@@ -10,6 +10,7 @@ import CompaniesTable from "./pages/Manufacturers/Table/root";
 import Masa from "./pages/Masa/root";
 import LoginPage from "./pages/Login/LoginPage";
 import RegisterPage from "./pages/Login/RegisterPage";
+import AdminPage from "./pages/Admin/root";
 
 
 export const router = createBrowserRouter([
@@ -43,8 +44,9 @@ export const router = createBrowserRouter([
       {
         path: "register", element: <RegisterPage />
       },
-
-
+      {
+        path: "admin", element: <AdminPage />
+      },
     ],
   },
 ]);
