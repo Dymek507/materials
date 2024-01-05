@@ -74,6 +74,7 @@ const CommentsSection = ({ companyData }: CommentsSectionProps) => {
           key={comment.id}
           site={comment.siteName}
           text={comment.text}
+          user={comment.userLogin}
         />
       ))}
 
