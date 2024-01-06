@@ -6,8 +6,8 @@ import { useAppSelector } from '../../../../store/app/hooks'
 import { IComment, ICompany } from '../../../../types/model'
 
 import { Box, TextField } from '@mui/material'
-import { getDate } from '../../../../utils/getDate';
 import addComment from '../utils/addComment';
+import { getDateAndTime } from '../../../../utils/getDateAndTime';
 
 type CommentInputProps = {
   companyData: ICompany
@@ -32,7 +32,7 @@ const CommentInput = ({ companyData }: CommentInputProps) => {
 
     const commentObject: IComment = {
       id: uuidv1(),
-      date: getDate(),
+      date: getDateAndTime(),
       text: text,
       userId: userId,
       userLogin: userLogin,
@@ -41,7 +41,6 @@ const CommentInput = ({ companyData }: CommentInputProps) => {
       activity: activity,
       ban: false,
     }
-    console.log(commentObject)
     addComment(commentObject, companyData.id)
 
     event.currentTarget.reset()

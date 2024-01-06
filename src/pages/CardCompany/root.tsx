@@ -71,7 +71,7 @@ const Company = () => {
         {swithView ?
           <CompanyMap companyCords={companyData.cords} siteCords={siteCords} setDistance={getDistance} changed={changed} />
           :
-          <div className='flex justify-center mt-8 wh-full'>
+          <div className='flex justify-center wh-full'>
             <CommentsSection companyData={companyData} />
           </div>
         }

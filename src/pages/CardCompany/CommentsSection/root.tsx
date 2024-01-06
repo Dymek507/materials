@@ -3,7 +3,7 @@ import {
   Header,
 } from 'semantic-ui-react'
 
-import SiteComments from './SingleComment'
+import SiteComments from './SiteComments'
 import CommentInput from './CommentInput/root'
 
 import { ICompany } from '../../../types/model'
@@ -14,19 +14,12 @@ type CommentsSectionProps = {
 
 const CommentsSection = ({ companyData }: CommentsSectionProps) => {
   return (
-    <CommentGroup className='w-full'>
-      <Header as='h3' dividing>
+    <CommentGroup className='w-full pt-8'>
+      <Header as='h3' dividing className=''>
         Komentarze
       </Header>
       <CommentInput companyData={companyData} />
-      {companyData.comments?.map((comment) => (
-        <SiteComments
-          key={comment.id}
-          site={comment.siteName}
-          text={comment.text}
-          user={comment.userLogin}
-        />
-      ))}
+      <SiteComments companyId={companyData?.id} />
     </CommentGroup>
   )
 }
