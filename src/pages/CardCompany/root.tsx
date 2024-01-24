@@ -18,7 +18,7 @@ const Company = () => {
   const [distance, setDistance] = React.useState(0)
   const [changed, setChanged] = React.useState(false)
   const [showImportModal, setShowImportModal] = React.useState(false);
-  const [swithView, setSwithView] = React.useState(false)
+  const [sideView, setSideView] = React.useState(false)
 
   const [editModalOpen, setEditModalOpen] = React.useState(false)
 
@@ -47,11 +47,15 @@ const Company = () => {
 
   const handleEdit = () => {
     setEditModalOpen(true)
-    setSwithView(false)
+    setSideView(false)
   }
 
   const showImportModalHandler = () => {
     setShowImportModal(true)
+  }
+
+  const changeViewHandler = (view: boolean) => {
+    setSideView(view)
   }
 
 
@@ -63,12 +67,12 @@ const Company = () => {
       <ImportFromExcel open={showImportModal} onClose={() => setShowImportModal(false)} companyData={companyData} />
       {/* Company info section */}
       <Grid item xs={6} className='h-full'>
-        <InfoSection companyData={companyData} distance={distance} handleEdit={handleEdit} handleImport={showImportModalHandler} />
+        <InfoSection companyData={companyData} distance={distance} handleEdit={handleEdit} handleImport={showImportModalHandler} changeViewHandler={changeViewHandler} sideView={sideView} />
         <Products companyData={companyData} distance={distance} />
       </Grid>
       {/* Map section */}
-      <Grid item xs={6} className='wh-full'>
-        {swithView ?
+      <Grid item xs={6} className='relative wh-full'>
+        {sideView ?
           <CompanyMap companyCords={companyData.cords} siteCords={siteCords} setDistance={getDistance} changed={changed} />
           :
           <div className='flex justify-center wh-full'>

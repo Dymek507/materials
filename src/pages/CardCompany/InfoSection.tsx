@@ -9,6 +9,9 @@ import { deleteCompany } from "./helpers/deleteCompany";
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import GridOnIcon from '@mui/icons-material/GridOn';
+import CommentIcon from '@mui/icons-material/Comment';
+import MapIcon from '@mui/icons-material/Map';
+
 import { IconButton } from "@mui/material";
 
 type InfoSectionProps = {
@@ -16,9 +19,11 @@ type InfoSectionProps = {
   distance: number
   handleEdit: () => void
   handleImport: () => void
+  changeViewHandler: (view: boolean) => void
+  sideView: boolean
 }
 
-const InfoSection = ({ companyData, distance, handleEdit, handleImport }: InfoSectionProps) => {
+const InfoSection = ({ companyData, distance, handleEdit, handleImport, changeViewHandler, sideView }: InfoSectionProps) => {
   const { id, company, phone, mail, person, comment, category, siding, date } = companyData
 
   const [showModal, setShowModal] = useState(false)
@@ -38,6 +43,9 @@ const InfoSection = ({ companyData, distance, handleEdit, handleImport }: InfoSe
         </h1>
       </div>
       <div className="flex justify-end mb-8 mr-8">
+        <IconButton onClick={() => changeViewHandler(!sideView)}>
+          {sideView ? <CommentIcon /> : <MapIcon />}
+        </IconButton>
         <IconButton onClick={handleImport}>
           <GridOnIcon />
         </IconButton>
