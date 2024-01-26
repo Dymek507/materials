@@ -1,4 +1,5 @@
 import { IProduct } from "../../../types/model";
+import { getFrancoPrice } from "../../../utils/getFrancoPrice";
 
 export const csvExportConverter = (data: IProduct[]) => {
   const newData = data.map((item: IProduct) => {
@@ -12,6 +13,7 @@ export const csvExportConverter = (data: IProduct[]) => {
       price,
       type,
       unit,
+      distance = 0,
     } = item as IProduct;
     return {
       adress,
@@ -21,6 +23,7 @@ export const csvExportConverter = (data: IProduct[]) => {
       key,
       material,
       price,
+      franco: getFrancoPrice(price, distance, category),
       type,
       unit,
     };

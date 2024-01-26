@@ -15,6 +15,7 @@ import { ICompanywithDistance } from './helpers/types'
 
 import GridOnIcon from '@mui/icons-material/GridOn';
 import ImportCompaniesFromExcel from './ImportCompaniesFromExcel/root'
+import { LeafletRightClickProvider } from 'react-leaflet-rightclick'
 
 const Locations = () => {
   const [category, setCategory] = React.useState<string>("")
@@ -131,7 +132,9 @@ const Locations = () => {
           }
         </ul>
       </div>
-      <Map list={companyList} circleRadius={radius} />
+      <LeafletRightClickProvider>
+        <Map list={companyList} circleRadius={radius} />
+      </LeafletRightClickProvider>
     </div>
   )
 }

@@ -1,4 +1,3 @@
-//@ts-nocheck
 import {
   TileLayer,
   MapContainer,
@@ -22,6 +21,10 @@ import CustomPopup from "./CustomPopup";
 
 import geoData from '../data/zloza.json'
 import s_11 from '../data/g3.json'
+import ReactLeafletRightClick, {
+  LeafletRightClickProvider,
+  useLeafletRightClick
+} from "react-leaflet-rightclick";
 
 interface MapProps {
   list: ICompany[];
@@ -57,6 +60,8 @@ const Map = ({ list, circleRadius }: MapProps) => {
     if (type === "") return true
     if (e.properties["RODZAJ_KOP"] === type) return true
   }
+
+  const eventContextMenu = useLeafletRightClick();
 
   return (
     <>
@@ -125,6 +130,24 @@ const Map = ({ list, circleRadius }: MapProps) => {
           pathOptions={{ color: 'blue' }}
           radius={circleRadius * 1000}>
         </Circle>
+        <ReactLeafletRightClick
+          customComponent={
+            <div
+              style={{
+                background: "#ffffff",
+                padding: "12px",
+                borderRadius: "4px",
+                width: "120px"
+              }}
+            >
+              <ul style={{ listStyle: "none", padding: "0", margin: "0" }}>
+                <li>{eventContextMenu && eventContextMenu.latlng.lat}</li>
+                <li>{eventContextMenu && eventContextMenu.latlng.lng}</li>
+              </ul>
+            </div>
+          }
+          onRightClick={(event) => console.log(event)}
+        />
       </MapContainer>
     </>
   );
