@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { companies_2, materials_1 } from "../../assets";
+import { companies_2, materials_1, masa } from "../../assets";
 import ActionCard from "./ActionCard";
 
 const Home = () => {
@@ -11,6 +11,9 @@ const Home = () => {
       </Link>
       <Link to="companies">
         <ActionCard title="Firmy" image={companies_2} description="Zestawienie firm" />
+      </Link>
+      <Link to="masa">
+        <ActionCard title="Masa" image={masa} description="Kalkulator masy" />
       </Link>
     </div>
   );
