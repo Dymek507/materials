@@ -1,3 +1,4 @@
+//@ts-nocheck
 import {
   TileLayer,
   MapContainer,
@@ -130,7 +131,7 @@ const Map = ({ list, circleRadius }: MapProps) => {
           pathOptions={{ color: 'blue' }}
           radius={circleRadius * 1000}>
         </Circle>
-        <ReactLeafletRightClick
+        {/* <ReactLeafletRightClick
           customComponent={
             <div
               style={{
@@ -147,7 +148,7 @@ const Map = ({ list, circleRadius }: MapProps) => {
             </div>
           }
           onRightClick={(event) => console.log(event)}
-        />
+        /> */}
       </MapContainer>
     </>
   );

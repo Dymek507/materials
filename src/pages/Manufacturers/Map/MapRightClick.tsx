@@ -1,10 +1,9 @@
-import React from "react";
 import { MapContainer, TileLayer } from "react-leaflet";
 import ReactLeafletRightClick, {
   useLeafletRightClick
 } from "react-leaflet-rightclick";
 
-const Mapping = (props) => {
+const Mapping = () => {
   const eventContextMenu = useLeafletRightClick();
 
   return (
