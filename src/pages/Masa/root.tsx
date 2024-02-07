@@ -1,8 +1,11 @@
 import { Box, Grid, MenuItem, TextField, Typography } from '@mui/material'
 import React from 'react'
+import { ASPHALT_RECIPES } from './data/ASPHALT_RECIPES'
+import RecipeItem from './RecipeList/RecipeItem';
+import RecipeList from './RecipeList/root';
 
 
-const currencies = [
+const asphaltsArray = [
   {
     value: 'AC_22_P_PMB_25/55-60',
     label: 'AC 22 P PMB 25/55-60',
@@ -21,65 +24,7 @@ const currencies = [
   },
 ];
 
-const aggregateTypes = [
-  '0-2',
-  '2-4',
-  '4-8',
-  '8-11',
-  '11-16',
-  '16-22',
-  '22-31.5',
-]
-const ASPHALT_DATA = [
-  {
-    name: 'AC_22_P_PMB_25/55-60',
-    recipe: {
-      '0-2': 8,
-      '2-4': 4,
-      '4-8': 30,
-      '8-11': 20,
-      '11-16': 20,
-      '16-22': 16,
-      '22-31.5': 2,
-    }
-  },
-  {
-    name: 'AC_16_W_PMB_25/55-60',
-    recipe: {
-      '0-2': 30,
-      '2-4': 20,
-      '4-8': 16,
-      '8-11': 2,
-      '11-16': 20,
-      '16-22': 8,
-      '22-31.5': 4,
-    }
-  },
-  {
-    name: 'AC_11_W_50/70_WT-2_2014',
-    recipe: {
-      '0-2': 2,
-      '2-4': 4,
-      '4-8': 65,
-      '8-11': 5,
-      '11-16': 4,
-      '16-22': 16,
-      '22-31.5': 45,
-    }
-  },
-  {
-    name: 'AC_11_S_50/70',
-    recipe: {
-      '0-2': 9,
-      '2-4': 7,
-      '4-8': 15,
-      '8-11': 35,
-      '11-16': 25,
-      '16-22': 16,
-      '22-31.5': 3,
-    }
-  },
-]
+
 
 const AggregatePriceItem = ({ type }: { type: string }) => {
   return (
@@ -100,7 +45,7 @@ const AggregatePriceItem = ({ type }: { type: string }) => {
 
 
 const Masa = () => {
-  const [selectedAsphalt, setSelectedAsphalt] = React.useState<any>({
+  const [selectedAsphalt, setSelectedAsphalt] = React.useState<AsphaltType>({
     name: 'AC_16_W_PMB_25/55-60',
     recipe: {
       '0-2': 5,
@@ -114,55 +59,34 @@ const Masa = () => {
   });
 
   const getAsphaltData = (value: string) => {
-    const asphaltObject = ASPHALT_DATA.filter((asphalt) => asphalt.name === value)
+    const asphaltObject = ASPHALT_RECIPES.filter((asphalt) => asphalt.name === value)
     setSelectedAsphalt(asphaltObject[0])
   }
 
-  const RecipeItem = ({ value }: { value: string }) => {
-    return (
-      <Box className='flex justify-end p-2'>
-        <TextField
-          id="outlined-start-adornment"
-          label="Procent"
-          value={selectedAsphalt.recipe[value] ?? 0}
-        />
-      </Box>
-    )
-  }
+
   return (
     <Grid container className='px-8 wh-full'>
-      <Grid item xs={12} className='border-b-2 border-black h-1/9 flex-center'>
+      {/* Chose the asphalt bar */}
+      <Grid item xs={12} className='h-32 border-b-2 border-black flex-center '>
         <TextField
           id="outlined-select-currency"
           select
-          label="Masa"
           defaultValue="AC_16_W_PMB_25/55-60"
           onChange={(e) => getAsphaltData(e.target.value)}
           helperText="Wybierz masę"
         >
-          {currencies.map((option) => (
+          {asphaltsArray.map((option) => (
             <MenuItem key={option.value} value={option.value}>
               {option.label}
             </MenuItem>
           ))}
         </TextField>
       </Grid>
-      <Grid item xs={3} className='pt-6 pl-6 '>
-        <Box className='flex flex-col gap-8 '>
-          {aggregateTypes.map((type, index) => (
-            <AggregatePriceItem key={index} type={type} />
-          ))}
-        </Box>
+      {/* Recipe list */}
+      <Grid item xs={12} className='flex-center'>
+        <RecipeList selectedAsphalt={selectedAsphalt} />
       </Grid>
-      <Grid item xs={2} className='pt-6 pl-6 '>
-        <Box className='flex flex-col gap-8 '>
-          {aggregateTypes.map((value, index) => (
-            <RecipeItem key={index} value={value} />
-          ))}
-        </Box>
-      </Grid>
-      <Grid item xs={6} className=''>
-      </Grid>
+
     </Grid>
   )
 }
