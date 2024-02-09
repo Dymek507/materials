@@ -1,0 +1,109 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Nida"
+      },
+      "geometry": {
+        "coordinates": [20.71347546941547, 50.63896907374482],
+        "type": "Point"
+      },
+      "id": 0
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "FPL": "35,22",
+        "PKP": "33,78"
+      },
+      "geometry": {
+        "coordinates": [
+          [20.713061959394707, 50.63870678871092],
+          [21.526634394037984, 51.9594675311271]
+        ],
+        "type": "LineString"
+      },
+      "id": 2
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Pilawa"
+      },
+      "geometry": {
+        "coordinates": [21.526688634280703, 51.959521104833556],
+        "type": "Point"
+      },
+      "id": 2
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "FPL": "34,52",
+        "PKP": "32,62"
+      },
+      "geometry": {
+        "coordinates": [
+          [21.4187431779647, 51.96615927328244],
+          [20.713089881384633, 50.63866075851908]
+        ],
+        "type": "LineString"
+      },
+      "id": 3
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "FPL": "33,05",
+        "PKP": "31,48"
+      },
+      "geometry": {
+        "coordinates": [
+          [20.56454482611369, 50.80804456292941],
+          [21.41850218410204, 51.96587977936113]
+        ],
+        "type": "LineString"
+      },
+      "id": 4
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "FPL": "33,69",
+        "PKP": "32,62"
+      },
+      "geometry": {
+        "coordinates": [
+          [21.525268258983914, 51.95914774683928],
+          [20.564574352842982, 50.80792072418802]
+        ],
+        "type": "LineString"
+      },
+      "id": 5
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Sitkówka Nowiny"
+      },
+      "geometry": {
+        "coordinates": [20.56461863382654, 50.807836290861445],
+        "type": "Point"
+      },
+      "id": 6
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Osieck"
+      },
+      "geometry": {
+        "coordinates": [21.41862332436716, 51.966076337882896],
+        "type": "Point"
+      },
+      "id": 7
+    }
+  ]
+}

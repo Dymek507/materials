@@ -22,6 +22,7 @@ import CustomPopup from "./CustomPopup";
 
 import geoData from '../data/zloza.json'
 import s_11 from '../data/g3.json'
+import kolej from '../data/kolej.json'
 import ReactLeafletRightClick, {
   LeafletRightClickProvider,
   useLeafletRightClick
@@ -38,6 +39,7 @@ const Map = ({ list, circleRadius }: MapProps) => {
 
   const geojson = geoData as GeoJsonObject
   const s11_json = s_11 as GeoJsonObject
+  const kolej_json = kolej as GeoJsonObject
 
   const GeoJSONPopup = ({ feature }: { feature: any }) => {
     const id = feature.properties["ID_ZLOZ"]
@@ -53,6 +55,15 @@ const Map = ({ list, circleRadius }: MapProps) => {
   const onPlaceClick = (feature: any, layer: any) => {
     const popupContent = ReactDOMServer.renderToString(
       <GeoJSONPopup feature={feature} />
+    );
+    layer.bindPopup(popupContent);
+  }
+  const onLineClick = (feature: any, layer: any) => {
+    const popupContent = ReactDOMServer.renderToString(
+      < div >
+        <p>"FPL": {feature.properties["FPL"]}</p>
+        <p>"PKP": {feature.properties["PKP"]}</p>
+      </div >
     );
     layer.bindPopup(popupContent);
   }
@@ -109,6 +120,9 @@ const Map = ({ list, circleRadius }: MapProps) => {
           </LayersControl.Overlay>
           <LayersControl.Overlay checked={false} name="S11">
             <GeoJSON data={s11_json} onEachFeature={(feature, layer) => onPlaceClick(feature, layer)} />
+          </LayersControl.Overlay>
+          <LayersControl.Overlay checked={false} name="Transport">
+            <GeoJSON data={kolej_json} onEachFeature={(feature, layer) => onLineClick(feature, layer)} />
           </LayersControl.Overlay>
         </LayersControl>
         <Marker position={[siteCords.lat, siteCords.lng]} icon={L.icon({
