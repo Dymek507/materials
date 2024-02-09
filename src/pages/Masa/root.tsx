@@ -1,7 +1,6 @@
-import { Box, Grid, MenuItem, TextField, Typography } from '@mui/material'
+import { Grid, MenuItem, TextField } from '@mui/material'
 import React from 'react'
 import { ASPHALT_RECIPES } from './data/ASPHALT_RECIPES'
-import RecipeItem from './RecipeList/RecipeItem';
 import RecipeList from './RecipeList/root';
 
 
@@ -26,22 +25,22 @@ const asphaltsArray = [
 
 
 
-const AggregatePriceItem = ({ type }: { type: string }) => {
-  return (
-    <Box className='flex justify-end gap-6 p-2'>
-      <Typography variant='h4' className='flex items-center w-32'>{type}</Typography>
-      <TextField
-        id="outlined-number"
-        label="Cena"
-        type="number"
-        defaultValue={126}
-        InputLabelProps={{
-          shrink: true,
-        }}
-      />
-    </Box>
-  )
-}
+// const AggregatePriceItem = ({ type }: { type: string }) => {
+//   return (
+//     <Box className='flex justify-end gap-6 p-2'>
+//       <Typography variant='h4' className='flex items-center w-32'>{type}</Typography>
+//       <TextField
+//         id="outlined-number"
+//         label="Cena"
+//         type="number"
+//         defaultValue={126}
+//         InputLabelProps={{
+//           shrink: true,
+//         }}
+//       />
+//     </Box>
+//   )
+// }
 
 
 const Masa = () => {

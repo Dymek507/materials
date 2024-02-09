@@ -1,4 +1,3 @@
-import React from 'react'
 import RecipeItem from './RecipeItem'
 import { Box, Grid } from '@mui/material'
 

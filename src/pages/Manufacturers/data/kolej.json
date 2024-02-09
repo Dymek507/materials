@@ -4,37 +4,15 @@
     {
       "type": "Feature",
       "properties": {
-        "name": "Nida"
-      },
-      "geometry": {
-        "coordinates": [20.71347546941547, 50.63896907374482],
-        "type": "Point"
-      },
-      "id": 0
-    },
-    {
-      "type": "Feature",
-      "properties": {
         "FPL": "35,22",
         "PKP": "33,78"
       },
       "geometry": {
         "coordinates": [
-          [20.713061959394707, 50.63870678871092],
+          [20.577912116531905, 50.760694396997366],
           [21.526634394037984, 51.9594675311271]
         ],
         "type": "LineString"
-      },
-      "id": 2
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "name": "Pilawa"
-      },
-      "geometry": {
-        "coordinates": [21.526688634280703, 51.959521104833556],
-        "type": "Point"
       },
       "id": 2
     },
@@ -47,7 +25,7 @@
       "geometry": {
         "coordinates": [
           [21.4187431779647, 51.96615927328244],
-          [20.713089881384633, 50.63866075851908]
+          [20.577912116531905, 50.760694396997366]
         ],
         "type": "LineString"
       },
@@ -86,24 +64,212 @@
     {
       "type": "Feature",
       "properties": {
-        "name": "Sitkówka Nowiny"
+        "PKP": "34,89"
       },
       "geometry": {
-        "coordinates": [20.56461863382654, 50.807836290861445],
-        "type": "Point"
+        "coordinates": [
+          [20.66322649492608, 50.98001721497084],
+          [22.786065499998898, 51.97588615112721]
+        ],
+        "type": "LineString"
+      },
+      "id": 4
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "PKP": "39,67"
+      },
+      "geometry": {
+        "coordinates": [
+          [20.40772190995071, 50.86028467231495],
+          [22.786145365432077, 51.97596372242515]
+        ],
+        "type": "LineString"
+      },
+      "id": 5
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "PKP": "38,49"
+      },
+      "geometry": {
+        "coordinates": [
+          [20.56452773624366, 50.807987959479874],
+          [22.786131275075434, 51.97592198271337]
+        ],
+        "type": "LineString"
       },
       "id": 6
     },
     {
       "type": "Feature",
       "properties": {
-        "name": "Osieck"
+        "PKP": "39,13"
       },
       "geometry": {
-        "coordinates": [21.41862332436716, 51.966076337882896],
-        "type": "Point"
+        "coordinates": [
+          [20.55162669907523, 50.85419189371825],
+          [22.786123989650946, 51.97593929244218]
+        ],
+        "type": "LineString"
       },
       "id": 7
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "PKP": "62,13"
+      },
+      "geometry": {
+        "coordinates": [
+          [16.744128684191537, 50.68253848855531],
+          [16.70803908297816, 53.69560661962967]
+        ],
+        "type": "LineString"
+      },
+      "id": 8
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "PKP": "57,17"
+      },
+      "geometry": {
+        "coordinates": [
+          [18.69729942726542, 52.87496320983905],
+          [16.74446463218075, 50.682835300939445]
+        ],
+        "type": "LineString"
+      },
+      "id": 9
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "PKP": 53
+      },
+      "geometry": {
+        "coordinates": [
+          [16.74452362045193, 50.68253629425948],
+          [18.634777807095816, 53.02779836603739]
+        ],
+        "type": "LineString"
+      },
+      "id": 10
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "PKP": "70,39"
+      },
+      "geometry": {
+        "coordinates": [
+          [16.70862033414687, 53.69595523507479],
+          [19.23712101365291, 50.478988822489896]
+        ],
+        "type": "LineString"
+      },
+      "id": 11
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "PKP": "53,36"
+      },
+      "geometry": {
+        "coordinates": [
+          [19.237079397621415, 50.478936298273766],
+          [18.69750976086027, 52.87486329734483]
+        ],
+        "type": "LineString"
+      },
+      "id": 12
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "PKP": "51,26"
+      },
+      "geometry": {
+        "coordinates": [
+          [18.635101102540773, 53.02783096460334],
+          [19.237102072637953, 50.47897259940322]
+        ],
+        "type": "LineString"
+      },
+      "id": 13
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "PKP": "62,13"
+      },
+      "geometry": {
+        "coordinates": [
+          [16.16733837454055, 50.762010385494136],
+          [16.70847491379959, 53.6956145716166]
+        ],
+        "type": "LineString"
+      },
+      "id": 14
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "PKP": "60,12"
+      },
+      "geometry": {
+        "coordinates": [
+          [18.69768450145324, 52.87414574637785],
+          [16.16735622265469, 50.762028187776934]
+        ],
+        "type": "LineString"
+      },
+      "id": 15
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "PKP": "54,77"
+      },
+      "geometry": {
+        "coordinates": [
+          [16.167350928318797, 50.76202504554229],
+          [18.634817530546314, 53.027809383848904]
+        ],
+        "type": "LineString"
+      },
+      "id": 16
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "PKP": "54,06"
+      },
+      "geometry": {
+        "coordinates": [
+          [20.5645486392321, 50.80802912890158],
+          [18.63516676614131, 53.027927651891275]
+        ],
+        "type": "LineString"
+      },
+      "id": 17
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "PKP": "55,35"
+      },
+      "geometry": {
+        "coordinates": [
+          [18.635069948036175, 53.02781119394649],
+          [20.577912116531905, 50.760694396997366]
+        ],
+        "type": "LineString"
+      },
+      "id": 18
     }
   ]
 }

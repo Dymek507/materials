@@ -61,8 +61,8 @@ const Map = ({ list, circleRadius }: MapProps) => {
   const onLineClick = (feature: any, layer: any) => {
     const popupContent = ReactDOMServer.renderToString(
       < div >
-        <p>"FPL": {feature.properties["FPL"]}</p>
         <p>"PKP": {feature.properties["PKP"]}</p>
+        <p>"FPL": {feature.properties["FPL"]}</p>
       </div >
     );
     layer.bindPopup(popupContent);
