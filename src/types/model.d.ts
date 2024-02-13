@@ -63,6 +63,7 @@ export interface IConstructionSite {
   cords: Cords;
   dist_arr: IDistanceList[];
   date?: string;
+  key?: string;
 }
 
 export interface IDistanceList {
