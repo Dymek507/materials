@@ -31,6 +31,7 @@ import ReactLeafletRightClick, {
   LeafletRightClickProvider,
   useLeafletRightClick
 } from "react-leaflet-rightclick";
+import { useEffect, useState } from "react";
 
 interface MapProps {
   list: ICompany[];
@@ -38,7 +39,6 @@ interface MapProps {
 }
 
 const Map = ({ list, circleRadius }: MapProps) => {
-
   const siteCords = useAppSelector((state) => state.construction.constructionSite.cords);
   const siteInfo = useAppSelector((state) => state.construction.constructionSite)
 
@@ -47,8 +47,6 @@ const Map = ({ list, circleRadius }: MapProps) => {
   const siteContours_json = siteContours as GeoJsonObject
   const geojson = geoData as GeoJsonObject
   const kolej_json = kolej as GeoJsonObject
-
-  console.log(siteKey)
 
   const GeoJSONPopup = ({ feature }: { feature: any }) => {
     const id = feature.properties["ID_ZLOZ"]
@@ -102,8 +100,8 @@ const Map = ({ list, circleRadius }: MapProps) => {
         zoomControl={false}
       >
 
-        <LayersControl position="topright">
-          <LayersControl.BaseLayer name="Mapa">
+        <LayersControl position="topright" >
+          <LayersControl.BaseLayer name="Mapa" checked>
             <TileLayer
               attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
               url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
@@ -116,34 +114,12 @@ const Map = ({ list, circleRadius }: MapProps) => {
               subdomains={['mt1', 'mt2', 'mt3']}
             />
           </LayersControl.BaseLayer>
-          {/* <LayersControl.BaseLayer name="aac" >
-            <WMSTileLayer
-              url={`https://cbdgmapa.pgi.gov.pl/arcgis/services/geoinz/atlas_gi_otwory/MapServer/WMSServer`}
-              params={{ layers: 'otwory wiertnicze CBDG', format: 'image/png', transparent: true }}
-              attribution="WMS: PGI"
-            />
-          </LayersControl.BaseLayer>
-          <LayersControl.BaseLayer name="aad" >
-            <WMSTileLayer
-              url={`https://cbdgmapa.pgi.gov.pl/arcgis/services/kartografia/mgp500k/MapServer/WMSServer`}
-              params={{ layers: 'wydzielenia geologiczne', format: 'image/png', transparent: true }}
-              attribution="WMS: PGI"
-            />
-          </LayersControl.BaseLayer> */}
           <LayersControl.Overlay name="Kolej">
             <TileLayer
               attribution='<a href="https://www.openstreetmap.org/copyright">© OpenStreetMap contributors</a>, Style: <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA 2.0</a> <a href="http://www.openrailwaymap.org/">OpenRailwayMap</a> and OpenStreetMap'
               url='https://tiles.openrailwaymap.org/standard/{z}/{x}/{y}.png'
               tileSize={256}
             />
-          </LayersControl.Overlay>
-          <LayersControl.Overlay name="test">
-            <WMSTileLayer
-              url={`https://cbdgmapa.pgi.gov.pl/arcgis/services/geoinz/atlas_gi_otwory/MapServer/WMSServer`}
-              params={{ layers: 'otwory wiertnicze CBDG', format: 'image/png', transparent: true }}
-              attribution="WMS: PGI"
-            />
-
           </LayersControl.Overlay>
           <LayersControl.Overlay name="Kruszywo">
             <GeoJSON data={geojson} onEachFeature={(feature, layer) => onPlaceClick(feature, layer)} filter={e => picnicFilter(e, "KAMIENIE ŁAMANE I BLOCZNE")} style={{ color: "red" }} />
